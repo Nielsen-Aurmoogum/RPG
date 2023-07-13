@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -16,6 +18,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenWidth = tileSize * maxScreenCol; // 768 pixels
     final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
+    InputHandler inputH = new InputHandler();
     Thread gameThread;
 
     public GamePanel() {
@@ -33,5 +36,29 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
+        update();
+
+        repaint(); // Calling paintComponent method
+    }
+
+    /**
+     * Updata charater information
+     */
+    public void update() {
+
+    }
+
+    /**
+     * Draw updated information on screen
+     */
+    public void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+
+        g2.setColor(Color.WHITE);
+        g2.fillRect(100, 100, tileSize, tileSize);
+        
+        g2.dispose();
     }
 }
