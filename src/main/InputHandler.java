@@ -8,7 +8,7 @@ public class InputHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
@@ -26,12 +26,12 @@ public class InputHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightInput = true;
         }
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
@@ -56,5 +56,4 @@ public class InputHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
-    
 }
