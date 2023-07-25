@@ -34,21 +34,21 @@ public class Player extends Character {
         try {
 
             up1 = ImageIO.read(
-                    new File("/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/up1.png"));
+                    new File("resources/player/up1.png"));
             up2 = ImageIO.read(
-                    new File("/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/up2.png"));
+                    new File("resources/player/up2.png"));
             down1 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/down1.png"));
+                    "resources/player/down1.png"));
             down2 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/down2.png"));
+                    "resources/player/down2.png"));
             right1 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/right1.png"));
+                    "resources/player/right1.png"));
             right2 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/right2.png"));
+                    "resources/player/right2.png"));
             left1 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/left1.png"));
+                    "resources/player/left1.png"));
             left2 = ImageIO.read(new File(
-                    "/Users/nielsenaurmoogum/Documents/University/OOP/Project/RPG/resources/player/left2.png"));
+                    "resources/player/left2.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
