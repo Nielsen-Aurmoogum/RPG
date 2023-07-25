@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 public class InputHandler implements KeyListener {
     public boolean upInput, downInput, leftInput, rightInput;
 
+    // W A S D for character movements
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -29,6 +30,7 @@ public class InputHandler implements KeyListener {
 
     }
 
+    // To know when movement has to stop
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -52,6 +54,7 @@ public class InputHandler implements KeyListener {
 
     }
 
+    // Not used for this game
     @Override
     public void keyTyped(KeyEvent e) {
     }

@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS
     int FPS = 60;
 
+    // Create objects
     TileManager tileM = new TileManager(this);
     InputHandler inputH = new InputHandler();
     Thread gameThread;
@@ -45,6 +46,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+        
+        // Frequency at which charater is repainted on screen 
         double paintInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();

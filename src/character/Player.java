@@ -10,18 +10,23 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.InputHandler;
 
+/**
+ * Class of main character
+ */
 public class Player extends Character {
     GamePanel gp;
     InputHandler inputH;
 
+    // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
         this.gp = gp;
-        this.inputH = inputH;
+        this.inputH = inputH; // Key input
 
         setStartValues();
         getPlayerImage();
     }
 
+    // Set default position, speed and direction
     public void setStartValues() {
         x = 100;
         y = 100;
@@ -29,6 +34,7 @@ public class Player extends Character {
         direction = "up";
     }
 
+    // Read main character image
     public void getPlayerImage() {
 
         try {
@@ -55,11 +61,17 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Update main character information
+     */
     public void update() {
 
         if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
-                || inputH.rightInput == true) {
-
+                || inputH.rightInput == true) { // When no keys are pressed, stay still
+            
+            // Change orientation depending on input
+            // Move main character upon input
+            
             if (inputH.upInput == true) {
                 direction = "up";
                 y -= speed;
@@ -80,6 +92,8 @@ public class Player extends Character {
                 x += speed;
             }
 
+            // Dictates when a variation of an
+            // orientation is used
             spriteCounter++;
             if (spriteCounter > 15) {
 
@@ -94,9 +108,12 @@ public class Player extends Character {
         }
     }
 
+    // Display main character on the screen
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 
+        // Different variations of orientations
+        // are used
         switch (direction) {
             case "up":
                 if (spriteNum == 1) {

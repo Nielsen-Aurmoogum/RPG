@@ -13,9 +13,10 @@ import main.GamePanel;
 public class TileManager {
 
     GamePanel gp;
-    Tile[] tile;
-    int tileNumMap[][];
+    Tile[] tile; // Array of tiles
+    int tileNumMap[][]; // Tiles on map
 
+    // Constructor
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
@@ -26,6 +27,7 @@ public class TileManager {
         loadMap("resources/maps/map01.txt");
     }
 
+    // Read tile types images
     public void getTileImage() {
         try {
 
@@ -43,7 +45,10 @@ public class TileManager {
         }
     }
 
+    // Build map
     public void loadMap(String filePath) {
+        
+        // Read text file containing map data
         File file = new File(filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -55,11 +60,11 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < gp.maxScreenCol) {
-                    String numbers[] = line.split(" ");
+                    String numbers[] = line.split(" "); // Do not take whitespace
 
-                    int num = Integer.parseInt(numbers[col]);
+                    int num = Integer.parseInt(numbers[col]); // Stores the tile type
 
-                    tileNumMap[col][row] = num;
+                    tileNumMap[col][row] = num; // Map then knows what tile is of which type(water, bricks or rocks)
                     col++;
                 }
                 if (col == gp.maxScreenCol) {
@@ -84,18 +89,19 @@ public class TileManager {
         int x = 0;
         int y = 0;
 
+        // While within window screen size
         while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
             int tileNum = tileNumMap[col][row];
 
             g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             col++;
-            x += gp.tileSize;
+            x += gp.tileSize; // Next tile right
 
             if (col == gp.maxScreenCol) {
                 col = 0;
                 x = 0;
                 row++;
-                y += gp.tileSize;
+                y += gp.tileSize; // Next tile down
             }
         }
     }
