@@ -14,6 +14,8 @@ import main.InputHandler;
  * Class of main character
  */
 public class Player extends Character {
+    public final int screenX;
+    public final int screenY;
     GamePanel gp;
     InputHandler inputH;
 
@@ -24,12 +26,16 @@ public class Player extends Character {
 
         setStartValues();
         getPlayerImage();
+
+        // Center charater
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
     }
 
     // Set default position, speed and direction
     public void setStartValues() {
-        x = 100;
-        y = 100;
+        worldX = gp.tileSize * 18;
+        worldY = gp.tileSize * 18;
         speed = 4;
         direction = "up";
     }
@@ -68,28 +74,28 @@ public class Player extends Character {
 
         if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
                 || inputH.rightInput == true) { // When no keys are pressed, stay still
-            
+
             // Change orientation depending on input
             // Move main character upon input
-            
+
             if (inputH.upInput == true) {
                 direction = "up";
-                y -= speed;
+                worldY -= speed;
             }
 
             else if (inputH.downInput == true) {
                 direction = "down";
-                y += speed;
+                worldY += speed;
             }
 
             else if (inputH.leftInput == true) {
                 direction = "left";
-                x -= speed;
+                worldX -= speed;
             }
 
             else if (inputH.rightInput == true) {
                 direction = "right";
-                x += speed;
+                worldX += speed;
             }
 
             // Dictates when a variation of an
@@ -144,6 +150,6 @@ public class Player extends Character {
                 }
                 break;
         }
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }

@@ -21,6 +21,12 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
+    // World settings
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
+
     // FPS
     int FPS = 60;
 
@@ -28,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     InputHandler inputH = new InputHandler();
     Thread gameThread;
-    Player player = new Player(this, inputH);
+    public Player player = new Player(this, inputH);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -46,8 +52,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        
-        // Frequency at which charater is repainted on screen 
+
+        // Frequency at which charater is repainted on screen
         double paintInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();

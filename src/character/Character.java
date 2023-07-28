@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  * characters that will be in the game
  */
 public class Character {
-    public int x, y; // Position on screen
+    public int worldX, worldY; // Position on map
     public int speed;
 
     // Character orientation

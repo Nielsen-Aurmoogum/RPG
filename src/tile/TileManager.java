@@ -21,10 +21,10 @@ public class TileManager {
         this.gp = gp;
 
         tile = new Tile[10];
-        tileNumMap = new int[gp.maxScreenCol][gp.maxScreenRow];
+        tileNumMap = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("resources/maps/map01.txt");
+        loadMap("resources/maps/world01.txt");
     }
 
     // Read tile types images
@@ -39,7 +39,7 @@ public class TileManager {
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("resources/tiles/rock.png"));
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class TileManager {
 
     // Build map
     public void loadMap(String filePath) {
-        
+
         // Read text file containing map data
         File file = new File(filePath);
 
@@ -56,10 +56,10 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
                 String line = br.readLine();
 
-                while (col < gp.maxScreenCol) {
+                while (col < gp.maxWorldCol) {
                     String numbers[] = line.split(" "); // Do not take whitespace
 
                     int num = Integer.parseInt(numbers[col]); // Stores the tile type
@@ -67,7 +67,7 @@ public class TileManager {
                     tileNumMap[col][row] = num; // Map then knows what tile is of which type(water, bricks or rocks)
                     col++;
                 }
-                if (col == gp.maxScreenCol) {
+                if (col == gp.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -83,25 +83,34 @@ public class TileManager {
      * Drawing tiles on the screen
      */
     public void draw(Graphics2D g2) {
-        
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+
+        int worldCol = 0;
+        int worldRow = 0;
 
         // While within window screen size
-        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
-            int tileNum = tileNumMap[col][row];
+        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
-            col++;
-            x += gp.tileSize; // Next tile right
+            // world is position on the map
+            // screen is where we draw
 
-            if (col == gp.maxScreenCol) {
-                col = 0;
-                x = 0;
-                row++;
-                y += gp.tileSize; // Next tile down
+            int tileNum = tileNumMap[worldCol][worldRow];
+            int worldX = worldCol * gp.tileSize;
+            int worldY = worldRow * gp.tileSize;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+            // Draw only for our window, don't draw whole world from start
+            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX
+                    && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX
+                    && worldY + gp.tileSize > gp.player.worldY - gp.player.screenY
+                    && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            }
+            worldCol++;
+
+            if (worldCol == gp.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
             }
         }
     }
