@@ -1,5 +1,6 @@
 package character;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -17,4 +18,8 @@ public class Character {
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
     public int spriteNum = 1;
+
+    // Collision region
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

@@ -1,6 +1,7 @@
 package character;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,9 @@ public class Player extends Character {
         // Center charater
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
+        // Collision Hit-Box
+        solidArea = new Rectangle(8, 16, 32, 32);
     }
 
     // Set default position, speed and direction
@@ -75,27 +79,46 @@ public class Player extends Character {
         if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
                 || inputH.rightInput == true) { // When no keys are pressed, stay still
 
-            // Change orientation depending on input
-            // Move main character upon input
-
+            // Check direction
             if (inputH.upInput == true) {
                 direction = "up";
-                worldY -= speed;
             }
 
             else if (inputH.downInput == true) {
                 direction = "down";
-                worldY += speed;
             }
 
             else if (inputH.leftInput == true) {
                 direction = "left";
-                worldX -= speed;
             }
 
             else if (inputH.rightInput == true) {
                 direction = "right";
-                worldX += speed;
+            }
+
+            // Check tile collision
+            collisionOn = false;
+            gp.collisionTest.checkTile(this);
+
+            // No collision, player moves
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+
+                    case "down":
+                        worldY += speed;
+                        break;
+
+                    case "left":
+                        worldX -= speed;
+                        break;
+
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
             }
 
             // Dictates when a variation of an
