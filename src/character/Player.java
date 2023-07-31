@@ -19,6 +19,7 @@ public class Player extends Character {
     public final int screenY;
     GamePanel gp;
     InputHandler inputH;
+    int hasKey = 0;
 
     // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
@@ -33,7 +34,13 @@ public class Player extends Character {
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         // Collision Hit-Box
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
     }
 
     // Set default position, speed and direction
@@ -100,6 +107,10 @@ public class Player extends Character {
             collisionOn = false;
             gp.collisionTest.checkTile(this);
 
+            // Check object collision
+            int objectIndex = gp.collisionTest.checkObject(this, true);
+            pickupObject(objectIndex);
+
             // No collision, player moves
             if (collisionOn == false) {
                 switch (direction) {
@@ -133,6 +144,28 @@ public class Player extends Character {
                 else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
+            }
+        }
+    }
+
+    // Player interacts with objects
+    public void pickupObject(int i) {
+
+        if (i != 999) {
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null; // Remove from screen
+                    break;
+
+                case "Door":
+                    if (hasKey > 0) {
+                        gp.obj[i] = null;
+                        hasKey--; // Use key to open door
+                    }
+                    break;
             }
         }
     }

@@ -59,6 +59,92 @@ public class VerifyCollision {
                 }
                 break;
         }
-    
+
+    }
+
+    /**
+     * Check if player hits object
+     */
+    public int checkObject(Character character, boolean player) {
+        // When index not 999
+        // player found object
+        int index = 999;
+
+        for (int i = 0; i < gp.obj.length; i++) {
+            if (gp.obj[i] != null) {
+
+                // Get character solid area position
+                character.solidArea.x = character.worldX + character.solidArea.x;
+                character.solidArea.y = character.worldY + character.solidArea.y;
+
+                // Get object solid area position
+                gp.obj[i].solidArea.x = gp.obj[i].worldX + gp.obj[i].solidArea.x;
+                gp.obj[i].solidArea.y = gp.obj[i].worldY + gp.obj[i].solidArea.y;
+
+                switch (character.direction) {
+                    case "up":
+                        character.solidArea.y -= character.speed;
+                        // intersects knows when object hit-box and player hit-box overlap
+                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision == true) {
+                                character.collisionOn = true;
+                            }
+
+                            // Non-player characters cannot pick up object
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "down":
+                        character.solidArea.y += character.speed;
+                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision == true) {
+                                character.collisionOn = true;
+                            }
+
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "left":
+                        character.solidArea.x -= character.speed;
+                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision == true) {
+                                character.collisionOn = true;
+                            }
+
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "right":
+                        character.solidArea.x += character.speed;
+                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision == true) {
+                                character.collisionOn = true;
+                            }
+
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+                }
+
+                // Reset
+                character.solidArea.x = character.solidAreaDefaultX;
+                character.solidArea.y = character.solidAreaDefaultY;
+                gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
+                gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
+            }
+        }
+
+        return index;
     }
 }

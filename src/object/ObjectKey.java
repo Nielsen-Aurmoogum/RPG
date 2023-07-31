@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ObjectKey extends SuperObject{
+public class ObjectKey extends SuperObject {
 
     public ObjectKey() {
 

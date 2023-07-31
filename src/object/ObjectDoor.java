@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ObjectDoor extends SuperObject{
+public class ObjectDoor extends SuperObject {
 
     public ObjectDoor() {
 
@@ -16,5 +16,7 @@ public class ObjectDoor extends SuperObject{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        collision = true;
     }
 }

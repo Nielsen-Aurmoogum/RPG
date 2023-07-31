@@ -22,4 +22,5 @@ public class Character {
     // Collision region
     public Rectangle solidArea;
     public boolean collisionOn = false;
+    public int solidAreaDefaultX, solidAreaDefaultY;
 }
