@@ -3,6 +3,7 @@ package main;
 import javax.swing.JPanel;
 
 import character.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 import java.awt.Color;
@@ -36,6 +37,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public VerifyCollision collisionTest = new VerifyCollision(this);
     public Player player = new Player(this, inputH);
+    public SuperObject obj[] = new SuperObject[7]; // Can display up to 7 objects at the same time
+    public ObjectPlacer placer = new ObjectPlacer(this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -43,6 +46,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(inputH);
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        placer.setObject();
     }
 
     public void startGameThread() {
@@ -91,8 +98,17 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        // Tile
         tileM.draw(g2);
 
+        // Object
+        for (int i = 0; i < obj.length; i++) { // Check type of object or if null
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        // Player
         player.draw(g2);
 
         g2.dispose();
