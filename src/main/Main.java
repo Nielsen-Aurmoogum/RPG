@@ -7,7 +7,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Fantasy RPG game");
+        window.setTitle("The Adventure of Slander man");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
