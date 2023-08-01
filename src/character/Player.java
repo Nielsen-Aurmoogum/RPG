@@ -20,7 +20,6 @@ public class Player extends Character {
     public final int screenY;
     GamePanel gp;
     InputHandler inputH;
-    int hasKey = 0;
 
     // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
@@ -154,21 +153,7 @@ public class Player extends Character {
     public void pickupObject(int i) {
 
         if (i != 999) {
-            String objectName = gp.obj[i].name;
-
-            switch (objectName) {
-                case "Key":
-                    hasKey++;
-                    gp.obj[i] = null; // Remove from screen
-                    break;
-
-                case "Door":
-                    if (hasKey > 0) {
-                        gp.obj[i] = null;
-                        hasKey--; // Use key to open door
-                    }
-                    break;
-            }
+            
         }
     }
 

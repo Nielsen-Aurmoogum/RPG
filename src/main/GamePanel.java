@@ -31,14 +31,24 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS
     int FPS = 60;
 
-    // Create objects
+    // Instantiate classes
+
+    // System
     TileManager tileM = new TileManager(this);
-    InputHandler inputH = new InputHandler();
+    InputHandler inputH = new InputHandler(this);
     Thread gameThread;
     public VerifyCollision collisionTest = new VerifyCollision(this);
+    public ObjectPlacer placer = new ObjectPlacer(this);
+    public UI ui = new UI(this);
+
+    // Characters and objects
     public Player player = new Player(this, inputH);
     public SuperObject obj[] = new SuperObject[7]; // Can display up to 7 objects at the same time
-    public ObjectPlacer placer = new ObjectPlacer(this);
+
+    // Game state
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -50,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         placer.setObject();
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -87,7 +98,13 @@ public class GamePanel extends JPanel implements Runnable {
      * Update graphic component information
      */
     public void update() {
-        player.update();
+
+        if (gameState == playState) {
+            player.update();
+        }
+        if (gameState == pauseState) {
+            // Do nothing
+        }
     }
 
     /**
@@ -110,6 +127,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Player
         player.draw(g2);
+
+        // UI
+        ui.draw(g2);
 
         g2.dispose();
     }

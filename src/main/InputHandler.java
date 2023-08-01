@@ -5,8 +5,14 @@ import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener {
     public boolean upInput, downInput, leftInput, rightInput;
+    GamePanel gp;
+
+    public InputHandler(GamePanel gp) {
+        this.gp = gp;
+    }
 
     // W A S D for character movements
+    // P pauses game
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -26,6 +32,15 @@ public class InputHandler implements KeyListener {
 
         if (code == KeyEvent.VK_D) {
             rightInput = true;
+        }
+
+        if (code == KeyEvent.VK_P) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            }
+            else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
         }
 
     }
