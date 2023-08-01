@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class TileManager {
 
@@ -29,19 +30,20 @@ public class TileManager {
 
     // Read tile types images
     public void getTileImage() {
+        setup(0, "beigebrick", false);
+        setup(1, "lava", true);
+        setup(2, "rock", true);
+    }
+
+    // Scale image
+    public void setup(int index, String imageName, boolean collision) {
+        UtilityTool utool = new UtilityTool();
+
         try {
-
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new File("resources/tiles/beigebrick.png"));
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new File("resources/tiles/lava.png"));
-            tile[1].collision = true;
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new File("resources/tiles/rock.png"));
-            tile[2].collision = true;
-
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(new File("resources/tiles/" + imageName + ".png"));
+            tile[index].image = utool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +108,7 @@ public class TileManager {
                     && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX
                     && worldY + gp.tileSize > gp.player.worldY - gp.player.screenY
                     && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
             worldCol++;
 

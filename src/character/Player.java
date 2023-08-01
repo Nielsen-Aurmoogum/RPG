@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.InputHandler;
+import main.UtilityTool;
 
 /**
  * Class of main character
@@ -54,28 +55,29 @@ public class Player extends Character {
     // Read main character image
     public void getPlayerImage() {
 
+        up1 = setup("up1");
+        up2 = setup("up2");
+        down1 = setup("down1");
+        down2 = setup("down2");
+        left1 = setup("left1");
+        left2 = setup("left2");
+        right1 = setup("right1");
+        right2 = setup("right2");
+    }
+
+    // Scale player image
+    public BufferedImage setup(String imageName) {
+        UtilityTool utool = new UtilityTool();
+        BufferedImage image = null;
+
         try {
-
-            up1 = ImageIO.read(
-                    new File("resources/player/up1.png"));
-            up2 = ImageIO.read(
-                    new File("resources/player/up2.png"));
-            down1 = ImageIO.read(new File(
-                    "resources/player/down1.png"));
-            down2 = ImageIO.read(new File(
-                    "resources/player/down2.png"));
-            right1 = ImageIO.read(new File(
-                    "resources/player/right1.png"));
-            right2 = ImageIO.read(new File(
-                    "resources/player/right2.png"));
-            left1 = ImageIO.read(new File(
-                    "resources/player/left1.png"));
-            left2 = ImageIO.read(new File(
-                    "resources/player/left2.png"));
-
+            image = ImageIO.read(new File("resources/player/" + imageName + ".png"));
+            image = utool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return image;
     }
 
     /**
@@ -206,6 +208,6 @@ public class Player extends Character {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }
