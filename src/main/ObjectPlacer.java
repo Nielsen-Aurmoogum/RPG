@@ -1,7 +1,6 @@
 package main;
 
-import object.ObjectDoor;
-import object.ObjectKey;
+import character.NPC_Villager;
 
 public class ObjectPlacer {
     GamePanel gp;
@@ -14,6 +13,13 @@ public class ObjectPlacer {
      * Instantiate object and provide location
      */
     public void setObject() {
-        
+
+    }
+
+    public void setNPC() {
+
+        gp.npc[0] = new NPC_Villager(gp);
+        gp.npc[0].worldX = gp.tileSize * 21;
+        gp.npc[0].worldY = gp.tileSize * 21;
     }
 }

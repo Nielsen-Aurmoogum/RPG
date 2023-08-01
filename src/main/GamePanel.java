@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.JPanel;
 
+import character.SuperCharacter;
 import character.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -44,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Characters and objects
     public Player player = new Player(this, inputH);
     public SuperObject obj[] = new SuperObject[7]; // Can display up to 7 objects at the same time
+    public SuperCharacter npc[] = new SuperCharacter[7]; // Can display up to 7 npcs at the same time
 
     // Game state
     public int gameState;
@@ -60,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         placer.setObject();
+        placer.setNPC();
         gameState = playState;
     }
 
@@ -100,7 +103,15 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         if (gameState == playState) {
+            // Player
             player.update();
+
+            // NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
             // Do nothing
@@ -127,6 +138,13 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Player
         player.draw(g2);
+
+        // NPC
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2);
+            }
+        }
 
         // UI
         ui.draw(g2);

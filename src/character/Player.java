@@ -3,27 +3,20 @@ package character;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.InputHandler;
-import main.UtilityTool;
 
 /**
  * Class of main character
  */
-public class Player extends Character {
+public class Player extends SuperCharacter {
     public final int screenX;
     public final int screenY;
-    GamePanel gp;
     InputHandler inputH;
 
     // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
-        this.gp = gp;
+        super(gp);
         this.inputH = inputH; // Key input
 
         setStartValues();
@@ -54,29 +47,14 @@ public class Player extends Character {
     // Read main character image
     public void getPlayerImage() {
 
-        up1 = setup("up1");
-        up2 = setup("up2");
-        down1 = setup("down1");
-        down2 = setup("down2");
-        left1 = setup("left1");
-        left2 = setup("left2");
-        right1 = setup("right1");
-        right2 = setup("right2");
-    }
-
-    // Scale player image
-    public BufferedImage setup(String imageName) {
-        UtilityTool utool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(new File("resources/player/" + imageName + ".png"));
-            image = utool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return image;
+        up1 = setup("resources/player/up1");
+        up2 = setup("resources/player/up2");
+        down1 = setup("resources/player/down1");
+        down2 = setup("resources/player/down2");
+        left1 = setup("resources/player/left1");
+        left2 = setup("resources/player/left2");
+        right1 = setup("resources/player/right1");
+        right2 = setup("resources/player/right2");
     }
 
     /**
@@ -112,6 +90,10 @@ public class Player extends Character {
             int objectIndex = gp.collisionTest.checkObject(this, true);
             pickupObject(objectIndex);
 
+            // Check NPC collision
+            int npcIndex = gp.collisionTest.checkCharacter(this, gp.npc);
+            interactNPC(npcIndex);
+
             // No collision, player moves
             if (collisionOn == false) {
                 switch (direction) {
@@ -145,6 +127,7 @@ public class Player extends Character {
                 else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
+                spriteCounter = 0;
             }
         }
     }
@@ -153,11 +136,19 @@ public class Player extends Character {
     public void pickupObject(int i) {
 
         if (i != 999) {
-            
+
+        }
+    }
+
+    // Player to NPC collision
+    public void interactNPC(int i) {
+        if (i != 999) {
+            System.out.println("you collided with an NPC !");
         }
     }
 
     // Display main character on the screen
+    @Override
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 

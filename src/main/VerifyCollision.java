@@ -1,6 +1,6 @@
 package main;
 
-import character.Character;
+import character.SuperCharacter;
 
 public class VerifyCollision {
     GamePanel gp;
@@ -9,7 +9,7 @@ public class VerifyCollision {
         this.gp = gp;
     }
 
-    public void checkTile(Character character) {
+    public void checkTile(SuperCharacter character) {
         int characterLeftWorldX = character.worldX + character.solidArea.x;
         int characterRightWorldX = character.worldX + character.solidArea.x + character.solidArea.width;
         int characterTopWorldY = character.worldY + character.solidArea.y;
@@ -65,7 +65,7 @@ public class VerifyCollision {
     /**
      * Check if player hits object
      */
-    public int checkObject(Character character, boolean player) {
+    public int checkObject(SuperCharacter character, boolean player) {
         // When index not 999
         // player found object
         int index = 999;
@@ -146,5 +146,115 @@ public class VerifyCollision {
         }
 
         return index;
+    }
+
+    // Player to NPC or Monster collision checker
+    public int checkCharacter(SuperCharacter character, SuperCharacter[] target) {
+        int index = 999;
+
+        for (int i = 0; i < target.length; i++) {
+            if (target[i] != null) {
+
+                // Get character solid area position
+                character.solidArea.x = character.worldX + character.solidArea.x;
+                character.solidArea.y = character.worldY + character.solidArea.y;
+
+                // Get target solid area position
+                target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
+                target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
+
+                switch (character.direction) {
+                    case "up":
+                        character.solidArea.y -= character.speed;
+                        // intersects knows when NPC/Monster hit-box and player hit-box overlap
+                        if (character.solidArea.intersects(target[i].solidArea)) {
+                            character.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+
+                    case "down":
+                        character.solidArea.y += character.speed;
+                        if (character.solidArea.intersects(target[i].solidArea)) {
+                            character.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+
+                    case "left":
+                        character.solidArea.x -= character.speed;
+                        if (character.solidArea.intersects(target[i].solidArea)) {
+                            character.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+
+                    case "right":
+                        character.solidArea.x += character.speed;
+                        if (character.solidArea.intersects(target[i].solidArea)) {
+                            character.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                }
+
+                // Reset
+                character.solidArea.x = character.solidAreaDefaultX;
+                character.solidArea.y = character.solidAreaDefaultY;
+                target[i].solidArea.x = target[i].solidAreaDefaultX;
+                target[i].solidArea.y = target[i].solidAreaDefaultY;
+            }
+        }
+
+        return index;
+    }
+
+    // NPC or Monster to Player collision checker
+    public void checkPlayer(SuperCharacter character) {
+        // Get character solid area position
+        character.solidArea.x = character.worldX + character.solidArea.x;
+        character.solidArea.y = character.worldY + character.solidArea.y;
+
+        // Get target solid area position
+        gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+        gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+
+        switch (character.direction) {
+            case "up":
+                character.solidArea.y -= character.speed;
+                // intersects knows when NPC/Monster hit-box and player hit-box overlap
+                if (character.solidArea.intersects(gp.player.solidArea)) {
+                    character.collisionOn = true;
+                }
+                break;
+
+            case "down":
+                character.solidArea.y += character.speed;
+                if (character.solidArea.intersects(gp.player.solidArea)) {
+                    character.collisionOn = true;
+                }
+                break;
+
+            case "left":
+                character.solidArea.x -= character.speed;
+                if (character.solidArea.intersects(gp.player.solidArea)) {
+                    character.collisionOn = true;
+                }
+                break;
+
+            case "right":
+                character.solidArea.x += character.speed;
+                if (character.solidArea.intersects(gp.player.solidArea)) {
+                    character.collisionOn = true;
+                }
+                break;
+        }
+
+        // Reset
+        character.solidArea.x = character.solidAreaDefaultX;
+        character.solidArea.y = character.solidAreaDefaultY;
+        gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+        gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+
     }
 }
