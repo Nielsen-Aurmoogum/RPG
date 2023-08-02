@@ -143,7 +143,7 @@ public class Player extends SuperCharacter {
     // Player to NPC collision
     public void interactNPC(int i) {
         if (i != 999) {
-            System.out.println("you collided with an NPC !");
+            gp.gameState = gp.dialogueState;            
         }
     }
 
