@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // System
     TileManager tileM = new TileManager(this);
-    InputHandler inputH = new InputHandler(this);
+    public InputHandler inputH = new InputHandler(this);
     Thread gameThread;
     public VerifyCollision collisionTest = new VerifyCollision(this);
     public ObjectPlacer placer = new ObjectPlacer(this);

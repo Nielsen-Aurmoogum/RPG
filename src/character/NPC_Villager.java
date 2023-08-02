@@ -12,6 +12,7 @@ public class NPC_Villager extends SuperCharacter {
         speed = 1;
 
         getCharacterImage();
+        setDialogue();
     }
 
     // Read villager character image
@@ -25,6 +26,14 @@ public class NPC_Villager extends SuperCharacter {
         left2 = setup("resources/npc/villager-left2");
         right1 = setup("resources/npc/villager-right1");
         right2 = setup("resources/npc/villager-right2");
+    }
+
+    // What dialogues are stored in
+    // dialogues array
+    public void setDialogue() {
+        dialogues[0] = "Hello, warrior.";
+        dialogues[1] = "This island has many surprises\n for you.";
+        dialogues[2] = "Good luck on your adventure !";
     }
 
     // Villager specific behaviours
@@ -56,6 +65,12 @@ public class NPC_Villager extends SuperCharacter {
             actionLockCounter = 0;
         }
 
+    }
+
+    // Store the dialogue in currentDialogue in UI class
+    public void speak() {
+
+        super.speak();
     }
 
 }

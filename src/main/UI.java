@@ -4,7 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.text.DecimalFormat;
 
 /**
  * Used to display components on screen
@@ -18,6 +17,7 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
+    public String currentDialogue;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -76,6 +76,16 @@ public class UI {
         int height = gp.tileSize * 4;
 
         drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+        x += gp.tileSize;
+        y += gp.tileSize;
+
+        // Line break at '\n'
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40; // display next line below
+        }
     }
 
     // Setup dialogue window

@@ -14,12 +14,16 @@ import main.UtilityTool;
  * characters that will be in the game
  */
 public class SuperCharacter {
-    public int worldX, worldY; // Position on map
-    public int speed;
     GamePanel gp;
-
+    public int worldX, worldY; // Position on map
+    
+    // Dialogue
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
+    
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public int speed;
     public String direction;
     public int actionLockCounter = 0;
 
@@ -38,6 +42,38 @@ public class SuperCharacter {
     }
 
     public void setAction() {
+    }
+
+    // Store the dialogue in currentDialogue in UI class
+    public void speak() {
+        
+        // When end of dialogue array is reached
+        // Go back to first index
+        if (dialogues[dialogueIndex] == null) {
+            dialogueIndex = 0;
+        }
+        gp.ui.currentDialogue = dialogues[dialogueIndex];
+        dialogueIndex++;
+
+        // When conversation happening,
+        // make NPC face player
+        switch (gp.player.direction) {
+            case "up":
+                direction = "down";
+                break;
+        
+            case "down":
+                direction = "up";
+                break;
+
+            case "left":
+                direction = "right";
+                break;
+
+            case "right":
+                direction = "left";
+                break;
+        }
     }
 
     public void update() {
