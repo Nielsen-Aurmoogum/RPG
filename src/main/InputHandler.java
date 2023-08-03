@@ -41,7 +41,7 @@ public class InputHandler implements KeyListener {
                 gp.gameState = gp.pauseState;
             }
 
-            if(code == KeyEvent.VK_ENTER) {
+            if (code == KeyEvent.VK_ENTER) {
                 enterInput = true;
             }
         }

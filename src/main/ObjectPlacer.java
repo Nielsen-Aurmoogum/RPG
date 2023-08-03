@@ -16,6 +16,9 @@ public class ObjectPlacer {
 
     }
 
+    /**
+     * Instantiate NPC and provide location
+     */
     public void setNPC() {
 
         gp.npc[0] = new NPC_Villager(gp);

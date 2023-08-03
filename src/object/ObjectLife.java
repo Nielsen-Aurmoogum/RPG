@@ -8,13 +8,13 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 
 public class ObjectLife extends SuperObject {
-    
+
     GamePanel gp;
 
     public ObjectLife(GamePanel gp) {
 
         this.gp = gp;
-        name = "life";
+        name = "Life";
 
         try {
             image = ImageIO.read(new File("resources/objects/heartfull.png"));

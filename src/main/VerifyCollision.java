@@ -9,6 +9,7 @@ public class VerifyCollision {
         this.gp = gp;
     }
 
+    // Check for tile collision
     public void checkTile(SuperCharacter character) {
         int characterLeftWorldX = character.worldX + character.solidArea.x;
         int characterRightWorldX = character.worldX + character.solidArea.x + character.solidArea.width;

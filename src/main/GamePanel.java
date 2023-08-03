@@ -44,13 +44,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Characters and objects
     public Player player = new Player(this, inputH);
-    public SuperObject obj[] = new SuperObject[7]; // Can display up to 7 objects at the same time
-    public SuperCharacter npc[] = new SuperCharacter[7]; // Can display up to 7 npcs at the same time
+    public SuperObject obj[] = new SuperObject[10]; // Can display up to 10 objects at the same time
+    public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
     public EventHandler eHandler = new EventHandler(this);
 
     // Game state
     public int gameState;
-    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
@@ -129,9 +128,6 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //TITLE SCREEN
-        
-
         // Tile
         tileM.draw(g2);
 
@@ -156,6 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
         ui.draw(g2);
 
         g2.dispose();
-        
+
     }
 }
