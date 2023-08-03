@@ -16,11 +16,11 @@ import main.UtilityTool;
 public class SuperCharacter {
     GamePanel gp;
     public int worldX, worldY; // Position on map
-    
+
     // Dialogue
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
-    
+
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public int speed;
@@ -35,8 +35,8 @@ public class SuperCharacter {
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public boolean collisionOn = false;
     public int solidAreaDefaultX, solidAreaDefaultY;
-    
-    //Character Status
+
+    // Character Status
     public int fullLife;
     public int life;
 
@@ -50,7 +50,7 @@ public class SuperCharacter {
 
     // Store the dialogue in currentDialogue in UI class
     public void speak() {
-        
+
         // When end of dialogue array is reached
         // Go back to first index
         if (dialogues[dialogueIndex] == null) {
@@ -65,7 +65,7 @@ public class SuperCharacter {
             case "up":
                 direction = "down";
                 break;
-        
+
             case "down":
                 direction = "up";
                 break;
