@@ -37,7 +37,7 @@ public class SuperCharacter {
     public int solidAreaDefaultX, solidAreaDefaultY;
     //Character Status
     public int fullLife;
-    public int Life;
+    public int life;
     // Constructor
     public SuperCharacter(GamePanel gp) {
         this.gp = gp;

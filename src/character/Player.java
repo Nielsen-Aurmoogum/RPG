@@ -45,7 +45,7 @@ public class Player extends SuperCharacter {
 
         //Player status
         fullLife = 6;
-        Life = fullLife;
+        life = fullLife;
     }
 
     // Read main character image

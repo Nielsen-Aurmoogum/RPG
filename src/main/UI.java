@@ -67,7 +67,7 @@ public class UI {
         }
     }
     public void drawPlayerLife(){
-        gp.player.Life = 5;
+        gp.player.life = 5;
 
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
@@ -84,10 +84,10 @@ public class UI {
         y = gp.tileSize/2;
         i = 0 ;
 
-        while(i < gp.player.Life){
+        while(i < gp.player.life){
             g2.drawImage(hearthalf,x,y,null);
             i++;
-            if(i<gp.player.Life)
+            if(i<gp.player.life)
             {
                 g2.drawImage(heartfull,x,y,null);
             }
