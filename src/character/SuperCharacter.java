@@ -35,9 +35,11 @@ public class SuperCharacter {
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public boolean collisionOn = false;
     public int solidAreaDefaultX, solidAreaDefaultY;
+    
     //Character Status
     public int fullLife;
     public int life;
+
     // Constructor
     public SuperCharacter(GamePanel gp) {
         this.gp = gp;

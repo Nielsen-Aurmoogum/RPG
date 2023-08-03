@@ -25,15 +25,16 @@ public class UI {
     public String currentDialogue;
 
     public UI(GamePanel gp) {
+
         this.gp = gp;
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-     //Create object
-     SuperObject life = new ObjectLife(gp);
-     heartfull = life.image;
-     hearthalf = life.image2;
-     heartempty= life.image3;
+        //Create object
+        SuperObject life = new ObjectLife(gp);
+        heartfull = life.image;
+        hearthalf = life.image2;
+        heartempty= life.image3;
     }
 
     // Display text
@@ -84,7 +85,7 @@ public class UI {
         y = gp.tileSize/2;
         i = 0 ;
 
-        while(i < gp.player.life){
+        while(i < gp.player.life) {
             g2.drawImage(hearthalf,x,y,null);
             i++;
             if(i<gp.player.life)
