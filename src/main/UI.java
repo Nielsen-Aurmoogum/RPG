@@ -39,6 +39,11 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.RED);
 
+        //TITLE STATE
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
+
         // Play state
         if (gp.gameState == gp.playState) {
             // Later
@@ -53,6 +58,19 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
+
+    public void drawTitleScreen() {
+
+        //TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F))
+        String text = "The Adventure of Slander Man";
+        int x = xCenter(text);
+        int y = gp.tileSize*3;
+
+        g2.setColor(Color.white);
+        g2.drawString(text, x, y);
+
     }
 
     // Handles where pause text will be
