@@ -42,6 +42,10 @@ public class Player extends SuperCharacter {
         worldY = gp.tileSize * 18;
         speed = 4;
         direction = "up";
+
+        //Player status
+        fullLife = 6;
+        Life = fullLife;
     }
 
     // Read main character image
