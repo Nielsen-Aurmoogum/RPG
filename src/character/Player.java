@@ -100,6 +100,7 @@ public class Player extends SuperCharacter {
 
             // Check event collision
             gp.eHandler.checkEvent();
+            gp.inputH.enterInput = false;
 
             // No collision, player moves
             if (collisionOn == false) {
@@ -156,7 +157,6 @@ public class Player extends SuperCharacter {
                 gp.npc[i].speak();
             }
         }
-        gp.inputH.enterInput = false;
     }
 
     // Display main character on the screen
