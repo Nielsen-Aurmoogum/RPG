@@ -22,7 +22,7 @@ public class EventHandler {
     // What kind of event and where are the events
     // on the map
     public void checkEvent() {
-        if (hit(10, 10, "any") == true) {
+        if (hit(4, 4, "left") == true) {
             fire(gp.dialogueState);
         }
     }
@@ -31,14 +31,13 @@ public class EventHandler {
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
         boolean hit = false;
 
-
         gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
         gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-        eventRect.x = eventCol*gp.tileSize + eventRect.x;
-        eventRect.y = eventCol*gp.tileSize + eventRect.y;
+        eventRect.x = eventCol * gp.tileSize + eventRect.x;
+        eventRect.y = eventRow * gp.tileSize + eventRect.y;
 
         if (gp.player.solidArea.intersects(eventRect)) {
-            if (gp.player.direction == reqDirection || reqDirection.contentEquals("any")) {
+            if (gp.player.direction.contains(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
             }
         }
@@ -49,7 +48,7 @@ public class EventHandler {
         eventRect.y = eventRectDefaultY;
 
         return hit;
-    } 
+    }
 
     // Damage-based event
     public void fire(int gameState) {

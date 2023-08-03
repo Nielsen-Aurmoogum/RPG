@@ -98,6 +98,9 @@ public class Player extends SuperCharacter {
             int npcIndex = gp.collisionTest.checkCharacter(this, gp.npc);
             interactNPC(npcIndex);
 
+            // Check event collision
+            gp.eHandler.checkEvent();
+
             // No collision, player moves
             if (collisionOn == false) {
                 switch (direction) {
