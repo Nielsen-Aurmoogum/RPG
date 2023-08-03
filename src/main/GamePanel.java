@@ -131,11 +131,8 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         //TITLE SCREEN
-        if (gameState == titleState){
+        
 
-        }
-        // OTHERS
-        else{
         // Tile
         tileM.draw(g2);
 
@@ -160,6 +157,6 @@ public class GamePanel extends JPanel implements Runnable {
         ui.draw(g2);
 
         g2.dispose();
-        }
+        
     }
 }

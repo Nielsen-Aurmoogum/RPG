@@ -21,8 +21,8 @@ public class ObjectLife extends SuperObject {
             image2 = ImageIO.read(new File("resources/objects/hearthalf.png"));
             image3 = ImageIO.read(new File("resources/objects/heartempty.png")); // needs the real key image
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            image2 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            image3 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image2 = uTool.scaleImage(image2, gp.tileSize, gp.tileSize);
+            image3 = uTool.scaleImage(image3, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
