@@ -83,10 +83,12 @@ public class UI {
             x += gp.tileSize;
         }
 
+        // Reset
         x = gp.tileSize / 2;
         y = gp.tileSize / 2;
         i = 0;
 
+        // Draw current life
         while (i < gp.player.life) {
             g2.drawImage(hearthalf, x, y, null);
             i++;
