@@ -31,11 +31,11 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
-        //Create object
+        // Create object
         SuperObject life = new ObjectLife(gp);
         heartfull = life.image;
         hearthalf = life.image2;
-        heartempty= life.image3;
+        heartempty = life.image3;
     }
 
     // Display text
@@ -68,37 +68,37 @@ public class UI {
             drawDialogueScreen();
         }
     }
-    
-    public void drawPlayerLife(){
+
+    public void drawPlayerLife() {
         gp.player.life = 5;
 
-        int x = gp.tileSize/2;
-        int y = gp.tileSize/2;
-        int i = 0 ;
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
 
-        //Draw full life
-        while(i < gp.player.fullLife/2){
-            g2.drawImage(heartempty,x,y,null);
-            i++ ;
+        // Draw full life
+        while (i < gp.player.fullLife / 2) {
+            g2.drawImage(heartempty, x, y, null);
+            i++;
             x += gp.tileSize;
         }
 
-        x = gp.tileSize/2;
-        y = gp.tileSize/2;
-        i = 0 ;
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
 
-        while(i < gp.player.life) {
-            g2.drawImage(hearthalf,x,y,null);
+        while (i < gp.player.life) {
+            g2.drawImage(hearthalf, x, y, null);
             i++;
-            if(i<gp.player.life)
-            {
-                g2.drawImage(heartfull,x,y,null);
+            if (i < gp.player.life) {
+                g2.drawImage(heartfull, x, y, null);
             }
             i++;
-            x+= gp.tileSize ;
+            x += gp.tileSize;
         }
-        
+
     }
+
     // Handles where pause text will be
     public void drawPauseScreen() {
 
@@ -142,7 +142,7 @@ public class UI {
         c = new Color(255, 255, 255);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x+5, y+5, width - 10, height - 10, 25, 25);
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
     // Center of screen x
