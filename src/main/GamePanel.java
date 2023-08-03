@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // System
     TileManager tileM = new TileManager(this);
-    InputHandler inputH = new InputHandler(this);
+    public InputHandler inputH = new InputHandler(this);
     Thread gameThread;
     public VerifyCollision collisionTest = new VerifyCollision(this);
     public ObjectPlacer placer = new ObjectPlacer(this);
@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
