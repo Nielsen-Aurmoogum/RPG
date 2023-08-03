@@ -43,7 +43,7 @@ public class Player extends SuperCharacter {
         speed = 4;
         direction = "up";
 
-        //Player status
+        // Player status
         fullLife = 6;
         life = fullLife;
     }
@@ -150,7 +150,7 @@ public class Player extends SuperCharacter {
 
             if (gp.inputH.enterInput == true) {
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();                        
+                gp.npc[i].speak();
             }
         }
         gp.inputH.enterInput = false;
