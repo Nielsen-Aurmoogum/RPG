@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, inputH);
     public SuperObject obj[] = new SuperObject[7]; // Can display up to 7 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[7]; // Can display up to 7 npcs at the same time
+    public EventHandler eHandler = new EventHandler(this);
 
     // Game state
     public int gameState;
