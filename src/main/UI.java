@@ -51,6 +51,11 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.RED);
 
+        //TITLE STATE
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
+
         // Play state
         if (gp.gameState == gp.playState) {
             drawPlayerLife();
@@ -67,6 +72,31 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+    }
+
+    public void drawTitleScreen() {
+
+        g2.setColor(new Color(0, 0,0));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        //TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
+        String text = "The Aventure of Slander Man";
+        int x = xCenter(text);
+        int y = gp.tileSize*3;
+
+        //SHADOW
+        g2.setColor(Color.darkGray);
+        g2.drawString(text, x+5, y+5);
+
+        //MAIN COLOR
+        g2.setColor(Color.red);
+        g2.drawString(text, x, y);
+
+        //SLANDER MAN IMAGE
+        x = gp.screenWidth/2;
+        y += gp.tileSize*2;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
     }
 
     // Draws player lifeline
