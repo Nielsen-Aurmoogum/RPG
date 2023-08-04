@@ -4,13 +4,15 @@ import javax.swing.JPanel;
 
 import character.SuperCharacter;
 import character.Player;
-import object.SuperObject;
 import tile.TileManager;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -44,9 +46,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Characters and objects
     public Player player = new Player(this, inputH);
-    public SuperObject obj[] = new SuperObject[10]; // Can display up to 10 objects at the same time
+    public SuperCharacter obj[] = new SuperCharacter[10]; // Can display up to 10 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
     public EventHandler eHandler = new EventHandler(this);
+    ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array list
 
     // Game state
     public int gameState;
@@ -131,21 +134,41 @@ public class GamePanel extends JPanel implements Runnable {
         // Tile
         tileM.draw(g2);
 
-        // Object
-        for (int i = 0; i < obj.length; i++) { // Check type of object or if null
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
+        // Populating list with characters and objects
+        charactersList.add(player);
+
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                charactersList.add(npc[i]);
             }
         }
 
-        // Player
-        player.draw(g2);
-
-        // NPC
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                charactersList.add(obj[i]);
             }
+        }
+
+        // Sort render order
+        // Sort list by using worldY as filter
+        Collections.sort(charactersList, new Comparator<SuperCharacter>() {
+
+            @Override
+            public int compare(SuperCharacter c1, SuperCharacter c2) {
+                int result = Integer.compare(c1.worldY, c2.worldY);
+                return result;
+            }
+            
+        });
+
+        // Draw characters and objects
+        for (int i = 0; i < charactersList.size(); i++) {
+            charactersList.get(i).draw(g2);
+        }
+
+        // Empty charactersList
+        for (int i = 0; i < charactersList.size(); i++) {
+            charactersList.remove(i);
         }
 
         // UI

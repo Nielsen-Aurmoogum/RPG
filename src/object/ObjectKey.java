@@ -1,25 +1,15 @@
 package object;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import character.SuperCharacter;
 import main.GamePanel;
 
-public class ObjectKey extends SuperObject {
-    GamePanel gp;
+public class ObjectKey extends SuperCharacter {
 
     public ObjectKey(GamePanel gp) {
+        super(gp);
 
-        this.gp = gp;
         name = "Key";
+        down1 = setup("resources/objects/key");
 
-        try {
-            image = ImageIO.read(new File("resources/tiles/rock.png")); // needs the real key image
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

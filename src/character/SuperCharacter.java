@@ -24,7 +24,7 @@ public class SuperCharacter {
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public int speed;
-    public String direction;
+    public String direction = "down";
     public int actionLockCounter = 0;
 
     // Used to decide when to cycle through different orientations
@@ -39,6 +39,11 @@ public class SuperCharacter {
     // Character Status
     public int fullLife;
     public int life;
+
+    // Objects like keys and doors
+    public BufferedImage image, image2, image3;
+    public String name;
+    public boolean collision = false;
 
     // Constructor
     public SuperCharacter(GamePanel gp) {
