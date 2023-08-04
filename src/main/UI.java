@@ -5,9 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
+import character.SuperCharacter;
 import object.ObjectLife;
-import object.SuperObject;
 
 /**
  * Used to display components on screen
@@ -33,7 +32,7 @@ public class UI {
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
         // Create object
-        SuperObject life = new ObjectLife(gp);
+        SuperCharacter life = new ObjectLife(gp);
         heartfull = life.image;
         hearthalf = life.image2;
         heartempty = life.image3;

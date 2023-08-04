@@ -1,30 +1,16 @@
 package object;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import character.SuperCharacter;
 import main.GamePanel;
 
-public class ObjectLife extends SuperObject {
-
-    GamePanel gp;
+public class ObjectLife extends SuperCharacter {
 
     public ObjectLife(GamePanel gp) {
+        super(gp);
 
-        this.gp = gp;
         name = "Life";
-
-        try {
-            image = ImageIO.read(new File("resources/objects/heartfull.png"));
-            image2 = ImageIO.read(new File("resources/objects/hearthalf.png"));
-            image3 = ImageIO.read(new File("resources/objects/heartempty.png")); // needs the real key image
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            image2 = uTool.scaleImage(image2, gp.tileSize, gp.tileSize);
-            image3 = uTool.scaleImage(image3, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        image = setup("resources/objects/heartfull");
+        image2 = setup("resources/objects/hearthalf");
+        image3 = setup("resources/objects/heartempty");
     }
 }
