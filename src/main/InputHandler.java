@@ -19,7 +19,7 @@ public class InputHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        //TITLE STATE
+        // TITLE STATE
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
@@ -40,10 +40,10 @@ public class InputHandler implements KeyListener {
                     gp.gameState = gp.playState;
                 }
                 if (gp.ui.commandNum == 1) {
-                //add later
+                    // add later
                 }
 
-                if(gp.ui.commandNum == 2) {
+                if (gp.ui.commandNum == 2) {
                     System.exit(0);
                 }
             }

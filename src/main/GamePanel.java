@@ -49,7 +49,8 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperCharacter obj[] = new SuperCharacter[10]; // Can display up to 10 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
     public EventHandler eHandler = new EventHandler(this);
-    ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array list
+    ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array
+                                                                  // list
 
     // Game state
     public int gameState;
@@ -132,56 +133,58 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //TITLE SCREEN
-        if(gameState == titleState) {
+        // TITLE SCREEN
+        if (gameState == titleState) {
             ui.draw(g2);
-        } 
-        //OTHERS
+        }
+
+        // OTHERS
         else {
+
             // Tile
-        tileM.draw(g2);
+            tileM.draw(g2);
 
-        // Populating list with characters and objects
-        charactersList.add(player);
+            // Populating list with characters and objects
+            charactersList.add(player);
 
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                charactersList.add(npc[i]);
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    charactersList.add(npc[i]);
+                }
             }
-        }
 
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                charactersList.add(obj[i]);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    charactersList.add(obj[i]);
+                }
             }
-        }
 
-        // Sort render order
-        // Sort list by using worldY as filter
-        Collections.sort(charactersList, new Comparator<SuperCharacter>() {
+            // Sort render order
+            // Sort list by using worldY as filter
+            Collections.sort(charactersList, new Comparator<SuperCharacter>() {
 
-            @Override
-            public int compare(SuperCharacter c1, SuperCharacter c2) {
-                int result = Integer.compare(c1.worldY, c2.worldY);
-                return result;
+                @Override
+                public int compare(SuperCharacter c1, SuperCharacter c2) {
+                    int result = Integer.compare(c1.worldY, c2.worldY);
+                    return result;
+                }
+
+            });
+
+            // Draw characters and objects
+            for (int i = 0; i < charactersList.size(); i++) {
+                charactersList.get(i).draw(g2);
             }
-            
-        });
 
-        // Draw characters and objects
-        for (int i = 0; i < charactersList.size(); i++) {
-            charactersList.get(i).draw(g2);
-        }
+            // Empty charactersList
+            for (int i = 0; i < charactersList.size(); i++) {
+                charactersList.remove(i);
+            }
 
-        // Empty charactersList
-        for (int i = 0; i < charactersList.size(); i++) {
-            charactersList.remove(i);
-        }
+            // UI
+            ui.draw(g2);
 
-        // UI
-        ui.draw(g2);
-
-        g2.dispose();
+            g2.dispose();
         }
     }
 }

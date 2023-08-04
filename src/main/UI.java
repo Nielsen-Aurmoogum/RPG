@@ -51,7 +51,7 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.RED);
 
-        //TITLE STATE
+        // TITLE STATE
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
@@ -76,37 +76,37 @@ public class UI {
 
     public void drawTitleScreen() {
 
-        g2.setColor(new Color(0, 0,0));
+        g2.setColor(new Color(0, 0, 0));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        //TITLE NAME
+        // TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
         String text = "The Aventure of Slander Man";
         int x = xCenter(text);
-        int y = gp.tileSize*3;
+        int y = gp.tileSize * 3;
 
-        //SHADOW
+        // SHADOW
         g2.setColor(Color.darkGray);
-        g2.drawString(text, x+5, y+5);
+        g2.drawString(text, x + 5, y + 5);
 
-        //MAIN COLOR
+        // MAIN COLOR
         g2.setColor(Color.red);
         g2.drawString(text, x, y);
 
-        //SLANDER MAN IMAGE
-        x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-        y += gp.tileSize*2;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+        // SLANDER MAN IMAGE
+        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+        y += gp.tileSize * 2;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
-        //MENU
+        // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 38F));
 
         text = "NEW GAME";
         x = xCenter(text);
-        y += gp.tileSize*3;
+        y += gp.tileSize * 3;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "LOAD GAME";
@@ -114,16 +114,15 @@ public class UI {
         y += gp.tileSize;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
-
 
         text = "QUIT GAME";
         x = xCenter(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
         if (commandNum == 2) {
-            g2.drawString(">", x-gp.tileSize, y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
     }
