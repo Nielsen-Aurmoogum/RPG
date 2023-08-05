@@ -7,7 +7,7 @@ public class EventHandler {
     int eventRectDefaultX, eventRectDefaultY;
 
     int previousEventX, previousEventY;
-    boolean canTouchEvent;
+    boolean canTouchEvent = true;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -24,6 +24,12 @@ public class EventHandler {
             eventRect[col][row].height = 2;
             eventRect[col][row].eventRectDefaultX = eventRect[col][row].x;
             eventRect[col][row].eventRectDefaultY = eventRect[col][row].y;
+
+            col++;
+            if (col == gp.maxWorldCol) {
+                col = 0;
+                row++;
+            }
         }
 
     }
@@ -33,17 +39,18 @@ public class EventHandler {
     public void checkEvent() {
 
         // check if player is more than one tile away from previous event
-        int xDistance = Math.abs(gp.player.worldX = previousEventX);
-        int yDistance = Math.abs(gp.player.worldY = previousEventY);
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
         int distance = Math.max(xDistance, yDistance);
 
+        // More than 1 tile away from last event
         if (distance > gp.tileSize) {
             canTouchEvent = true;
         }
 
-        if (canTouchEvent = true) {
-            if (hit(4, 4, "left") == true) {
-                fire(gp.dialogueState);
+        if (canTouchEvent == true) {
+            if (hit(4, 4, "any") == true) {
+                fire(4, 4, gp.dialogueState);
             }
         }
 
@@ -76,11 +83,11 @@ public class EventHandler {
     }
 
     // Damage-based event
-    public void fire(int gameState) {
+    public void fire(int col, int row, int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "You are on fire but in a bad way";
         gp.player.life -= 1;
-
+        canTouchEvent = false;
     }
 
 }
