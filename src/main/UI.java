@@ -81,7 +81,7 @@ public class UI {
 
         // TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
-        String text = "The Aventure of Slander Man";
+        String text = "The Adventure of Slander Man";
         int x = xCenter(text);
         int y = gp.tileSize * 3;
 
