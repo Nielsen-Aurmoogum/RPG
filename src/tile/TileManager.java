@@ -33,6 +33,7 @@ public class TileManager {
         setup(0, "beigebrick", false);
         setup(1, "lava", true);
         setup(2, "rock", true);
+        setup(3, "stone", true);
     }
 
     // Scale image
