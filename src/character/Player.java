@@ -1,5 +1,6 @@
 package character;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -100,6 +101,7 @@ public class Player extends SuperCharacter {
 
             // Check monster collision
             int monsterIndex = gp.collisionTest.checkCharacter(this, gp.monster);
+            contactMonster(monsterIndex);
 
             // Check event collision
             gp.eHandler.checkEvent();
@@ -141,6 +143,16 @@ public class Player extends SuperCharacter {
                 spriteCounter = 0;
             }
         }
+
+        // Receive damage every 60 frames(1s)
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
     }
 
     // Player interacts with objects
@@ -160,6 +172,19 @@ public class Player extends SuperCharacter {
                 gp.npc[i].speak();
             }
         }
+    }
+
+    // Player to monster collision
+    public void contactMonster(int i) {
+        if (i != 999) {
+
+            // Receive damage once
+            if (invincible == false) {
+                life -= 1;
+                invincible = true;
+            }
+        }
+
     }
 
     // Display main character on the screen
@@ -199,6 +224,14 @@ public class Player extends SuperCharacter {
                 }
                 break;
         }
+
+        // Player changes visually when invincible
+        if (invincible == true) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
         g2.drawImage(image, screenX, screenY, null);
+
+        // Reset alpha
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }

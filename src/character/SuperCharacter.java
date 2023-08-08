@@ -26,6 +26,9 @@ public class SuperCharacter {
     public int speed;
     public String direction = "down";
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
+    public int type;
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
@@ -95,7 +98,14 @@ public class SuperCharacter {
         gp.collisionTest.checkObject(this, false);
         gp.collisionTest.checkCharacter(this, gp.npc);
         gp.collisionTest.checkCharacter(this, gp.monster);
-        gp.collisionTest.checkPlayer(this);
+        boolean contactPlayer = gp.collisionTest.checkPlayer(this);
+
+        if (this.type == 2 && contactPlayer == true) {
+            if (gp.player.invincible == false) {
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
 
         // No collision, npc moves
         if (collisionOn == false) {

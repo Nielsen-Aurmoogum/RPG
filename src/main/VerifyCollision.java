@@ -176,7 +176,10 @@ public class VerifyCollision {
     }
 
     // NPC or Monster to Player collision checker
-    public void checkPlayer(SuperCharacter character) {
+    public boolean checkPlayer(SuperCharacter character) {
+
+        boolean contactPlayer = false;
+
         // Get character solid area position
         character.solidArea.x = character.worldX + character.solidArea.x;
         character.solidArea.y = character.worldY + character.solidArea.y;
@@ -188,32 +191,25 @@ public class VerifyCollision {
         switch (character.direction) {
             case "up":
                 character.solidArea.y -= character.speed;
-                // intersects knows when NPC/Monster hit-box and player hit-box overlap
-                if (character.solidArea.intersects(gp.player.solidArea)) {
-                    character.collisionOn = true;
-                }
                 break;
 
             case "down":
-                character.solidArea.y += character.speed;
-                if (character.solidArea.intersects(gp.player.solidArea)) {
-                    character.collisionOn = true;
-                }
+                character.solidArea.y += character.speed;                
                 break;
 
             case "left":
-                character.solidArea.x -= character.speed;
-                if (character.solidArea.intersects(gp.player.solidArea)) {
-                    character.collisionOn = true;
-                }
+                character.solidArea.x -= character.speed;                
                 break;
 
             case "right":
-                character.solidArea.x += character.speed;
-                if (character.solidArea.intersects(gp.player.solidArea)) {
-                    character.collisionOn = true;
-                }
+                character.solidArea.x += character.speed;                
                 break;
+        }
+
+        // intersects knows when NPC/Monster hit-box and player hit-box overlap
+        if (character.solidArea.intersects(gp.player.solidArea)) {
+            character.collisionOn = true;
+            contactPlayer = true;
         }
 
         // Reset
@@ -222,5 +218,6 @@ public class VerifyCollision {
         gp.player.solidArea.x = gp.player.solidAreaDefaultX;
         gp.player.solidArea.y = gp.player.solidAreaDefaultY;
 
+        return contactPlayer;
     }
 }

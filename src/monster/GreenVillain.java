@@ -11,6 +11,7 @@ public class GreenVillain extends SuperCharacter{
         super(gp);
 
         name = "Green Villain";
+        type = 2;
         speed = 1;
         fullLife = 4;
 
