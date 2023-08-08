@@ -84,60 +84,34 @@ public class VerifyCollision {
 
                 switch (character.direction) {
                     case "up":
-                        character.solidArea.y -= character.speed;
-                        // intersects knows when object hit-box and player hit-box overlap
-                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
-                            if (gp.obj[i].collision == true) {
-                                character.collisionOn = true;
-                            }
-
-                            // Non-player characters cannot pick up object
-                            if (player == true) {
-                                index = i;
-                            }
-                        }
+                        character.solidArea.y -= character.speed;                        
                         break;
 
                     case "down":
-                        character.solidArea.y += character.speed;
-                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
-                            if (gp.obj[i].collision == true) {
-                                character.collisionOn = true;
-                            }
-
-                            if (player == true) {
-                                index = i;
-                            }
-                        }
+                        character.solidArea.y += character.speed;                        
                         break;
 
                     case "left":
-                        character.solidArea.x -= character.speed;
-                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
-                            if (gp.obj[i].collision == true) {
-                                character.collisionOn = true;
-                            }
-
-                            if (player == true) {
-                                index = i;
-                            }
-                        }
+                        character.solidArea.x -= character.speed;                        
                         break;
 
                     case "right":
-                        character.solidArea.x += character.speed;
-                        if (character.solidArea.intersects(gp.obj[i].solidArea)) {
-                            if (gp.obj[i].collision == true) {
-                                character.collisionOn = true;
-                            }
-
-                            if (player == true) {
-                                index = i;
-                            }
-                        }
+                        character.solidArea.x += character.speed;                        
                         break;
                 }
 
+                // intersects knows when object hit-box and player hit-box overlap
+                if (character.solidArea.intersects(gp.obj[i].solidArea)) {
+                    if (gp.obj[i].collision == true) {
+                        character.collisionOn = true;
+                    }
+
+                    // Non-player characters cannot pick up object
+                    if (player == true) {
+                        index = i;
+                    }
+                }
+                
                 // Reset
                 character.solidArea.x = character.solidAreaDefaultX;
                 character.solidArea.y = character.solidAreaDefaultY;
@@ -167,36 +141,27 @@ public class VerifyCollision {
                 switch (character.direction) {
                     case "up":
                         character.solidArea.y -= character.speed;
-                        // intersects knows when NPC/Monster hit-box and player hit-box overlap
-                        if (character.solidArea.intersects(target[i].solidArea)) {
-                            character.collisionOn = true;
-                            index = i;
-                        }
                         break;
 
                     case "down":
                         character.solidArea.y += character.speed;
-                        if (character.solidArea.intersects(target[i].solidArea)) {
-                            character.collisionOn = true;
-                            index = i;
-                        }
                         break;
 
                     case "left":
-                        character.solidArea.x -= character.speed;
-                        if (character.solidArea.intersects(target[i].solidArea)) {
-                            character.collisionOn = true;
-                            index = i;
-                        }
+                        character.solidArea.x -= character.speed;                        
                         break;
 
                     case "right":
-                        character.solidArea.x += character.speed;
-                        if (character.solidArea.intersects(target[i].solidArea)) {
-                            character.collisionOn = true;
-                            index = i;
-                        }
+                        character.solidArea.x += character.speed;                        
                         break;
+                }
+
+                // intersects knows when NPC/Monster hit-box and player hit-box overlap
+                if (character.solidArea.intersects(target[i].solidArea)) {
+                    if (target[i] != character) {
+                        character.collisionOn = true;
+                        index = i;                        
+                    }
                 }
 
                 // Reset

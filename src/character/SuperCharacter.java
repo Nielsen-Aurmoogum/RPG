@@ -93,6 +93,8 @@ public class SuperCharacter {
         // Checking collision for NPC or Monster
         gp.collisionTest.checkTile(this);
         gp.collisionTest.checkObject(this, false);
+        gp.collisionTest.checkCharacter(this, gp.npc);
+        gp.collisionTest.checkCharacter(this, gp.monster);
         gp.collisionTest.checkPlayer(this);
 
         // No collision, npc moves

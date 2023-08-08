@@ -98,6 +98,9 @@ public class Player extends SuperCharacter {
             int npcIndex = gp.collisionTest.checkCharacter(this, gp.npc);
             interactNPC(npcIndex);
 
+            // Check monster collision
+            int monsterIndex = gp.collisionTest.checkCharacter(this, gp.monster);
+
             // Check event collision
             gp.eHandler.checkEvent();
             gp.inputH.enterInput = false;
