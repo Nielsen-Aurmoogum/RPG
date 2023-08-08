@@ -37,8 +37,8 @@ public class Player extends SuperCharacter {
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 0;
-        attackArea.height = 0;
+        attackArea.width = 35;
+        attackArea.height = 35;
     }
 
     // Set default position, speed and direction
@@ -203,7 +203,7 @@ public class Player extends SuperCharacter {
             solidArea.height = attackArea.height;
 
             int monsterIndex = gp.collisionTest.checkCharacter(this, gp.monster);
-            damageMonster(monsterIndex);
+            manageMonster(monsterIndex);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -253,8 +253,19 @@ public class Player extends SuperCharacter {
 
     }
 
-    public void manageMonster(){
+    public void manageMonster(int i){
 
+        if (i != 999){
+
+            if (gp.monster[i].invincible == false){
+
+                gp.monster[i].life -= 1;
+                gp.monster[i].invincible = true;
+
+                if (gp.monster[i].life <=0){
+                    gp.monster[i]=null;
+                }
+               }   }
     }
 
     // Display main character on the screen
