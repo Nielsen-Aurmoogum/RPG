@@ -9,7 +9,7 @@ public class ObjectKey extends SuperCharacter {
         super(gp);
 
         name = "Key";
-        down1 = setup("resources/objects/key");
+        down1 = setup("resources/objects/key",gp.tileSize,gp.tileSize);
 
     }
 }

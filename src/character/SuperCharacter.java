@@ -16,20 +16,21 @@ import main.UtilityTool;
 public class SuperCharacter {
     GamePanel gp;
     public int worldX, worldY; // Position on map
-
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     // Dialogue
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage attackUp1, attackUp2, attackRight1, attackRight2, attackLeft1, attackLeft2, attackDown1, attackDown2;
     public int speed;
     public String direction = "down";
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public int type;
-
+    boolean attack = false;
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -192,13 +193,13 @@ public class SuperCharacter {
     }
 
     // Scale character image
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool utool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(new File(imagePath + ".png"));
-            image = utool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = utool.scaleImage(image,width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
