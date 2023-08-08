@@ -48,9 +48,10 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, inputH);
     public SuperCharacter obj[] = new SuperCharacter[10]; // Can display up to 10 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
+    public SuperCharacter monster[] = new SuperCharacter[10]; // Can display up to 10 monsters at the same time
     public EventHandler eHandler = new EventHandler(this);
     ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array
-                                                                  // list
+
 
     // Game state
     public int gameState;
@@ -70,6 +71,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         placer.setObject();
         placer.setNPC();
+        placer.setMonster();
         gameState = titleState;
     }
 
@@ -119,6 +121,14 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+
+            // Monster
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    monster[i].update();
+                }
+            }
+
         }
         if (gameState == pauseState) {
             // Do nothing
@@ -156,6 +166,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < obj.length; i++) {
                 if (obj[i] != null) {
                     charactersList.add(obj[i]);
+                }
+            }
+
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    charactersList.add(monster[i]);
                 }
             }
 
