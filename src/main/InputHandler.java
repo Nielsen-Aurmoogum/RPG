@@ -11,9 +11,11 @@ public class InputHandler implements KeyListener {
         this.gp = gp;
     }
 
+    // W S for navigation in menus
     // W A S D for character movements
     // P pauses game
     // ENTER opens or quits dialogue with NPC(on collision only)
+    // ENTER attacks monster
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -21,73 +23,110 @@ public class InputHandler implements KeyListener {
 
         // TITLE STATE
         if (gp.gameState == gp.titleState) {
-            if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 2;
-                }
-            }
-
-            if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) {
-                    gp.ui.commandNum = 0;
-                }
-            }
-
-            if (code == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandNum == 0) {
-                    gp.gameState = gp.playState;
-                }
-                if (gp.ui.commandNum == 1) {
-                    // add later
-                }
-
-                if (gp.ui.commandNum == 2) {
-                    System.exit(0);
-                }
-            }
+            titleState(code);
         }
 
         // Play state
         else if (gp.gameState == gp.playState) {
-            if (code == KeyEvent.VK_W) {
-                upInput = true;
-            }
-
-            if (code == KeyEvent.VK_A) {
-                leftInput = true;
-            }
-
-            if (code == KeyEvent.VK_S) {
-                downInput = true;
-            }
-
-            if (code == KeyEvent.VK_D) {
-                rightInput = true;
-            }
-
-            if (code == KeyEvent.VK_P) {
-                gp.gameState = gp.pauseState;
-            }
-
-            if (code == KeyEvent.VK_ENTER) {
-                enterInput = true;
-            }
+            playState(code);
         }
 
         // Pause state
         else if (gp.gameState == gp.pauseState) {
-            if (code == KeyEvent.VK_P) {
-                gp.gameState = gp.playState;
-            }
+            pauseState(code);
         }
 
         // Dialogue state
         else if (gp.gameState == gp.dialogueState) {
-            if (code == KeyEvent.VK_ENTER) {
+            dialogueState(code);
+        }
+
+        // Character info state
+        else if (gp.gameState == gp.characterInfoState) {
+            characterInfoState(code);
+        }
+
+    }
+
+    // When user is on title screen
+    public void titleState(int code) {
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 2;
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 2) {
+                gp.ui.commandNum = 0;
+            }
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.playState;
             }
+            if (gp.ui.commandNum == 1) {
+                // add later
+            }
+
+            if (gp.ui.commandNum == 2) {
+                System.exit(0);
+            }
+        }
+    }
+
+    // When user is playing
+    public void playState(int code) {
+        if (code == KeyEvent.VK_W) {
+            upInput = true;
+        }
+
+        if (code == KeyEvent.VK_A) {
+            leftInput = true;
+        }
+
+        if (code == KeyEvent.VK_S) {
+            downInput = true;
+        }
+
+        if (code == KeyEvent.VK_D) {
+            rightInput = true;
+        }
+
+        if (code == KeyEvent.VK_P) {
+            gp.gameState = gp.pauseState;
+        }
+
+        if (code == KeyEvent.VK_I) {
+            gp.gameState = gp.characterInfoState;
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            enterInput = true;
+        }
+    }
+
+    // When game is paused
+    public void pauseState(int code) {
+        if (code == KeyEvent.VK_P) {
+            gp.gameState = gp.playState;
+        }
+    }
+
+    // When dialogues are happening
+    public void dialogueState(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.playState;
+        }
+    }
+
+    // When character info is being displayed
+    public void characterInfoState(int code) {
+        if (code == KeyEvent.VK_I) {
+            gp.gameState = gp.playState;
         }
     }
 

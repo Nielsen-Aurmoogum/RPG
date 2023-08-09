@@ -46,9 +46,9 @@ public class Player extends SuperCharacter {
     // Set default position, speed and direction
     public void setStartValues() {
         worldX = gp.tileSize * 7;
-        worldY = gp.tileSize * 3;
+        worldY = gp.tileSize * 2;
         speed = 4;
-        direction = "up";
+        direction = "right";
 
         // Player status
         level = 1;

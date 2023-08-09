@@ -9,7 +9,7 @@ public class ObjectLightsaber extends SuperCharacter {
         super(gp);
 
         name = "Green Lightsaber";
-        down1 = setup("imagepath", gp.tileSize, gp.tileSize);
+        down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize); // need real lightsaber image
         attackValue = 1;
     }
 
