@@ -68,14 +68,14 @@ public class Player extends SuperCharacter {
 
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup(direction, gp.tileSize,gp.tileSize*2);
-        attackUp2 = setup(direction, gp.tileSize,gp.tileSize*2);
-        attackDown1 = setup(direction, gp.tileSize,gp.tileSize*2);
-        attackDown2 = setup(direction, gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setup(direction, gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setup(direction, gp.tileSize*2,gp.tileSize);
-        attackRight1 = setup(direction, gp.tileSize*2,gp.tileSize);
-        attackRight2 = setup(direction, gp.tileSize*2,gp.tileSize);
+        attackUp1 = setup("resources/player/up1", gp.tileSize,gp.tileSize*2);
+        attackUp2 = setup("resources/player/up2", gp.tileSize,gp.tileSize*2);
+        attackDown1 = setup("resources/player/down1", gp.tileSize,gp.tileSize*2);
+        attackDown2 = setup("resources/player/down2", gp.tileSize,gp.tileSize*2);
+        attackLeft1 = setup("resources/player/left1", gp.tileSize*2,gp.tileSize);
+        attackLeft2 = setup("resources/player/left2", gp.tileSize*2,gp.tileSize);
+        attackRight1 = setup("resources/player/right1", gp.tileSize*2,gp.tileSize);
+        attackRight2 = setup("resources/player/right2", gp.tileSize*2,gp.tileSize);
     }
 
     /**
@@ -261,9 +261,9 @@ public class Player extends SuperCharacter {
 
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
-
+                gp.monster[i].damageReact();
                 if (gp.monster[i].life <=0){
-                    gp.monster[i]=null;
+                    gp.monster[i].dying = true;
                 }
                }   }
     }
