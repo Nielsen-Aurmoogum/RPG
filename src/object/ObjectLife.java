@@ -9,8 +9,8 @@ public class ObjectLife extends SuperCharacter {
         super(gp);
 
         name = "Life";
-        image = setup("resources/objects/heartfull");
-        image2 = setup("resources/objects/hearthalf");
-        image3 = setup("resources/objects/heartempty");
+        image = setup("resources/objects/heartfull",gp.tileSize,gp.tileSize);
+        image2 = setup("resources/objects/hearthalf",gp.tileSize,gp.tileSize);
+        image3 = setup("resources/objects/heartempty",gp.tileSize,gp.tileSize);
     }
 }

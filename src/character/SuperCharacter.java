@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 import main.GamePanel;
@@ -16,20 +17,21 @@ import main.UtilityTool;
 public class SuperCharacter {
     GamePanel gp;
     public int worldX, worldY; // Position on map
-
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     // Dialogue
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage attackUp1, attackUp2, attackRight1, attackRight2, attackLeft1, attackLeft2, attackDown1, attackDown2;
     public int speed;
     public String direction = "down";
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public int type;
-
+    boolean attack = false;
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -141,6 +143,14 @@ public class SuperCharacter {
                 spriteNum = 1;
             }
         }
+
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     // Draw npc on screen
@@ -159,46 +169,41 @@ public class SuperCharacter {
             // are used
             switch (direction) {
                 case "up":
-                    if (spriteNum == 1) {
-                        image = up1;
-                    } else if (spriteNum == 2) {
-                        image = up2;
-                    }
+                    if (spriteNum == 1) {image = up1; }
+                    else if (spriteNum == 2) { image = up2 ;}
                     break;
                 case "down":
-                    if (spriteNum == 1) {
-                        image = down1;
-                    } else if (spriteNum == 2) {
-                        image = down2;
-                    }
+                    if (spriteNum == 1) {image = down1;} 
+                    else if (spriteNum == 2) {image = down2;}
                     break;
                 case "left":
-                    if (spriteNum == 1) {
-                        image = left1;
-                    } else if (spriteNum == 2) {
-                        image = left2;
-                    }
+                    if (spriteNum == 1) {image = left1;} 
+                    else if (spriteNum == 2) {image = left2;}
                     break;
                 case "right":
-                    if (spriteNum == 1) {
-                        image = right1;
-                    } else if (spriteNum == 2) {
-                        image = right2;
-                    }
+                    if (spriteNum == 1) {image = right1;} 
+                    else if (spriteNum == 2) {image = right2;}
                     break;
             }
+
+            if (invincible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            }
+
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
 
     // Scale character image
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool utool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(new File(imagePath + ".png"));
-            image = utool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = utool.scaleImage(image,width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,8 +7,12 @@ import main.GamePanel;
 
 public class GreenVillain extends SuperCharacter{
 
+    GamePanel gp;
+
     public GreenVillain(GamePanel gp) {
         super(gp);
+        
+        this.gp = gp;
 
         name = "Green Villain";
         type = 2;
@@ -27,14 +31,14 @@ public class GreenVillain extends SuperCharacter{
 
     public void getImage() {
 
-        up1 = setup("resources/monster/monsterup1");
-        up2 = setup("resources/monster/monsterup2");
-        down1 = setup("resources/monster/monsterdown1");
-        down2 = setup("resources/monster/monsterdown2");
-        left1 = setup("resources/monster/monsterleft1");
-        left2 = setup("resources/monster/monsterleft2");
-        right1 = setup("resources/monster/monsterright1");
-        right2 = setup("resources/monster/monsterright2");
+        up1 = setup("resources/monster/monsterup1", gp.tileSize,gp.tileSize);
+        up2 = setup("resources/monster/monsterup2", gp.tileSize,gp.tileSize);
+        down1 = setup("resources/monster/monsterdown1",gp.tileSize,gp.tileSize);
+        down2 = setup("resources/monster/monsterdown2",gp.tileSize,gp.tileSize);
+        left1 = setup("resources/monster/monsterleft1",gp.tileSize,gp.tileSize);
+        left2 = setup("resources/monster/monsterleft2",gp.tileSize,gp.tileSize);
+        right1 = setup("resources/monster/monsterright1",gp.tileSize,gp.tileSize);
+        right2 = setup("resources/monster/monsterright2",gp.tileSize,gp.tileSize);
 
     }
 
