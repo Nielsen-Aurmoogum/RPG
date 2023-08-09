@@ -261,9 +261,9 @@ public class Player extends SuperCharacter {
 
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
-
+                gp.monster[i].damageReact();
                 if (gp.monster[i].life <=0){
-                    gp.monster[i]=null;
+                    gp.monster[i].dying = true;
                 }
                }   }
     }

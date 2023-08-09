@@ -17,7 +17,7 @@ public class GreenVillain extends SuperCharacter{
         name = "Green Villain";
         type = 2;
         speed = 1;
-        fullLife = 4;
+        fullLife = 20;
 
         solidArea.x = 8;
         solidArea.y = 16;
@@ -68,6 +68,12 @@ public class GreenVillain extends SuperCharacter{
 
             actionLockCounter = 0;
         }
+    }
+
+    public void damageReact(){
+
+        actionLockCounter =0;
+        direction =gp.player.direction;
     }
 
     
