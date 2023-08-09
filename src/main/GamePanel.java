@@ -52,7 +52,6 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array
 
-
     // Game state
     public int gameState;
     public int titleState = 0;
@@ -125,14 +124,13 @@ public class GamePanel extends JPanel implements Runnable {
             // Monster
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
-                    if(monster[i].alive == true && monster[i].dying == false)
+                    if (monster[i].alive == true && monster[i].dying == false)
 
                     {
-                         monster[i].update();
+                        monster[i].update();
                     }
-                   if(monster[i].alive == false)
-                    {
-                         monster[i] = null;
+                    if (monster[i].alive == false) {
+                        monster[i] = null;
                     }
                 }
             }

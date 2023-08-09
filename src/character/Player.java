@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.InputHandler;
+import object.ObjectLightsaber;
 
 /**
  * Class of main character
@@ -14,6 +15,7 @@ public class Player extends SuperCharacter {
     public final int screenX;
     public final int screenY;
     InputHandler inputH;
+    public boolean attackCancel = false;
 
     // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
@@ -49,45 +51,63 @@ public class Player extends SuperCharacter {
         direction = "up";
 
         // Player status
+        level = 1;
         fullLife = 6;
         life = fullLife;
+        strength = 1; // Influences attackPower
+        agility = 1; // Influences defensePower
+        exp = 0;
+        nextLevelExp = 5;
+        currentWeapon = new ObjectLightsaber(gp);
+        attackPower = getAttackPower();
+        defensePower = getDefensePower();
+    }
+
+    // Getter method for attackPower
+    public int getAttackPower() {
+        return attackPower = strength * currentWeapon.attackValue;
+    }
+
+    // Getter method for defensePower
+    public int getDefensePower() {
+        return defensePower = agility * level;
     }
 
     // Read main character image
     public void getPlayerImage() {
 
-        up1 = setup("resources/player/up1", gp.tileSize,gp.tileSize);
-        up2 = setup("resources/player/up2", gp.tileSize,gp.tileSize);
-        down1 = setup("resources/player/down1", gp.tileSize,gp.tileSize);
-        down2 = setup("resources/player/down2", gp.tileSize,gp.tileSize);
-        left1 = setup("resources/player/left1", gp.tileSize,gp.tileSize);
-        left2 = setup("resources/player/left2", gp.tileSize,gp.tileSize);
-        right1 = setup("resources/player/right1", gp.tileSize,gp.tileSize);
-        right2 = setup("resources/player/right2", gp.tileSize,gp.tileSize);
+        up1 = setup("resources/player/up1", gp.tileSize, gp.tileSize);
+        up2 = setup("resources/player/up2", gp.tileSize, gp.tileSize);
+        down1 = setup("resources/player/down1", gp.tileSize, gp.tileSize);
+        down2 = setup("resources/player/down2", gp.tileSize, gp.tileSize);
+        left1 = setup("resources/player/left1", gp.tileSize, gp.tileSize);
+        left2 = setup("resources/player/left2", gp.tileSize, gp.tileSize);
+        right1 = setup("resources/player/right1", gp.tileSize, gp.tileSize);
+        right2 = setup("resources/player/right2", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup("resources/player/up1", gp.tileSize,gp.tileSize*2);
-        attackUp2 = setup("resources/player/up2", gp.tileSize,gp.tileSize*2);
-        attackDown1 = setup("resources/player/down1", gp.tileSize,gp.tileSize*2);
-        attackDown2 = setup("resources/player/down2", gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setup("resources/player/left1", gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setup("resources/player/left2", gp.tileSize*2,gp.tileSize);
-        attackRight1 = setup("resources/player/right1", gp.tileSize*2,gp.tileSize);
-        attackRight2 = setup("resources/player/right2", gp.tileSize*2,gp.tileSize);
+        attackUp1 = setup("resources/player/up1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("resources/player/up2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("resources/player/down1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("resources/player/down2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("resources/player/left1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("resources/player/left2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("resources/player/right1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("resources/player/right2", gp.tileSize * 2, gp.tileSize);
     }
 
     /**
      * Update main character information
      */
     public void update() {
-        
+
         if (attack == true) {
-            attack(); 
+            attack();
         }
         if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
-                || inputH.rightInput == true || inputH.enterInput == true ) { // When no keys are pressed, stay still
+                || inputH.rightInput == true || inputH.enterInput == true) { // When no keys are pressed, stay still
 
             // Check direction
             if (inputH.upInput == true) {
@@ -145,7 +165,15 @@ public class Player extends SuperCharacter {
                         break;
                 }
             }
+
+            if (inputH.enterInput == true && attackCancel == false) {
+                attack = true;
+                spriteCounter = 0;
+            }
+
+            attackCancel = false;
             gp.inputH.enterInput = false;
+
             // Dictates when a variation of an
             // orientation is used
             spriteCounter++;
@@ -176,10 +204,10 @@ public class Player extends SuperCharacter {
     public void attack() {
         spriteCounter++;
 
-        if (spriteCounter<=5) {
+        if (spriteCounter <= 5) {
             spriteNum = 1;
         }
-        if(spriteCounter > 5 && spriteCounter <= 25){
+        if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
 
             int currentWorldX = worldX;
@@ -187,16 +215,19 @@ public class Player extends SuperCharacter {
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
 
-            switch(direction)
-            {
-                case "up": worldY -= attackArea.height;
-                break;
-                case "down": worldY += attackArea.height;
-                break;
-                case "left": worldX -= attackArea.width;
-                break;
-                case "right": worldX += attackArea.width;
-                break;
+            switch (direction) {
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
+                case "down":
+                    worldY += attackArea.height;
+                    break;
+                case "left":
+                    worldX -= attackArea.width;
+                    break;
+                case "right":
+                    worldX += attackArea.width;
+                    break;
             }
 
             solidArea.width = attackArea.width;
@@ -210,9 +241,9 @@ public class Player extends SuperCharacter {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
         }
-        if (spriteCounter > 25 ){
+        if (spriteCounter > 25) {
             spriteNum = 1;
-            spriteCounter = 0 ;
+            spriteCounter = 0;
             attack = false;
         }
     }
@@ -227,15 +258,11 @@ public class Player extends SuperCharacter {
 
     // Player to NPC collision
     public void interactNPC(int i) {
-        if (gp.inputH.enterInput == true){
-        if (i != 999) {
-
+        if (gp.inputH.enterInput == true) {
+            if (i != 999) {
+                attackCancel = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
-            }
-        
-        else {
-                attack = true ;
             }
         }
     }
@@ -253,19 +280,20 @@ public class Player extends SuperCharacter {
 
     }
 
-    public void manageMonster(int i){
+    public void manageMonster(int i) {
 
-        if (i != 999){
+        if (i != 999) {
 
-            if (gp.monster[i].invincible == false){
+            if (gp.monster[i].invincible == false) {
 
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReact();
-                if (gp.monster[i].life <=0){
+                if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
                 }
-               }   }
+            }
+        }
     }
 
     // Display main character on the screen
@@ -278,46 +306,70 @@ public class Player extends SuperCharacter {
         // are used
         switch (direction) {
             case "up":
-                if (attack == false){
-                if (spriteNum == 1) {image = up1;} 
-                else if (spriteNum == 2) {image = up2;}
+                if (attack == false) {
+                    if (spriteNum == 1) {
+                        image = up1;
+                    } else if (spriteNum == 2) {
+                        image = up2;
+                    }
                 }
-                if (attack == true){
-                tempScreenY = screenY - gp.tileSize;
-                if (spriteNum == 1) {image = attackUp1;} 
-                else if (spriteNum == 2) {image = attackUp2;}
+                if (attack == true) {
+                    tempScreenY = screenY - gp.tileSize;
+                    if (spriteNum == 1) {
+                        image = attackUp1;
+                    } else if (spriteNum == 2) {
+                        image = attackUp2;
+                    }
                 }
                 break;
             case "down":
-               if (attack == false){
-                if (spriteNum == 1) {image = down1;} 
-                else if (spriteNum == 2) {image = down2;}
+                if (attack == false) {
+                    if (spriteNum == 1) {
+                        image = down1;
+                    } else if (spriteNum == 2) {
+                        image = down2;
+                    }
                 }
-                if (attack == true){
-                if (spriteNum == 1) {image = attackDown1;} 
-                else if (spriteNum == 2) {image = attackDown2;}
+                if (attack == true) {
+                    if (spriteNum == 1) {
+                        image = attackDown1;
+                    } else if (spriteNum == 2) {
+                        image = attackDown2;
+                    }
                 }
                 break;
             case "left":
-                if (attack == false){
-                if (spriteNum == 1) {image = left1;} 
-                else if (spriteNum == 2) {image = left2;}
+                if (attack == false) {
+                    if (spriteNum == 1) {
+                        image = left1;
+                    } else if (spriteNum == 2) {
+                        image = left2;
+                    }
                 }
-                if (attack == true){
-                tempScreenX = screenX - gp.tileSize;
-                if (spriteNum == 1) {image = attackLeft1;} 
-                else if (spriteNum == 2) {image = attackLeft2;}
+                if (attack == true) {
+                    tempScreenX = screenX - gp.tileSize;
+                    if (spriteNum == 1) {
+                        image = attackLeft1;
+                    } else if (spriteNum == 2) {
+                        image = attackLeft2;
+                    }
                 }
                 break;
             case "right":
-                if (attack == false){
-            
-                if (spriteNum == 1) {image = right1;} 
-                else if (spriteNum == 2) {image = right2;}
+                if (attack == false) {
+
+                    if (spriteNum == 1) {
+                        image = right1;
+                    } else if (spriteNum == 2) {
+                        image = right2;
+                    }
                 }
-                if (attack == true){
-                if (spriteNum == 1) {image = attackRight1;} 
-                else if (spriteNum == 2) {image = attackRight2;}
+                if (attack == true) {
+                    if (spriteNum == 1) {
+                        image = attackRight1;
+                    } else if (spriteNum == 2) {
+                        image = attackRight2;
+                    }
                 }
                 break;
         }

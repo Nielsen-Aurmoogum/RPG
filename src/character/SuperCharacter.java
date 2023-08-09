@@ -18,23 +18,43 @@ import main.UtilityTool;
 public class SuperCharacter {
     GamePanel gp;
     public int worldX, worldY; // Position on map
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+
     // Dialogue
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
     // Character orientation and associated behaviour attributes
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public BufferedImage attackUp1, attackUp2, attackRight1, attackRight2, attackLeft1, attackLeft2, attackDown1, attackDown2;
-    public int speed;
+    public BufferedImage attackUp1, attackUp2, attackRight1, attackRight2, attackLeft1, attackLeft2, attackDown1,
+            attackDown2;
     public String direction = "down";
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleCounter = 0;
-    public int type;
     boolean attack = false;
     public boolean alive = true;
     public boolean dying = false;
+    boolean hpBarOn = false;
+
+    // Character attributes
+    public String name;
+    public int type;
+    public int speed;
+    public int fullLife;
+    public int life;
+    public int level;
+    public int strength;
+    public int agility;
+    public int attackPower;
+    public int defensePower;
+    public int exp;
+    public int nextLevelExp;
+    public SuperCharacter currentWeapon;
+
+    // Item attributes
+    public int attackValue;
+
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -46,15 +66,8 @@ public class SuperCharacter {
     public boolean collisionOn = false;
     public int solidAreaDefaultX, solidAreaDefaultY;
 
-    // Character Status
-    public int fullLife;
-    public int life;
-    boolean hpBarOn = false;
-
-
     // Objects like keys and doors
     public BufferedImage image, image2, image3;
-    public String name;
     public boolean collision = false;
 
     // Constructor
@@ -65,8 +78,8 @@ public class SuperCharacter {
     public void setAction() {
     }
 
-    public void damageReact(){
-        
+    public void damageReact() {
+
     }
 
     // Store the dialogue in currentDialogue in UI class
@@ -180,49 +193,60 @@ public class SuperCharacter {
             // are used
             switch (direction) {
                 case "up":
-                    if (spriteNum == 1) {image = up1; }
-                    else if (spriteNum == 2) { image = up2 ;}
+                    if (spriteNum == 1) {
+                        image = up1;
+                    } else if (spriteNum == 2) {
+                        image = up2;
+                    }
                     break;
                 case "down":
-                    if (spriteNum == 1) {image = down1;} 
-                    else if (spriteNum == 2) {image = down2;}
+                    if (spriteNum == 1) {
+                        image = down1;
+                    } else if (spriteNum == 2) {
+                        image = down2;
+                    }
                     break;
                 case "left":
-                    if (spriteNum == 1) {image = left1;} 
-                    else if (spriteNum == 2) {image = left2;}
+                    if (spriteNum == 1) {
+                        image = left1;
+                    } else if (spriteNum == 2) {
+                        image = left2;
+                    }
                     break;
                 case "right":
-                    if (spriteNum == 1) {image = right1;} 
-                    else if (spriteNum == 2) {image = right2;}
+                    if (spriteNum == 1) {
+                        image = right1;
+                    } else if (spriteNum == 2) {
+                        image = right2;
+                    }
                     break;
             }
             // health
-            if (type == 2 && hpBarOn == true){
+            if (type == 2 && hpBarOn == true) {
 
-                double oneScale = (double)gp.tileSize/fullLife;
-                double hpBarValue = oneScale*life;
+                double oneScale = (double) gp.tileSize / fullLife;
+                double hpBarValue = oneScale * life;
 
-                g2.setColor(new Color(35,35,35));
-                g2.fillRect (screenX-1,screenY-16,gp.tileSize+2,12);
-                g2.setColor(new Color(255,0,30));
-                g2.fillRect (screenX,screenY-15,(int)hpBarValue,10);
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 
-                hpBarCounter ++;
+                hpBarCounter++;
 
-                if(hpBarCounter > 600)
-                {
-                    hpBarCounter=0;
-                    hpBarOn= false;
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
                 }
             }
-            
+
             if (invincible == true) {
                 hpBarOn = true;
-                hpBarCounter = 0 ;
-                changeAlpha(g2,0.4f);
-    
+                hpBarCounter = 0;
+                changeAlpha(g2, 0.4f);
+
             }
-            if(dying == true){
+            if (dying == true) {
                 dyingAnimation(g2);
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
@@ -231,32 +255,48 @@ public class SuperCharacter {
         }
     }
 
-
-    public void dyingAnimation(Graphics2D g2){
+    public void dyingAnimation(Graphics2D g2) {
 
         dyingCounter++;
 
-        int i =5;
+        int i = 5;
 
-        if(dyingCounter <=i){changeAlpha(g2,0f);}
-        if(dyingCounter > i && dyingCounter <=i*2){changeAlpha(g2,0f);}
-        if(dyingCounter > i*2 && dyingCounter <=i*3){changeAlpha(g2,0f);}
-        if(dyingCounter > i*3 && dyingCounter <=i*4){changeAlpha(g2,0f);}
-        if(dyingCounter > i*4 && dyingCounter <=i*5){changeAlpha(g2,0f);}
-        if(dyingCounter > i*5 && dyingCounter <=i*6){changeAlpha(g2,0f);}
-        if(dyingCounter > i*6 && dyingCounter <= i*7){changeAlpha(g2,0f);}
-        if(dyingCounter > i*7 && dyingCounter <=i*8){changeAlpha(g2,0f);}
-        if(dyingCounter> i*8){
+        if (dyingCounter <= i) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i && dyingCounter <= i * 2) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 8) {
 
             dying = false;
             alive = false;
         }
     }
 
-    public void changeAlpha(Graphics2D g2, float alphaValue){
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
 
-         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
+
     // Scale character image
     public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool utool = new UtilityTool();
@@ -264,7 +304,7 @@ public class SuperCharacter {
 
         try {
             image = ImageIO.read(new File(imagePath + ".png"));
-            image = utool.scaleImage(image,width, height);
+            image = utool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
