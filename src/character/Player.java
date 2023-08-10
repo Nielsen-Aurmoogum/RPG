@@ -4,8 +4,11 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import main.GamePanel;
 import main.InputHandler;
+import object.ObjectKey;
 import object.ObjectLightsaber;
 
 /**
@@ -16,6 +19,8 @@ public class Player extends SuperCharacter {
     public final int screenY;
     InputHandler inputH;
     public boolean attackCancel = false;
+    public ArrayList<SuperCharacter> inventory = new ArrayList<>();
+    public final int maxInventorySize = 10;
 
     // Constructor
     public Player(GamePanel gp, InputHandler inputH) {
@@ -25,6 +30,7 @@ public class Player extends SuperCharacter {
         setStartValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
 
         // Center charater
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -61,6 +67,12 @@ public class Player extends SuperCharacter {
         currentWeapon = new ObjectLightsaber(gp);
         attackPower = getAttackPower();
         defensePower = getDefensePower();
+    }
+
+    public void setItems() {
+        inventory.add(currentWeapon);
+        inventory.add(new ObjectKey(gp));
+        inventory.add(new ObjectKey(gp));        
     }
 
     // Getter method for attackPower
