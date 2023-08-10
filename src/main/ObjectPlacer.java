@@ -31,12 +31,47 @@ public class ObjectPlacer {
      * Instantiate monster and provide location
      */
     public void setMonster() {
+        // Monster trap
         gp.monster[0] = new GreenVillain(gp);
-        gp.monster[0].worldX = gp.tileSize*10;
-        gp.monster[0].worldY = gp.tileSize*13;
+        gp.monster[0].worldX = gp.tileSize*31;
+        gp.monster[0].worldY = gp.tileSize*8;
 
         gp.monster[1] = new GreenVillain(gp);
-        gp.monster[1].worldX = gp.tileSize*30;
-        gp.monster[1].worldY = gp.tileSize*30;
+        gp.monster[1].worldX = gp.tileSize*32;
+        gp.monster[1].worldY = gp.tileSize*8;
+
+        // After bridge
+        gp.monster[2] = new GreenVillain(gp);
+        gp.monster[2].worldX = gp.tileSize*30;
+        gp.monster[2].worldY = gp.tileSize*30;
+
+        gp.monster[3] = new GreenVillain(gp);
+        gp.monster[3].worldX = gp.tileSize*30;
+        gp.monster[3].worldY = gp.tileSize*31;
+
+        gp.monster[4] = new GreenVillain(gp);
+        gp.monster[4].worldX = gp.tileSize*31;
+        gp.monster[4].worldY = gp.tileSize*30;
+
+        // Second water pond
+        gp.monster[5] = new GreenVillain(gp);
+        gp.monster[5].worldX = gp.tileSize*6;
+        gp.monster[5].worldY = gp.tileSize*19;
+
+        gp.monster[6] = new GreenVillain(gp);
+        gp.monster[6].worldX = gp.tileSize*9;
+        gp.monster[6].worldY = gp.tileSize*31;
+
+        gp.monster[7] = new GreenVillain(gp);
+        gp.monster[7].worldX = gp.tileSize*9;
+        gp.monster[7].worldY = gp.tileSize*32;
+
+        gp.monster[8] = new GreenVillain(gp);
+        gp.monster[8].worldX = gp.tileSize*8;
+        gp.monster[8].worldY = gp.tileSize*31;
+
+        gp.monster[9] = new GreenVillain(gp);
+        gp.monster[9].worldX = gp.tileSize*9;
+        gp.monster[9].worldY = gp.tileSize*28;
     }
 }
