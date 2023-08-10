@@ -32,8 +32,8 @@ public class ObjectPlacer {
      */
     public void setMonster() {
         gp.monster[0] = new GreenVillain(gp);
-        gp.monster[0].worldX = gp.tileSize*10;
-        gp.monster[0].worldY = gp.tileSize*13;
+        gp.monster[0].worldX = gp.tileSize*6;
+        gp.monster[0].worldY = gp.tileSize*19;
 
         gp.monster[1] = new GreenVillain(gp);
         gp.monster[1].worldX = gp.tileSize*30;
