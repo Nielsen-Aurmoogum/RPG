@@ -72,7 +72,7 @@ public class Player extends SuperCharacter {
     public void setItems() {
         inventory.add(currentWeapon);
         inventory.add(new ObjectKey(gp));
-        inventory.add(new ObjectKey(gp));        
+        inventory.add(new ObjectKey(gp));
     }
 
     // Getter method for attackPower

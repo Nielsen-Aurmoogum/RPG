@@ -21,10 +21,10 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
-    public String currentDialogue;
+    public String currentDialogue = "";
     public int commandNum = 0;
     public int slotCol = 0;
-    public int slotRow = 0; 
+    public int slotRow = 0;
 
     public UI(GamePanel gp) {
 
@@ -287,7 +287,6 @@ public class UI {
         g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 15, null);
     }
 
-
     // Display inventory
     public void drawInventory() {
 
@@ -307,7 +306,7 @@ public class UI {
 
         // Draw player items
         for (int i = 0; i < gp.player.inventory.size(); i++) {
-            
+
             g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
 
             slotX += slotSize;
@@ -327,6 +326,33 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+        // Description frame
+        int dFrameX = frameX;
+        int dFrameY = frameY + frameHeight;
+        int dFrameWidth = frameWidth;
+        int dFrameHeight = gp.tileSize * 3;
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+
+        // Description text
+        int textX = dFrameX + 20;
+        int textY = dFrameY + gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(22F));
+
+        int itemIndex = getItemIndexInSlot();
+
+        if (itemIndex < gp.player.inventory.size()) {
+
+            for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
+                g2.drawString(line, textX, textY);
+                textY += 30;
+            }
+        }
+    }
+
+    public int getItemIndexInSlot() {
+        int itemIndex = slotCol + (slotRow * 5);
+        return itemIndex;
     }
 
     // Setup dialogue window

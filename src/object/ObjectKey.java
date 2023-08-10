@@ -9,7 +9,7 @@ public class ObjectKey extends SuperCharacter {
         super(gp);
 
         name = "Key";
-        down1 = setup("resources/objects/key",gp.tileSize,gp.tileSize);
-
+        down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
+        description = "[" + name + "]\nFind a door where \nyou can use it.";
     }
 }

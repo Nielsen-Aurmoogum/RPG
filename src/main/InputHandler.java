@@ -130,22 +130,22 @@ public class InputHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_W) {
             if (gp.ui.slotRow != 0) {
-                gp.ui.slotRow--;                
+                gp.ui.slotRow--;
             }
         }
         if (code == KeyEvent.VK_A) {
             if (gp.ui.slotCol != 0) {
-                gp.ui.slotCol--;                
+                gp.ui.slotCol--;
             }
         }
         if (code == KeyEvent.VK_S) {
             if (gp.ui.slotRow != 1) {
-                gp.ui.slotRow++;                
+                gp.ui.slotRow++;
             }
         }
         if (code == KeyEvent.VK_D) {
             if (gp.ui.slotCol != 4) {
-                gp.ui.slotCol++;                
+                gp.ui.slotCol++;
             }
 
         }

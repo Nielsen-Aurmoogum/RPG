@@ -11,6 +11,7 @@ public class ObjectLightsaber extends SuperCharacter {
         name = "Green Lightsaber";
         down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize); // need real lightsaber image
         attackValue = 1;
+        description = "[" + name + "]\nYoda's lightsaber.";
     }
 
 }

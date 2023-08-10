@@ -54,6 +54,7 @@ public class SuperCharacter {
 
     // Item attributes
     public int attackValue;
+    public String description = "";
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
