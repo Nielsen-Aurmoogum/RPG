@@ -34,7 +34,7 @@ public class TileManager {
         setup(1, "lava", true);
         setup(2, "rock", true);
         setup(3, "stone", true);
-        setup(4, "water", true);
+        setup(4, "water", false);
         setup(5, "bricks", false);
     }
 
