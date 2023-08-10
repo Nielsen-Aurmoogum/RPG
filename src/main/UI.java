@@ -23,6 +23,8 @@ public class UI {
     public boolean gameFinished = false;
     public String currentDialogue;
     public int commandNum = 0;
+    public int slotCol = 0;
+    public int slotRow = 0; 
 
     public UI(GamePanel gp) {
 
@@ -76,6 +78,7 @@ public class UI {
         // Character info state
         if (gp.gameState == gp.characterInfoState) {
             drawCharacterInfoScreen();
+            drawInventory();
         }
     }
 
@@ -282,6 +285,35 @@ public class UI {
 
         // Image for weapon
         g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 15, null);
+    }
+
+
+    // Display inventory
+    public void drawInventory() {
+
+        // Frame
+        int frameX = gp.tileSize * 9;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 6;
+        int frameHeight = gp.tileSize * 5;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // Slots
+        final int slotXStart = frameX + 20;
+        final int slotYStart = frameY + 20;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+
+        // Cursor for selection
+        int cursorX = slotXStart + (gp.tileSize * slotCol);
+        int cursorY = slotYStart + (gp.tileSize * slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+
+        // Draw cursor
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
     }
 
     // Setup dialogue window
