@@ -39,7 +39,6 @@ public class SuperCharacter {
 
     // Character attributes
     public String name;
-    public int type;
     public int speed;
     public int fullLife;
     public int life;
@@ -51,10 +50,22 @@ public class SuperCharacter {
     public int exp;
     public int nextLevelExp;
     public SuperCharacter currentWeapon;
+    public SuperCharacter currentShield;
 
     // Item attributes
     public int attackValue;
+    public int defenseValue;
     public String description = "";
+
+    // Types
+    public int type; // 0 - Player, 1 - NPC, 2 - Monster ...
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_greenLightSaber = 3;
+    public final int type_redLightSaber = 4;
+    public final int type_shield = 5;
+    public final int type_consumable = 6;
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
@@ -80,7 +91,6 @@ public class SuperCharacter {
     }
 
     public void damageReact() {
-
     }
 
     // Store the dialogue in currentDialogue in UI class
@@ -115,6 +125,9 @@ public class SuperCharacter {
         }
     }
 
+    public void use(SuperCharacter character) {
+    }
+
     public void update() {
         setAction();
 
@@ -127,7 +140,7 @@ public class SuperCharacter {
         gp.collisionTest.checkCharacter(this, gp.monster);
         boolean contactPlayer = gp.collisionTest.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
+        if (this.type == type_monster && contactPlayer == true) {
             if (gp.player.invincible == false) {
                 gp.player.life -= 1;
                 gp.player.invincible = true;

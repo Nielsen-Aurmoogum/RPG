@@ -207,7 +207,7 @@ public class UI {
         final int frameX = gp.tileSize;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize * 5;
-        final int frameHeight = gp.tileSize * 9;
+        final int frameHeight = gp.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // Text
@@ -235,8 +235,11 @@ public class UI {
         g2.drawString("Exp", textX, textY);
         textY += lineHeight;
         g2.drawString("Next level exp", textX, textY);
-        textY += lineHeight + 15;
+        textY += lineHeight + 20;
         g2.drawString("Weapon", textX, textY);
+        textY += lineHeight + 15;
+        g2.drawString("Shield", textX, textY);
+        textY += lineHeight;
 
         // Attribute values
         int tailX = (frameX + frameWidth) - 30;
@@ -283,8 +286,10 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        // Image for weapon
-        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 15, null);
+        // Image for weapon and shield
+        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 14, null);
+        textY += gp.tileSize;
+        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY - 7, null);
     }
 
     // Display inventory
@@ -306,6 +311,13 @@ public class UI {
 
         // Draw player items
         for (int i = 0; i < gp.player.inventory.size(); i++) {
+
+            // Equip cursor
+            if (gp.player.inventory.get(i) == gp.player.currentWeapon
+                    || gp.player.inventory.get(i) == gp.player.currentShield) {
+                g2.setColor(new Color(240, 190, 90));
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
 
             g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
 
@@ -332,7 +344,6 @@ public class UI {
         int dFrameY = frameY + frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize * 3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
         // Description text
         int textX = dFrameX + 20;
@@ -342,6 +353,8 @@ public class UI {
         int itemIndex = getItemIndexInSlot();
 
         if (itemIndex < gp.player.inventory.size()) {
+
+            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
             for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
                 g2.drawString(line, textX, textY);

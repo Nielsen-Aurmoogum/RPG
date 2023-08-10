@@ -5,11 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import main.GamePanel;
 import main.InputHandler;
-import object.ObjectKey;
 import object.ObjectLightsaber;
+import object.ObjectShield;
 
 /**
  * Class of main character
@@ -44,9 +43,6 @@ public class Player extends SuperCharacter {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
-
-        attackArea.width = 35;
-        attackArea.height = 35;
     }
 
     // Set default position, speed and direction
@@ -65,24 +61,25 @@ public class Player extends SuperCharacter {
         exp = 0;
         nextLevelExp = 5;
         currentWeapon = new ObjectLightsaber(gp);
-        attackPower = getAttackPower();
-        defensePower = getDefensePower();
+        currentShield = new ObjectShield(gp);
+        attackPower = getAttackPower(); // Depends on weapon
+        defensePower = getDefensePower(); // Depends on shield
     }
 
     public void setItems() {
         inventory.add(currentWeapon);
-        inventory.add(new ObjectKey(gp));
-        inventory.add(new ObjectKey(gp));
+        inventory.add(currentShield);
     }
 
     // Getter method for attackPower
     public int getAttackPower() {
+        attackArea = currentWeapon.attackArea;
         return attackPower = strength * currentWeapon.attackValue;
     }
 
     // Getter method for defensePower
     public int getDefensePower() {
-        return defensePower = agility * level;
+        return defensePower = agility * currentShield.defenseValue;
     }
 
     // Read main character image
@@ -99,6 +96,14 @@ public class Player extends SuperCharacter {
     }
 
     public void getPlayerAttackImage() {
+
+        // if (currentWeapon.type == type_greenLightSaber) {
+
+        // }
+
+        // if (currentWeapon.type == type_redLightSaber) {
+
+        // }
 
         attackUp1 = setup("resources/player/up1", gp.tileSize, gp.tileSize * 2);
         attackUp2 = setup("resources/player/up2", gp.tileSize, gp.tileSize * 2);
@@ -263,8 +268,23 @@ public class Player extends SuperCharacter {
     // Player interacts with objects
     public void pickupObject(int i) {
 
+        // Collision with object
         if (i != 999) {
 
+            String text;
+
+            // Check if inventory is full
+            if (inventory.size() != maxInventorySize) {
+
+                inventory.add(gp.obj[i]);
+                text = "Got a " + gp.obj[i].name + "!";
+            }
+
+            else {
+                text = "Inventory is already full !";
+            }
+            // gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
 
@@ -304,6 +324,36 @@ public class Player extends SuperCharacter {
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
                 }
+            }
+        }
+    }
+
+    // Select item found in inventory
+    public void selectItem() {
+
+        int itemIndex = gp.ui.getItemIndexInSlot();
+
+        if (itemIndex < inventory.size()) {
+
+            SuperCharacter selectedItem = inventory.get(itemIndex);
+
+            if (selectedItem.type == type_greenLightSaber || selectedItem.type == type_redLightSaber) {
+
+                currentWeapon = selectedItem;
+                attackPower = getAttackPower();
+                // getPlayerAttackImage();
+            }
+
+            if (selectedItem.type == type_shield) {
+
+                currentShield = selectedItem;
+                defensePower = getDefensePower();
+            }
+
+            if (selectedItem.type == type_consumable) {
+
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
             }
         }
     }

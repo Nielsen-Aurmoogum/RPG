@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -147,7 +148,9 @@ public class InputHandler implements KeyListener {
             if (gp.ui.slotCol != 4) {
                 gp.ui.slotCol++;
             }
-
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            gp.player.selectItem();
         }
     }
 

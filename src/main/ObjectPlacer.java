@@ -2,6 +2,8 @@ package main;
 
 import character.NPC_Villager;
 import monster.GreenVillain;
+import object.ObjectKey;
+import object.ObjectRedLightSaber;
 
 public class ObjectPlacer {
     GamePanel gp;
@@ -15,6 +17,20 @@ public class ObjectPlacer {
      */
     public void setObject() {
 
+        int i = 0;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 33;
+        gp.obj[i].worldY = gp.tileSize * 7;
+        i++;
+
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 29;
+        gp.obj[i].worldY = gp.tileSize * 31;
+        i++;
+
+        gp.obj[i] = new ObjectRedLightSaber(gp);
+        gp.obj[i].worldX = gp.tileSize * 9;
+        gp.obj[i].worldY = gp.tileSize * 2;
     }
 
     /**
