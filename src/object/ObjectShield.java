@@ -10,9 +10,9 @@ public class ObjectShield extends SuperCharacter {
 
         type = type_shield;
         name = "Shield";
-        down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize); // need real image
+        down1 = setup("resources/objects/shield", gp.tileSize, gp.tileSize);
         defenseValue = 1;
-        description = "[" + name + "]\nOld shield";
+        description = "[" + name + "]\nDark Knight's shield";
     }
 
 }

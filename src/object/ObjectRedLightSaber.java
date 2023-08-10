@@ -10,7 +10,7 @@ public class ObjectRedLightSaber extends SuperCharacter {
 
         type = type_redLightSaber;
         name = "Red Lightsaber";
-        down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize); // need real image
+        down1 = setup("resources/objects/lightsaberRed", gp.tileSize, gp.tileSize);
         attackValue = 2;
         attackArea.width = 38;
         attackArea.height = 38;
