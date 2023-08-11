@@ -66,6 +66,7 @@ public class Player extends SuperCharacter {
         defensePower = getDefensePower(); // Depends on shield
     }
 
+    // These items will be in inventory from the start
     public void setItems() {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
@@ -82,7 +83,7 @@ public class Player extends SuperCharacter {
         return defensePower = agility * currentShield.defenseValue;
     }
 
-    // Read main character image
+    // Read main character images
     public void getPlayerImage() {
 
         up1 = setup("resources/player/up1", gp.tileSize, gp.tileSize);
@@ -95,6 +96,7 @@ public class Player extends SuperCharacter {
         right2 = setup("resources/player/right2", gp.tileSize, gp.tileSize);
     }
 
+    // Read main character attack images
     public void getPlayerAttackImage() {
 
         attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
@@ -211,6 +213,7 @@ public class Player extends SuperCharacter {
 
     }
 
+    // Sprites when attacking monster
     public void attack() {
         spriteCounter++;
 
@@ -307,6 +310,7 @@ public class Player extends SuperCharacter {
         }
     }
 
+    // When monster has been hit by player
     public void manageMonster(int i) {
 
         if (i != 999) {

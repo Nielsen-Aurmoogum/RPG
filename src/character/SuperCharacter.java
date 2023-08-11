@@ -13,7 +13,8 @@ import main.UtilityTool;
 
 /**
  * Parent class for all
- * characters that will be in the game
+ * characters and objects
+ * that will be in the game
  */
 public class SuperCharacter {
     GamePanel gp;
@@ -70,6 +71,8 @@ public class SuperCharacter {
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
     public int spriteNum = 1;
+
+    // Monster utilities
     int dyingCounter = 0;
     int hpBarCounter = 0;
 
@@ -87,9 +90,11 @@ public class SuperCharacter {
         this.gp = gp;
     }
 
+    // Will be overridden
     public void setAction() {
     }
 
+    // Will be overridden
     public void damageReact() {
     }
 
@@ -125,6 +130,7 @@ public class SuperCharacter {
         }
     }
 
+    // Will be overridden
     public void use(SuperCharacter character) {
     }
 
@@ -191,7 +197,7 @@ public class SuperCharacter {
         }
     }
 
-    // Draw npc on screen
+    // Draw npc or monster on screen
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
@@ -235,6 +241,7 @@ public class SuperCharacter {
                     }
                     break;
             }
+
             // health
             if (type == type_monster && hpBarOn == true) {
 
@@ -275,23 +282,39 @@ public class SuperCharacter {
 
         int i = 5;
 
-        if(dyingCounter <=i){changeAlpha(g2,0f);}
-        if(dyingCounter > i && dyingCounter <=i*2){changeAlpha(g2,0f);}
-        if(dyingCounter > i*2 && dyingCounter <=i*3){changeAlpha(g2,1f);}
-        if(dyingCounter > i*3 && dyingCounter <=i*4){changeAlpha(g2,0f);}
-        if(dyingCounter > i*4 && dyingCounter <=i*5){changeAlpha(g2,1f);}
-        if(dyingCounter > i*5 && dyingCounter <=i*6){changeAlpha(g2,0f);}
-        if(dyingCounter > i*6 && dyingCounter <= i*7){changeAlpha(g2,1f);}
-        if(dyingCounter > i*7 && dyingCounter <=i*8){changeAlpha(g2,0f);}
-        if(dyingCounter> i*8){
+        if (dyingCounter <= i) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i && dyingCounter <= i * 2) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 8) {
 
             dying = false;
             alive = false;
         }
     }
 
+    // Utility method to set alpha value
     public void changeAlpha(Graphics2D g2, float alphaValue) {
-
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 

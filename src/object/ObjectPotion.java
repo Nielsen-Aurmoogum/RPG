@@ -17,6 +17,7 @@ public class ObjectPotion extends SuperCharacter {
         description = "[" + name + "]\nSpeed potion";
     }
 
+    @Override
     public void use(SuperCharacter character) {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You are drinking the " + name + " !\n" + "You are now faster";

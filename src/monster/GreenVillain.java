@@ -14,12 +14,14 @@ public class GreenVillain extends SuperCharacter {
 
         this.gp = gp;
 
+        // Attributes
         name = "Green Villain";
         type = type_monster;
         speed = 1;
         fullLife = 8;
         life = fullLife;
 
+        // Hit-box region
         solidArea.x = 8;
         solidArea.y = 16;
         solidArea.width = 32;
@@ -30,6 +32,7 @@ public class GreenVillain extends SuperCharacter {
         getImage();
     }
 
+    // Read monster image
     public void getImage() {
 
         up1 = setup("resources/monster/monsterup1", gp.tileSize, gp.tileSize);
@@ -43,6 +46,8 @@ public class GreenVillain extends SuperCharacter {
 
     }
 
+    @Override
+    // Monster randomly moves
     public void setAction() {
         actionLockCounter++;
 
@@ -72,6 +77,7 @@ public class GreenVillain extends SuperCharacter {
     }
 
     // Make monster move away from player when attacked
+    @Override
     public void damageReact() {
 
         actionLockCounter = 0;

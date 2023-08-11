@@ -13,16 +13,25 @@ import object.ObjectLife;
  */
 public class UI {
 
+    // System
     GamePanel gp;
     Graphics2D g2;
+    public boolean gameFinished = false;
+    public int commandNum = 0;
+
+    // Fonts
     Font arial_40, arial_80B;
+
+    // Health
     BufferedImage heartfull, hearthalf, heartempty;
+
+    // NPC dialogues
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
-    public boolean gameFinished = false;
     public String currentDialogue = "";
-    public int commandNum = 0;
+
+    // Inventory management
     public int slotCol = 0;
     public int slotRow = 0;
 
@@ -82,6 +91,7 @@ public class UI {
         }
     }
 
+    // Title screen
     public void drawTitleScreen() {
 
         g2.setColor(new Color(0, 0, 0));
@@ -363,6 +373,7 @@ public class UI {
         }
     }
 
+    // Index of an item in inventory
     public int getItemIndexInSlot() {
         int itemIndex = slotCol + (slotRow * 5);
         return itemIndex;

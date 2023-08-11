@@ -21,7 +21,7 @@ public class InputHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        // TITLE STATE
+        // Title state
         if (gp.gameState == gp.titleState) {
             titleState(code);
         }
