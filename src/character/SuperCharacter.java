@@ -236,7 +236,7 @@ public class SuperCharacter {
                     break;
             }
             // health
-            if (type == 2 && hpBarOn == true) {
+            if (type == type_monster && hpBarOn == true) {
 
                 double oneScale = (double) gp.tileSize / fullLife;
                 double hpBarValue = oneScale * life;
@@ -257,7 +257,7 @@ public class SuperCharacter {
             if (invincible == true) {
                 hpBarOn = true;
                 hpBarCounter = 0;
-                changeAlpha(g2, 0.4f);
+                changeAlpha(g2, 0.4F);
 
             }
             if (dying == true) {
@@ -265,7 +265,7 @@ public class SuperCharacter {
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            changeAlpha(g2, 1F);
         }
     }
 

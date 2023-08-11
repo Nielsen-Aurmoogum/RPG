@@ -17,7 +17,8 @@ public class GreenVillain extends SuperCharacter {
         name = "Green Villain";
         type = type_monster;
         speed = 1;
-        fullLife = 20;
+        fullLife = 8;
+        life = fullLife;
 
         solidArea.x = 8;
         solidArea.y = 16;
@@ -70,6 +71,7 @@ public class GreenVillain extends SuperCharacter {
         }
     }
 
+    // Make monster move away from player when attacked
     public void damageReact() {
 
         actionLockCounter = 0;
