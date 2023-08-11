@@ -97,14 +97,14 @@ public class Player extends SuperCharacter {
 
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup("resources/player/attackUp1", gp.tileSize,gp.tileSize*2);
-        attackUp2 = setup("resources/player/attackUp2", gp.tileSize,gp.tileSize*2);
-        attackDown1 = setup("resources/player/attackDown1", gp.tileSize,gp.tileSize*2);
-        attackDown2 = setup("resources/player/attackDown2", gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize*2,gp.tileSize);
-        attackRight1 = setup("resources/player/attackRight1", gp.tileSize*2,gp.tileSize);
-        attackRight2 = setup("resources/player/attackRight2", gp.tileSize*2,gp.tileSize);
+        attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("resources/player/attackUp2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("resources/player/attackDown1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("resources/player/attackDown2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("resources/player/attackRight1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("resources/player/attackRight2", gp.tileSize * 2, gp.tileSize);
     }
 
     /**
@@ -115,7 +115,8 @@ public class Player extends SuperCharacter {
         if (attack == true) {
             attack();
         }
-        if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
+
+        else if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
                 || inputH.rightInput == true || inputH.enterInput == true) { // When no keys are pressed, stay still
 
             // Check direction
@@ -216,6 +217,7 @@ public class Player extends SuperCharacter {
         if (spriteCounter <= 5) {
             spriteNum = 1;
         }
+
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
 
@@ -250,11 +252,13 @@ public class Player extends SuperCharacter {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
         }
+
         if (spriteCounter > 25) {
             spriteNum = 1;
             spriteCounter = 0;
             attack = false;
         }
+
     }
 
     // Player interacts with objects
@@ -301,7 +305,6 @@ public class Player extends SuperCharacter {
                 invincible = true;
             }
         }
-
     }
 
     public void manageMonster(int i) {
@@ -356,6 +359,7 @@ public class Player extends SuperCharacter {
         BufferedImage image = null;
         int tempScreenX = screenX;
         int tempScreenY = screenY;
+
         // Different variations of orientations
         // are used
         switch (direction) {
