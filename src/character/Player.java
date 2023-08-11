@@ -97,22 +97,14 @@ public class Player extends SuperCharacter {
 
     public void getPlayerAttackImage() {
 
-        // if (currentWeapon.type == type_greenLightSaber) {
-
-        // }
-
-        // if (currentWeapon.type == type_redLightSaber) {
-
-        // }
-
-        attackUp1 = setup("resources/player/up1", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setup("resources/player/up2", gp.tileSize, gp.tileSize * 2);
-        attackDown1 = setup("resources/player/down1", gp.tileSize, gp.tileSize * 2);
-        attackDown2 = setup("resources/player/down2", gp.tileSize, gp.tileSize * 2);
-        attackLeft1 = setup("resources/player/left1", gp.tileSize * 2, gp.tileSize);
-        attackLeft2 = setup("resources/player/left2", gp.tileSize * 2, gp.tileSize);
-        attackRight1 = setup("resources/player/right1", gp.tileSize * 2, gp.tileSize);
-        attackRight2 = setup("resources/player/right2", gp.tileSize * 2, gp.tileSize);
+        attackUp1 = setup("resources/player/attackUp1", gp.tileSize,gp.tileSize*2);
+        attackUp2 = setup("resources/player/attackUp2", gp.tileSize,gp.tileSize*2);
+        attackDown1 = setup("resources/player/attackDown1", gp.tileSize,gp.tileSize*2);
+        attackDown2 = setup("resources/player/attackDown2", gp.tileSize,gp.tileSize*2);
+        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize*2,gp.tileSize);
+        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize*2,gp.tileSize);
+        attackRight1 = setup("resources/player/attackRight1", gp.tileSize*2,gp.tileSize);
+        attackRight2 = setup("resources/player/attackRight2", gp.tileSize*2,gp.tileSize);
     }
 
     /**
