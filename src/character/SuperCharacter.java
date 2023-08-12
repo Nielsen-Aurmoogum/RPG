@@ -311,8 +311,6 @@ public class SuperCharacter {
             changeAlpha(g2, 0f);
         }
         if (dyingCounter > i * 8) {
-
-            dying = false;
             alive = false;
         }
     }

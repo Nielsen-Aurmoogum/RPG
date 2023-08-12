@@ -303,7 +303,7 @@ public class Player extends SuperCharacter {
         if (i != 999) {
 
             // Receive damage once
-            if (invincible == false) {
+            if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attackPower - defensePower;
                 if (damage<0) {
                     damage = 0;
