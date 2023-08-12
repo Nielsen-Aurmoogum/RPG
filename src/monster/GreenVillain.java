@@ -4,6 +4,7 @@ import java.util.Random;
 
 import character.SuperCharacter;
 import main.GamePanel;
+import object.ObjectArrow;
 
 public class GreenVillain extends SuperCharacter {
 
@@ -23,6 +24,7 @@ public class GreenVillain extends SuperCharacter {
         attackPower = 2;
         defensePower = 0;
         exp = 2;
+        projectile = new ObjectArrow(gp);
 
         // Hit-box region
         solidArea.x = 8;
@@ -50,7 +52,7 @@ public class GreenVillain extends SuperCharacter {
     }
 
     @Override
-    // Monster randomly moves
+    // Monster randomly moves and shoots
     public void setAction() {
         actionLockCounter++;
 
@@ -76,6 +78,15 @@ public class GreenVillain extends SuperCharacter {
             }
 
             actionLockCounter = 0;
+
+        }
+
+        // Randomly shoot projectiles
+        int i = new Random().nextInt(100) + 1;
+        if (i > 99 && projectile.alive == false && shotAvailableCounter == 30) {
+            projectile.set(worldX, worldY, direction, true);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
         }
     }
 

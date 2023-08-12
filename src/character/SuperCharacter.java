@@ -75,6 +75,8 @@ public class SuperCharacter {
     // Monster utilities
     int dyingCounter = 0;
     int hpBarCounter = 0;
+    public Projectile projectile;
+    public int shotAvailableCounter = 0;
 
     // Collision region
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -147,14 +149,7 @@ public class SuperCharacter {
         boolean contactPlayer = gp.collisionTest.checkPlayer(this);
 
         if (this.type == type_monster && contactPlayer == true) {
-            if (gp.player.invincible == false) {
-                int damage = attackPower - gp.player.defensePower;
-                if (damage < 0) {
-                    damage = 0;
-                }
-                gp.player.life -= damage;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attackPower);
         }
 
         // No collision, npc moves
@@ -198,6 +193,23 @@ public class SuperCharacter {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        // Restrict number of projectiles shot
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
+        }
+    }
+
+    // Make player receive damage
+    public void damagePlayer(int attack) {
+        if (gp.player.invincible == false) {
+            int damage = attackPower - gp.player.defensePower;
+            if (damage < 0) {
+                damage = 0;
+            }
+            gp.player.life -= damage;
+            gp.player.invincible = true;
         }
     }
 

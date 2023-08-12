@@ -43,13 +43,14 @@ public class GamePanel extends JPanel implements Runnable {
     public VerifyCollision collisionTest = new VerifyCollision(this);
     public ObjectPlacer placer = new ObjectPlacer(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
 
     // Characters and objects
     public Player player = new Player(this, inputH);
     public SuperCharacter obj[] = new SuperCharacter[15]; // Can display up to 15 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
     public SuperCharacter monster[] = new SuperCharacter[10]; // Can display up to 10 monsters at the same time
-    public EventHandler eHandler = new EventHandler(this);
+    public ArrayList<SuperCharacter> projectileList = new ArrayList<>(); // Projectiles stored in this array
     ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array
 
     // Game state
@@ -112,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         if (gameState == playState) {
+
             // Player
             player.update();
 
@@ -134,7 +136,20 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            // Projectile
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    if (projectileList.get(i).alive == true) {
+                        projectileList.get(i).update();
+                    }
+                    if (projectileList.get(i).alive == false) {
+                        projectileList.remove(i);
+                    }
+                }
+            }
+
         }
+
         if (gameState == pauseState) {
             // Do nothing
         }
@@ -177,6 +192,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     charactersList.add(monster[i]);
+                }
+            }
+
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    charactersList.add(projectileList.get(i));
                 }
             }
 

@@ -305,7 +305,7 @@ public class Player extends SuperCharacter {
             // Receive damage once
             if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attackPower - defensePower;
-                if (damage<0) {
+                if (damage < 0) {
                     damage = 0;
                 }
                 life -= damage;
@@ -321,7 +321,7 @@ public class Player extends SuperCharacter {
 
             if (gp.monster[i].invincible == false) {
                 int damage = attackPower - gp.monster[i].defensePower;
-                if (damage<0) {
+                if (damage < 0) {
                     damage = 0;
                 }
 
@@ -333,7 +333,7 @@ public class Player extends SuperCharacter {
                     gp.monster[i].dying = true;
                     gp.ui.addMessage("You killed the " + gp.monster[i].name + " !");
                     gp.ui.addMessage("Exp +" + gp.monster[i].exp);
-                    exp +=gp.monster[i].exp;
+                    exp += gp.monster[i].exp;
                     checkLevelUp();
                 }
             }
@@ -344,7 +344,7 @@ public class Player extends SuperCharacter {
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
-            nextLevelExp =  nextLevelExp*2;
+            nextLevelExp = nextLevelExp * 2;
             fullLife += 1;
             strength++;
             agility++;
