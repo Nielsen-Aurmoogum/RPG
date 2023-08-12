@@ -326,13 +326,13 @@ public class Player extends SuperCharacter {
                 }
 
                 gp.monster[i].life -= damage;
-                gp.ui.addMessage(damage + " Damage!");
+                gp.ui.addMessage(" Damage x" + damage);
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReact();
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
                     gp.ui.addMessage("You killed the " + gp.monster[i].name + "!");
-                    gp.ui.addMessage("Exp " + gp.monster[i].exp);
+                    gp.ui.addMessage("Exp +" + gp.monster[i].exp);
                     exp +=gp.monster[i].exp;
                     checkLevelUp();
                 }
@@ -352,7 +352,7 @@ public class Player extends SuperCharacter {
             defensePower = getDefensePower();
 
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialogue = "You are level" + level + "!\n" + "Well done.";
+            gp.ui.currentDialogue = "You are level " + level + "!\n" + "Well done.";
         }
     }
 
