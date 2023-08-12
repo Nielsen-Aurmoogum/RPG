@@ -20,6 +20,9 @@ public class GreenVillain extends SuperCharacter {
         speed = 1;
         fullLife = 8;
         life = fullLife;
+        attackPower = 2;
+        defensePower = 0;
+        exp = 2;
 
         // Hit-box region
         solidArea.x = 8;

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import character.SuperCharacter;
 import object.ObjectLife;
 
@@ -27,8 +28,13 @@ public class UI {
 
     // NPC dialogues
     public boolean messageOn = false;
-    public String message = "";
-    int messageCounter = 0;
+
+    
+    /*public String message = "";
+    int messageCounter = 0;*/ // delete
+    ArrayList<String> message = new ArrayList<>();
+    ArrayList<Integer> messageCounter = new ArrayList<>();
+
     public String currentDialogue = "";
 
     // Inventory management
@@ -50,9 +56,12 @@ public class UI {
     }
 
     // Display text
-    public void showMessage(String text) {
-        message = text;
-        messageOn = true;
+    public void addMessage(String text) {
+        //message = text;
+        //messageOn = true; //to delete
+
+        message.add(text);
+        messageCounter.add(0);
     }
 
     // Write on screen
@@ -70,6 +79,7 @@ public class UI {
         // Play state
         if (gp.gameState == gp.playState) {
             drawPlayerLife();
+            drawMessage();
         }
 
         // Pause state
@@ -88,6 +98,29 @@ public class UI {
         if (gp.gameState == gp.characterInfoState) {
             drawCharacterInfoScreen();
             drawInventory();
+        }
+    }
+
+    public void drawMessage() {
+        int messageX = gp.tileSize;
+        int messageY = gp.tileSize*4;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+
+        for (int i = 0; i < message.size(); i++) {
+            if (message.get(i) != null) {
+                g2.setColor(Color.black);
+                g2.drawString(message.get(i), messageX + 2, messageY + 2);
+                g2.setColor(Color.white);
+                g2.drawString(message.get(i), messageX, messageY);
+                int counter = messageCounter.get(i) + 1; // messageCounter++
+                messageCounter.set(i, counter); // set the counter to array
+                messageY += 50;
+
+                if (messageCounter.get(i) > 180) {
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
         }
     }
 

@@ -148,7 +148,11 @@ public class SuperCharacter {
 
         if (this.type == type_monster && contactPlayer == true) {
             if (gp.player.invincible == false) {
-                gp.player.life -= 1;
+                int damage = attackPower - gp.player.defensePower;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                gp.player.life -= damage;
                 gp.player.invincible = true;
             }
         }
