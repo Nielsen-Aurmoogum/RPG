@@ -276,13 +276,13 @@ public class Player extends SuperCharacter {
             if (inventory.size() != maxInventorySize) {
 
                 inventory.add(gp.obj[i]);
-                text = "Got a " + gp.obj[i].name + "!";
+                text = "Got a " + gp.obj[i].name + " !";
             }
 
             else {
                 text = "Inventory is already full !";
             }
-            // gp.ui.addMessage(text);
+            gp.ui.addMessage(text);
             gp.obj[i] = null;
         }
     }
@@ -331,7 +331,7 @@ public class Player extends SuperCharacter {
                 gp.monster[i].damageReact();
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
-                    gp.ui.addMessage("You killed the " + gp.monster[i].name + "!");
+                    gp.ui.addMessage("You killed the " + gp.monster[i].name + " !");
                     gp.ui.addMessage("Exp +" + gp.monster[i].exp);
                     exp +=gp.monster[i].exp;
                     checkLevelUp();
@@ -352,7 +352,7 @@ public class Player extends SuperCharacter {
             defensePower = getDefensePower();
 
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialogue = "You are level " + level + "!\n" + "Well done.";
+            gp.ui.currentDialogue = "You are level " + level + " !\n" + "Well done.";
         }
     }
 

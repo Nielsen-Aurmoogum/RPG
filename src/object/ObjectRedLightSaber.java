@@ -14,7 +14,7 @@ public class ObjectRedLightSaber extends SuperCharacter {
         attackValue = 2;
         attackArea.width = 38;
         attackArea.height = 38;
-        description = "[" + name + "]\nDarth Vader's lightsaber";
+        description = "[" + name + "]\nDarth Vader's lightsaber.";
     }
 
 }

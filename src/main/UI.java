@@ -29,12 +29,9 @@ public class UI {
     // NPC dialogues
     public boolean messageOn = false;
 
-    
-    /*public String message = "";
-    int messageCounter = 0;*/ // delete
+    // Messages
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
-
     public String currentDialogue = "";
 
     // Inventory management
@@ -57,9 +54,6 @@ public class UI {
 
     // Display text
     public void addMessage(String text) {
-        //message = text;
-        //messageOn = true; //to delete
-
         message.add(text);
         messageCounter.add(0);
     }
@@ -104,7 +98,7 @@ public class UI {
     public void drawMessage() {
         int messageX = gp.tileSize;
         int messageY = gp.tileSize*4;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 28F));
 
         for (int i = 0; i < message.size(); i++) {
             if (message.get(i) != null) {

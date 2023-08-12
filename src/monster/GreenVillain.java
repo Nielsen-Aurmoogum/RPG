@@ -18,7 +18,7 @@ public class GreenVillain extends SuperCharacter {
         name = "Green Villain";
         type = type_monster;
         speed = 1;
-        fullLife = 8;
+        fullLife = 12;
         life = fullLife;
         attackPower = 2;
         defensePower = 0;

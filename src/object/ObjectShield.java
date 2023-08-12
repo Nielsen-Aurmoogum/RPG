@@ -12,7 +12,7 @@ public class ObjectShield extends SuperCharacter {
         name = "Shield";
         down1 = setup("resources/objects/shield", gp.tileSize, gp.tileSize);
         defenseValue = 1;
-        description = "[" + name + "]\nDark Knight's shield";
+        description = "[" + name + "]\nDark Knight's shield.";
     }
 
 }
