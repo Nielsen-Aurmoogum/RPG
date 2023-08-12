@@ -326,7 +326,7 @@ public class Player extends SuperCharacter {
                 }
 
                 gp.monster[i].life -= damage;
-                gp.ui.addMessage(" Damage x" + damage);
+                gp.ui.addMessage("Damage x" + damage);
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReact();
                 if (gp.monster[i].life <= 0) {
