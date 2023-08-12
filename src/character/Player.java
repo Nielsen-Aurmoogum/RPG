@@ -350,6 +350,9 @@ public class Player extends SuperCharacter {
             agility++;
             attackPower = getAttackPower();
             defensePower = getDefensePower();
+
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "You are level" + level + "!/n" + "Well done.";
         }
     }
 
