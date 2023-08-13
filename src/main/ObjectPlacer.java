@@ -46,9 +46,16 @@ public class ObjectPlacer {
         gp.obj[i].worldY = gp.tileSize * 28;
         i++;
 
+        // Healer prison
         gp.obj[i] = new ObjectDoor(gp);
-        gp.obj[i].worldX = gp.tileSize * 44;
-        gp.obj[i].worldY = gp.tileSize * 24;
+        gp.obj[i].worldX = gp.tileSize * 41;
+        gp.obj[i].worldY = gp.tileSize * 36;
+        i++;
+
+        // Treasure room
+        gp.obj[i] = new ObjectDoor(gp);
+        gp.obj[i].worldX = gp.tileSize * 43;
+        gp.obj[i].worldY = gp.tileSize * 47;
         i++;
 
         // Test

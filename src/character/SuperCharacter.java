@@ -67,6 +67,7 @@ public class SuperCharacter {
     public final int type_redLightSaber = 4;
     public final int type_shield = 5;
     public final int type_usable = 6;
+    public final int type_obstacle = 7;
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
@@ -98,6 +99,10 @@ public class SuperCharacter {
 
     // Will be overridden
     public void damageReact() {
+    }
+
+    // Will be overridden
+    public void interact() {
     }
 
     // Store the dialogue in currentDialogue in UI class

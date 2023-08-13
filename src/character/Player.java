@@ -272,18 +272,30 @@ public class Player extends SuperCharacter {
 
             String text;
 
-            // Check if inventory is not full
-            if (inventory.size() != maxInventorySize) {
-
-                inventory.add(gp.obj[i]);
-                text = "Got a " + gp.obj[i].name + " !";
+            // OBSTACLES
+            if (gp.obj[i].type == type_obstacle) {
+                if (inputH.enterInput == true) {
+                    attackCancel = true;
+                    gp.obj[i].interact();
+                }
             }
             
+            // INVENTORY ITEMS
             else {
-                text = "Inventory is already full !";
+                
+                // Check if inventory is not full
+                if (inventory.size() != maxInventorySize) {
+    
+                    inventory.add(gp.obj[i]);
+                    text = "Got a " + gp.obj[i].name + " !";
+                }
+                
+                else {
+                    text = "Inventory is already full !";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
         }
     }
 
