@@ -3,6 +3,7 @@ package main;
 import character.NPC_Villager;
 import monster.GreenVillain;
 import object.ObjectBoots;
+import object.ObjectChest;
 import object.ObjectDoor;
 import object.ObjectKey;
 import object.ObjectPotion;
@@ -21,6 +22,8 @@ public class ObjectPlacer {
     public void setObject() {
 
         int i = 0;
+
+        // Keys
         gp.obj[i] = new ObjectKey(gp);
         gp.obj[i].worldX = gp.tileSize * 33;
         gp.obj[i].worldY = gp.tileSize * 7;
@@ -31,16 +34,19 @@ public class ObjectPlacer {
         gp.obj[i].worldY = gp.tileSize * 31;
         i++;
 
+        // Weapon
         gp.obj[i] = new ObjectRedLightSaber(gp);
         gp.obj[i].worldX = gp.tileSize * 44;
         gp.obj[i].worldY = gp.tileSize * 39;
         i++;
 
+        // Potion
         gp.obj[i] = new ObjectPotion(gp);
         gp.obj[i].worldX = gp.tileSize * 20;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
 
+        // Boots
         gp.obj[i] = new ObjectBoots(gp);
         gp.obj[i].worldX = gp.tileSize * 46;
         gp.obj[i].worldY = gp.tileSize * 28;
@@ -58,36 +64,9 @@ public class ObjectPlacer {
         gp.obj[i].worldY = gp.tileSize * 47;
         i++;
 
-        // Test
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 9;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 10;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 11;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 12;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 13;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 14;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-        gp.obj[i] = new ObjectKey(gp);
-        gp.obj[i].worldX = gp.tileSize * 15;
-        gp.obj[i].worldY = gp.tileSize * 2;
-        i++;
-
+        gp.obj[i] = new ObjectChest(gp);
+        gp.obj[i].worldX = gp.tileSize * 46;
+        gp.obj[i].worldY = gp.tileSize * 47;
 
     }
 

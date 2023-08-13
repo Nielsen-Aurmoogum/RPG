@@ -25,7 +25,7 @@ public class ObjectKey extends SuperCharacter {
         int objectIndex = getDetected(character, gp.obj, "Door");
 
         if (objectIndex != 999) {
-            gp.ui.currentDialogue = "You have used the " + name + " to open the door.";
+            gp.ui.currentDialogue = "You have used the " + name + " to open \nthe door.";
             gp.obj[objectIndex] = null;
             return true; // Has been used
         }
