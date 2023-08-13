@@ -205,11 +205,17 @@ public class SuperCharacter {
     public void damagePlayer(int attack) {
         if (gp.player.invincible == false) {
             int damage = attackPower - gp.player.defensePower;
-            if (damage < 0) {
-                damage = 0;
+
+            // Standard minimum damage
+            if (damage <= 0) {
+                gp.player.life -= 1;
+                gp.player.invincible = true;
             }
-            gp.player.life -= damage;
-            gp.player.invincible = true;
+
+            else {
+                gp.player.life -= damage;
+                gp.player.invincible = true;
+            }
         }
     }
 
