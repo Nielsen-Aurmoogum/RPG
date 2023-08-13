@@ -125,7 +125,7 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         // TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
         String text = "The Adventure of Slander Man";
         int x = xCenter(text);
         int y = gp.tileSize * 2;
@@ -139,8 +139,8 @@ public class UI {
         g2.drawString(text, x, y);
 
         // SLANDER MAN IMAGE
-        x = (gp.screenWidth / 2 - (gp.tileSize * 2) / 2) - 20;
-        y += gp.tileSize;
+        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+        y += gp.tileSize * 2 - 20;
         g2.drawImage(gp.player.down1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
 
         // MENU
@@ -148,7 +148,7 @@ public class UI {
 
         text = "PLAY GAME";
         x = xCenter(text);
-        y += gp.tileSize * 6;
+        y += gp.tileSize * 5;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
             g2.drawString(">", x - gp.tileSize, y);
@@ -233,7 +233,7 @@ public class UI {
     public void drawCharacterInfoScreen() {
 
         // Create a frame
-        final int frameX = gp.tileSize*2;
+        final int frameX = gp.tileSize;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize * 5;
         final int frameHeight = gp.tileSize * 10;
@@ -325,7 +325,7 @@ public class UI {
     public void drawInventory() {
 
         // Frame
-        int frameX = gp.tileSize * 12;
+        int frameX = gp.tileSize * 9;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize * 6;
         int frameHeight = gp.tileSize * 3;

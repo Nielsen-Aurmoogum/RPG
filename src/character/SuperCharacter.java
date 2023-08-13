@@ -148,16 +148,9 @@ public class SuperCharacter {
         gp.collisionTest.checkCharacter(this, gp.monster);
         boolean contactPlayer = gp.collisionTest.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
-           if(gp.player.invincible == false){
-            int damage = attackPower - gp.player.defensePower;
-            if(damage<0){
-                damage=0;
-            }
-            gp.player.life -= damage;
+        if (this.type == type_monster && contactPlayer == true) {
+            damagePlayer(attackPower);
         }
-    }
-
 
         // No collision, npc moves
         if (collisionOn == false) {

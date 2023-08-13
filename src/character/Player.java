@@ -66,6 +66,7 @@ public class Player extends SuperCharacter {
         defensePower = getDefensePower(); // Depends on shield
     }
 
+    // These items will be in inventory from the start
     public void setItems() {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
@@ -82,7 +83,7 @@ public class Player extends SuperCharacter {
         return defensePower = agility * currentShield.defenseValue;
     }
 
-    // Read main character image
+    // Read main character images
     public void getPlayerImage() {
 
         up1 = setup("resources/player/up1", gp.tileSize, gp.tileSize);
@@ -95,16 +96,17 @@ public class Player extends SuperCharacter {
         right2 = setup("resources/player/right2", gp.tileSize, gp.tileSize);
     }
 
+    // Read main character attack images
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup("resources/player/attackUp1", gp.tileSize,gp.tileSize*2);
-        attackUp2 = setup("resources/player/attackUp2", gp.tileSize,gp.tileSize*2);
-        attackDown1 = setup("resources/player/attackDown1", gp.tileSize,gp.tileSize*2);
-        attackDown2 = setup("resources/player/attackDown2", gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize*2,gp.tileSize);
-        attackRight1 = setup("resources/player/attackRight1", gp.tileSize*2,gp.tileSize);
-        attackRight2 = setup("resources/player/attackRight2", gp.tileSize*2,gp.tileSize);
+        attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("resources/player/attackUp2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("resources/player/attackDown1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("resources/player/attackDown2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("resources/player/attackRight1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("resources/player/attackRight2", gp.tileSize * 2, gp.tileSize);
     }
 
     /**
@@ -115,6 +117,7 @@ public class Player extends SuperCharacter {
         if (attack == true) {
             attack();
         }
+
         else if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
                 || inputH.rightInput == true || inputH.enterInput == true) { // When no keys are pressed, stay still
 
@@ -210,12 +213,14 @@ public class Player extends SuperCharacter {
 
     }
 
+    // Sprites when attacking monster
     public void attack() {
         spriteCounter++;
 
         if (spriteCounter <= 5) {
             spriteNum = 1;
         }
+
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
 
@@ -250,11 +255,13 @@ public class Player extends SuperCharacter {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
         }
+
         if (spriteCounter > 25) {
             spriteNum = 1;
             spriteCounter = 0;
             attack = false;
         }
+
     }
 
     // Player interacts with objects
@@ -264,11 +271,12 @@ public class Player extends SuperCharacter {
         if (i != 999) {
 
             String text;
+
             // Check if inventory is full
             if (inventory.size() != maxInventorySize) {
 
                 inventory.add(gp.obj[i]);
-                text = "Got a " + gp.obj[i].name + "!";
+                text = "Got a " + gp.obj[i].name + " !";
             }
 
             else {
@@ -297,56 +305,57 @@ public class Player extends SuperCharacter {
             // Receive damage once
             if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attackPower - defensePower;
-                if(damage<0){
-                    damage=0;
+                if (damage < 0) {
+                    damage = 0;
                 }
                 life -= damage;
                 invincible = true;
             }
         }
-
     }
 
+    // When monster has been hit by player
     public void manageMonster(int i) {
 
         if (i != 999) {
 
             if (gp.monster[i].invincible == false) {
-
                 int damage = attackPower - gp.monster[i].defensePower;
-                if(damage <0 ){
-                    damage=0;
+                if (damage < 0) {
+                    damage = 0;
                 }
 
-                gp.monster[i].life -= damage ;
-                gp.ui.addMessage("Damage x"+ damage);
+                gp.monster[i].life -= damage;
+                gp.ui.addMessage("Damage x" + damage);
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReact();
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
-                    gp.ui.addMessage("You killed the " + gp.monster[i].name + "!");
+                    gp.ui.addMessage("You killed the " + gp.monster[i].name + " !");
                     gp.ui.addMessage("Exp +" + gp.monster[i].exp);
                     exp += gp.monster[i].exp;
                     checkLevelUp();
-
                 }
             }
         }
     }
-    public void checkLevelUp(){
 
-        if (exp >= nextLevelExp){
+    // Check exp when player killed monster
+    public void checkLevelUp() {
+        if (exp >= nextLevelExp) {
             level++;
-            nextLevelExp = nextLevelExp*2;
-            fullLife += 2;
+            nextLevelExp = nextLevelExp * 2;
+            fullLife += 1;
+            strength++;
             agility++;
             attackPower = getAttackPower();
             defensePower = getDefensePower();
 
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialogue = "You are level " + level + "!\n " + "Well done.";
+            gp.ui.currentDialogue = "You are level " + level + " !\n" + "Well done.";
         }
     }
+
     // Select item found in inventory
     public void selectItem() {
 
@@ -383,6 +392,7 @@ public class Player extends SuperCharacter {
         BufferedImage image = null;
         int tempScreenX = screenX;
         int tempScreenY = screenY;
+
         // Different variations of orientations
         // are used
         switch (direction) {

@@ -10,9 +10,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,9 +20,9 @@ public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3;
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    public final int maxScreenCol = 20;
+    public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
-    public final int screenWidth = tileSize * maxScreenCol; // 960 pixels
+    public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
     // World settings
@@ -36,12 +33,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // FPS
     int FPS = 60;
-
-    // full screen
-    int screenWidth2 = screenWidth;
-    int screenHeight2 = screenHeight;
-    BufferedImage tempScreen;
-    Graphics2D g2;
 
     // Instantiate classes
 
@@ -83,11 +74,6 @@ public class GamePanel extends JPanel implements Runnable {
         placer.setNPC();
         placer.setMonster();
         gameState = titleState;
-
-        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
-        g2 = (Graphics2D) tempScreen.getGraphics();
-
-        setFullScreen();
     }
 
     public void startGameThread() {
@@ -113,8 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             if (delta >= 1) {
                 update();
-                drawToTempScreen();// Calling drawToTempScreen method
-                drawToScreen();
+                repaint(); // Calling paintComponent method
                 delta--;
             }
 
@@ -170,11 +155,13 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void drawToTempScreen() {
+    /**
+     * Draw updated information on screen
+     */
+    public void paintComponent(Graphics g) {
 
-        /**
-         * Draw updated information on screen
-         */
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
 
         // TITLE SCREEN
         if (gameState == titleState) {
@@ -208,6 +195,11 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    charactersList.add(projectileList.get(i));
+                }
+            }
 
             // Sort render order
             // Sort list by using worldY as filter
@@ -231,26 +223,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             // UI
             ui.draw(g2);
-            }
 
+            g2.dispose();
+        }
     }
-
-    public void drawToScreen() {
-
-        Graphics g = getGraphics();
-        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
-        g.dispose();
-    }
-
-    public void setFullScreen(){
-
-    // get local screen device
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        gd.setFullScreenWindow(Main.window);
-
-        screenWidth2 = Main.window.getWidth();
-        screenHeight2 = Main.window.getHeight();
-
-    }
-} 
+}
