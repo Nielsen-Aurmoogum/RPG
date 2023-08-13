@@ -18,10 +18,12 @@ public class ObjectPotion extends SuperCharacter {
     }
 
     @Override
-    public void use(SuperCharacter character) {
+    public boolean use(SuperCharacter character) {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You are drinking the " + name + " !\n" + "You are now faster.";
         character.speed += 2;
+
+        return true;
     }
 
 }

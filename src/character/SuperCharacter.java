@@ -93,6 +93,31 @@ public class SuperCharacter {
         this.gp = gp;
     }
 
+    // Some useful getter methods
+    public int getLeftX() {
+        return worldX + solidArea.x;
+    }
+
+    public int getRightX() {
+        return worldX + solidArea.x + solidArea.width;
+    }
+
+    public int getTopY() {
+        return worldY + solidArea.y;
+    }
+
+    public int getBottomY() {
+        return worldY + solidArea.y + solidArea.height;
+    }
+
+    public int getCol() {
+        return (worldX + solidArea.x) / gp.tileSize;
+    }
+
+    public int getRow() {
+        return (worldY + solidArea.y) / gp.tileSize;
+    }
+
     // Will be overridden
     public void setAction() {
     }
@@ -138,7 +163,8 @@ public class SuperCharacter {
     }
 
     // Will be overridden
-    public void use(SuperCharacter character) {
+    public boolean use(SuperCharacter character) {
+        return false;
     }
 
     public void update() {
@@ -356,5 +382,47 @@ public class SuperCharacter {
         }
 
         return image;
+    }
+
+    public int getDetected(SuperCharacter user, SuperCharacter target[], String targetName) {
+
+        int index = 999;
+
+        // Check the surrounding objects
+        int nextWorldX = user.getLeftX();
+        int nextWorldY = user.getTopY();
+
+        switch (user.direction) {
+            case "up":
+                nextWorldY = user.getTopY() - user.speed;
+                break;
+
+            case "down":
+                nextWorldY = user.getBottomY() + user.speed;
+                break;
+
+            case "left":
+                nextWorldX = user.getLeftX() - user.speed;
+                break;
+
+            case "right":
+                nextWorldX = user.getRightX() + user.speed;
+                break;
+        }
+
+        int col = nextWorldX / gp.tileSize;
+        int row = nextWorldY / gp.tileSize;
+
+        // Check if player is in front of object
+        // and object is a door
+        for (int i = 0; i < target.length; i++) {
+            if (target[i] != null) {
+                if (target[i].getCol() == col && target[i].getRow() == row && target[i].name.equals(targetName)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        return index;
     }
 }

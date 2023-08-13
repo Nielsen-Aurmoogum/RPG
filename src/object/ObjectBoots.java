@@ -18,10 +18,12 @@ public class ObjectBoots extends SuperCharacter {
     }
 
     @Override
-    public void use(SuperCharacter character) {
+    public boolean use(SuperCharacter character) {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You are wearing the " + name + " !\n" + "You are now slower :(";
         character.speed -= 1;
+
+        return true;
     }
 
 }

@@ -279,17 +279,17 @@ public class Player extends SuperCharacter {
                     gp.obj[i].interact();
                 }
             }
-            
+
             // INVENTORY ITEMS
             else {
-                
+
                 // Check if inventory is not full
                 if (inventory.size() != maxInventorySize) {
-    
+
                     inventory.add(gp.obj[i]);
                     text = "Got a " + gp.obj[i].name + " !";
                 }
-                
+
                 else {
                     text = "Inventory is already full !";
                 }
@@ -317,7 +317,7 @@ public class Player extends SuperCharacter {
             // Receive damage once
             if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attackPower - defensePower;
-                
+
                 // Standard minimum damage
                 if (damage <= 0) {
                     life -= 1;
@@ -398,8 +398,10 @@ public class Player extends SuperCharacter {
 
             if (selectedItem.type == type_usable) {
 
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+                // Remove item from inventory only if used
+                if (selectedItem.use(this) == true) {
+                    inventory.remove(itemIndex);
+                }
             }
         }
     }
