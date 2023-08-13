@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = titleState;
 
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
-        g2 = (Graphics2D)tempScreen.getGraphics();
+        g2 = (Graphics2D) tempScreen.getGraphics();
 
         setFullScreen();
     }
@@ -170,7 +170,11 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void drawToTempScreen(){
+    public void drawToTempScreen() {
+
+        /**
+         * Draw updated information on screen
+         */
 
         // TITLE SCREEN
         if (gameState == titleState) {
@@ -204,11 +208,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    charactersList.add(projectileList.get(i));
-                }
-            }
 
             // Sort render order
             // Sort list by using worldY as filter
@@ -232,29 +231,26 @@ public class GamePanel extends JPanel implements Runnable {
 
             // UI
             ui.draw(g2);
-        }
+            }
 
     }
 
+    public void drawToScreen() {
 
+        Graphics g = getGraphics();
+        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+        g.dispose();
+    }
 
-
-public void drawToScreen(){
-
-    Graphics g = getGraphics();
-    g.drawImage(tempScreen, 0,0, screenWidth2, screenHeight2,null);
-    g.dispose();
-}
-
-public void setFullScreen(){
+    public void setFullScreen(){
 
     // get local screen device
-    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    GraphicsDevice gd = ge.getDefaultScreenDevice();
-    gd.setFullScreenWindow(Main.window);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(Main.window);
 
-    screenWidth2 = Main.window.getWidth();
-    screenHeight2 = Main.window.getHeight();
+        screenWidth2 = Main.window.getWidth();
+        screenHeight2 = Main.window.getHeight();
 
-}
-}
+    }
+} 

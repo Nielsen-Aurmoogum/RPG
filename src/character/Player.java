@@ -115,7 +115,7 @@ public class Player extends SuperCharacter {
         if (attack == true) {
             attack();
         }
-        if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
+        else if (inputH.upInput == true || inputH.downInput == true || inputH.leftInput == true
                 || inputH.rightInput == true || inputH.enterInput == true) { // When no keys are pressed, stay still
 
             // Check direction
@@ -274,7 +274,7 @@ public class Player extends SuperCharacter {
             else {
                 text = "Inventory is already full !";
             }
-            // gp.ui.addMessage(text);
+            gp.ui.addMessage(text);
             gp.obj[i] = null;
         }
     }
@@ -313,16 +313,40 @@ public class Player extends SuperCharacter {
 
             if (gp.monster[i].invincible == false) {
 
-                gp.monster[i].life -= 1;
+                int damage = attackPower - gp.monster[i].defensePower;
+                if(damage <0 ){
+                    damage=0;
+                }
+
+                gp.monster[i].life -= damage ;
+                gp.ui.addMessage("Damage x"+ damage);
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReact();
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
+                    gp.ui.addMessage("You killed the " + gp.monster[i].name + "!");
+                    gp.ui.addMessage("Exp +" + gp.monster[i].exp);
+                    exp += gp.monster[i].exp;
+                    checkLevelUp();
+
                 }
             }
         }
     }
+    public void checkLevelUp(){
 
+        if (exp >= nextLevelExp){
+            level++;
+            nextLevelExp = nextLevelExp*2;
+            fullLife += 2;
+            agility++;
+            attackPower = getAttackPower();
+            defensePower = getDefensePower();
+
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "You are level " + level + "!\n " + "Well done.";
+        }
+    }
     // Select item found in inventory
     public void selectItem() {
 
