@@ -11,7 +11,7 @@ public class ObjectPotion extends SuperCharacter {
         super(gp);
         this.gp = gp;
 
-        type = type_consumable;
+        type = type_usable;
         name = "Purple Potion";
         down1 = setup("resources/objects/potion", gp.tileSize, gp.tileSize); // need real image
         description = "[" + name + "]\nSpeed potion";

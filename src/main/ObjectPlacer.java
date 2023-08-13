@@ -3,6 +3,7 @@ package main;
 import character.NPC_Villager;
 import monster.GreenVillain;
 import object.ObjectBoots;
+import object.ObjectDoor;
 import object.ObjectKey;
 import object.ObjectPotion;
 import object.ObjectRedLightSaber;
@@ -41,8 +42,46 @@ public class ObjectPlacer {
         i++;
 
         gp.obj[i] = new ObjectBoots(gp);
-        gp.obj[i].worldX = gp. tileSize * 46;
+        gp.obj[i].worldX = gp.tileSize * 46;
         gp.obj[i].worldY = gp.tileSize * 28;
+        i++;
+
+        gp.obj[i] = new ObjectDoor(gp);
+        gp.obj[i].worldX = gp.tileSize * 44;
+        gp.obj[i].worldY = gp.tileSize * 24;
+        i++;
+
+        // Test
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 9;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 10;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 11;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 12;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 13;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 14;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+        gp.obj[i] = new ObjectKey(gp);
+        gp.obj[i].worldX = gp.tileSize * 15;
+        gp.obj[i].worldY = gp.tileSize * 2;
+        i++;
+
+
     }
 
     /**

@@ -11,7 +11,7 @@ public class ObjectBoots extends SuperCharacter {
         super(gp);
         this.gp = gp;
 
-        type = type_consumable;
+        type = type_usable;
         name = "Heavy Boot";
         down1 = setup("resources/objects/newBoot", gp.tileSize, gp.tileSize); // need real image
         description = "[" + name + "]\nWear at your own risk.";

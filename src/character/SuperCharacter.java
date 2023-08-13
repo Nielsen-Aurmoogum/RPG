@@ -66,7 +66,7 @@ public class SuperCharacter {
     public final int type_greenLightSaber = 3;
     public final int type_redLightSaber = 4;
     public final int type_shield = 5;
-    public final int type_consumable = 6;
+    public final int type_usable = 6;
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;

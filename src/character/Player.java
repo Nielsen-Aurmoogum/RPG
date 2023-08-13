@@ -272,13 +272,13 @@ public class Player extends SuperCharacter {
 
             String text;
 
-            // Check if inventory is full
+            // Check if inventory is not full
             if (inventory.size() != maxInventorySize) {
 
                 inventory.add(gp.obj[i]);
                 text = "Got a " + gp.obj[i].name + " !";
             }
-
+            
             else {
                 text = "Inventory is already full !";
             }
@@ -384,7 +384,7 @@ public class Player extends SuperCharacter {
                 defensePower = getDefensePower();
             }
 
-            if (selectedItem.type == type_consumable) {
+            if (selectedItem.type == type_usable) {
 
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
