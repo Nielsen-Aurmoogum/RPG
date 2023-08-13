@@ -128,7 +128,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
         String text = "The Adventure of Slander Man";
         int x = xCenter(text);
-        int y = gp.tileSize * 3;
+        int y = gp.tileSize * 2;
 
         // SHADOW
         g2.setColor(Color.darkGray);
@@ -148,7 +148,7 @@ public class UI {
 
         text = "PLAY GAME";
         x = xCenter(text);
-        y += gp.tileSize * 5;
+        y += gp.tileSize * 6;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
             g2.drawString(">", x - gp.tileSize, y);
