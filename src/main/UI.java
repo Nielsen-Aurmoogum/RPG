@@ -146,7 +146,7 @@ public class UI {
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 38F));
 
-        text = "NEW GAME";
+        text = "PLAY GAME";
         x = xCenter(text);
         y += gp.tileSize * 5;
         g2.drawString(text, x, y);
