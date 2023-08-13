@@ -202,7 +202,7 @@ public class SuperCharacter {
     }
 
     // Make player receive damage
-    public void damagePlayer(int attack) {
+    public void damagePlayer(int attackPower) {
         if (gp.player.invincible == false) {
             int damage = attackPower - gp.player.defensePower;
 

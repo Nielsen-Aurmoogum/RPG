@@ -305,11 +305,17 @@ public class Player extends SuperCharacter {
             // Receive damage once
             if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attackPower - defensePower;
-                if (damage < 0) {
-                    damage = 0;
+                
+                // Standard minimum damage
+                if (damage <= 0) {
+                    life -= 1;
+                    invincible = true;
                 }
-                life -= damage;
-                invincible = true;
+
+                else {
+                    life -= damage;
+                    invincible = true;
+                }
             }
         }
     }

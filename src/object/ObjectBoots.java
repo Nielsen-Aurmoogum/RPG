@@ -12,7 +12,7 @@ public class ObjectBoots extends SuperCharacter {
         this.gp = gp;
 
         type = type_consumable;
-        name = "Heavy Boots";
+        name = "Heavy Boot";
         down1 = setup("resources/objects/newBoot", gp.tileSize, gp.tileSize); // need real image
         description = "[" + name + "]\nWear at your own risk.";
     }

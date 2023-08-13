@@ -21,7 +21,7 @@ public class GreenVillain extends SuperCharacter {
         speed = 1;
         fullLife = 10;
         life = fullLife;
-        attackPower = 2;
+        attackPower = 3;
         defensePower = 0;
         exp = 2;
         projectile = new ObjectArrow(gp);
