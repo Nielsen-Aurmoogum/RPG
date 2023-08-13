@@ -139,7 +139,7 @@ public class UI {
         // SLANDER MAN IMAGE
         x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
         y += gp.tileSize * 2 - 20;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
+        g2.drawImage(gp.player.down1, x - 30, y, gp.tileSize * 3, gp.tileSize * 3, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 38F));
