@@ -13,7 +13,7 @@ public class ObjectArrow extends Projectile {
 
         name = "Arrow";
         speed = 7;
-        fullLife = 80;
+        fullLife = 60;
         attackPower = 2;
         alive = false;
 

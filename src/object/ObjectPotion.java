@@ -21,7 +21,7 @@ public class ObjectPotion extends SuperCharacter {
     public void use(SuperCharacter character) {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You are drinking the " + name + " !\n" + "You are now faster.";
-        character.speed += 1;
+        character.speed += 2;
     }
 
 }

@@ -2,6 +2,7 @@ package main;
 
 import character.NPC_Villager;
 import monster.GreenVillain;
+import object.ObjectBoots;
 import object.ObjectKey;
 import object.ObjectPotion;
 import object.ObjectRedLightSaber;
@@ -35,8 +36,13 @@ public class ObjectPlacer {
         i++;
 
         gp.obj[i] = new ObjectPotion(gp);
-        gp.obj[i].worldX = gp.tileSize * 26;
-        gp.obj[i].worldY = gp.tileSize * 46;
+        gp.obj[i].worldX = gp.tileSize * 20;
+        gp.obj[i].worldY = gp.tileSize * 21;
+        i++;
+
+        gp.obj[i] = new ObjectBoots(gp);
+        gp.obj[i].worldX = gp. tileSize * 46;
+        gp.obj[i].worldY = gp.tileSize * 28;
     }
 
     /**
