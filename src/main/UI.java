@@ -125,7 +125,7 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         // TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
         String text = "The Adventure of Slander Man";
         int x = xCenter(text);
         int y = gp.tileSize * 2;
