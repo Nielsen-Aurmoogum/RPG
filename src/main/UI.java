@@ -26,12 +26,10 @@ public class UI {
     // Health
     BufferedImage heartfull, hearthalf, heartempty;
 
-    // NPC dialogues
-    public boolean messageOn = false;
-
     // Messages
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
+    public boolean messageOn = false;
     public String currentDialogue = "";
 
     // Inventory management
@@ -45,7 +43,7 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
-        // Create object
+        // Create life object
         SuperCharacter life = new ObjectLife(gp);
         heartfull = life.image;
         hearthalf = life.image2;
@@ -97,7 +95,7 @@ public class UI {
 
     public void drawMessage() {
         int messageX = gp.tileSize;
-        int messageY = gp.tileSize*4;
+        int messageY = gp.tileSize * 4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 28F));
 
         for (int i = 0; i < message.size(); i++) {
@@ -125,7 +123,7 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         // TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 52F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 45F));
         String text = "The Adventure of Slander Man";
         int x = xCenter(text);
         int y = gp.tileSize * 2;

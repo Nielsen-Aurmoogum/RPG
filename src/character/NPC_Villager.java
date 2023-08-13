@@ -1,7 +1,6 @@
 package character;
 
 import java.util.Random;
-
 import main.GamePanel;
 
 public class NPC_Villager extends SuperCharacter {
@@ -18,14 +17,14 @@ public class NPC_Villager extends SuperCharacter {
     // Read villager character image
     public void getCharacterImage() {
 
-        up1 = setup("resources/npc/villager-up1",gp.tileSize,gp.tileSize);
-        up2 = setup("resources/npc/villager-up2",gp.tileSize,gp.tileSize);
-        down1 = setup("resources/npc/villager-down1",gp.tileSize,gp.tileSize);
-        down2 = setup("resources/npc/villager-down2",gp.tileSize,gp.tileSize);
-        left1 = setup("resources/npc/villager-left1",gp.tileSize,gp.tileSize);
-        left2 = setup("resources/npc/villager-left2",gp.tileSize,gp.tileSize);
-        right1 = setup("resources/npc/villager-right1",gp.tileSize,gp.tileSize);
-        right2 = setup("resources/npc/villager-right2",gp.tileSize,gp.tileSize);
+        up1 = setup("resources/npc/villager-up1", gp.tileSize, gp.tileSize);
+        up2 = setup("resources/npc/villager-up2", gp.tileSize, gp.tileSize);
+        down1 = setup("resources/npc/villager-down1", gp.tileSize, gp.tileSize);
+        down2 = setup("resources/npc/villager-down2", gp.tileSize, gp.tileSize);
+        left1 = setup("resources/npc/villager-left1", gp.tileSize, gp.tileSize);
+        left2 = setup("resources/npc/villager-left2", gp.tileSize, gp.tileSize);
+        right1 = setup("resources/npc/villager-right1", gp.tileSize, gp.tileSize);
+        right2 = setup("resources/npc/villager-right2", gp.tileSize, gp.tileSize);
     }
 
     // What dialogues are stored in
@@ -69,7 +68,6 @@ public class NPC_Villager extends SuperCharacter {
 
     // Store the dialogue in currentDialogue in UI class
     public void speak() {
-
         super.speak();
     }
 

@@ -12,7 +12,7 @@ public class ObjectArrow extends Projectile {
         this.gp = gp;
 
         name = "Arrow";
-        speed = 8;
+        speed = 7;
         fullLife = 80;
         attackPower = 2;
         alive = false;

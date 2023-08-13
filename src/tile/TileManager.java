@@ -5,9 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -50,6 +48,7 @@ public class TileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     // Build map
@@ -71,7 +70,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]); // Stores the tile type
 
-                    tileNumMap[col][row] = num; // Map then knows what tile is of which type(water, bricks or rocks)
+                    tileNumMap[col][row] = num; // Map then knows what tile is of which type(water, bricks, rocks...)
                     col++;
                 }
                 if (col == gp.maxWorldCol) {

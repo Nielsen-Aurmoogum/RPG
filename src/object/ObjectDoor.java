@@ -9,7 +9,7 @@ public class ObjectDoor extends SuperCharacter {
         super(gp);
 
         name = "Door";
-        down1 = setup("resources/objects/door",gp.tileSize,gp.tileSize);
+        down1 = setup("resources/objects/door", gp.tileSize, gp.tileSize);
         collision = true;
     }
 }

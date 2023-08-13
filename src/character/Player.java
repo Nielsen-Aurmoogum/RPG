@@ -404,7 +404,7 @@ public class Player extends SuperCharacter {
                         image = up2;
                     }
                 }
-                if (attack == true) {
+                if (attack == true) { // Different sprites when attacking
                     tempScreenY = screenY - gp.tileSize;
                     if (spriteNum == 1) {
                         image = attackUp1;

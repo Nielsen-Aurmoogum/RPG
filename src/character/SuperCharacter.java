@@ -83,7 +83,7 @@ public class SuperCharacter {
     public boolean collisionOn = false;
     public int solidAreaDefaultX, solidAreaDefaultY;
 
-    // Objects like keys and doors
+    // Objects like keys, doors and hearts
     public BufferedImage image, image2, image3;
     public boolean collision = false;
 
@@ -141,7 +141,7 @@ public class SuperCharacter {
 
         collisionOn = false;
 
-        // Checking collision for NPC or Monster
+        // Checking collision for NPC or Monster or Tile or Object
         gp.collisionTest.checkTile(this);
         gp.collisionTest.checkObject(this, false);
         gp.collisionTest.checkCharacter(this, gp.npc);
@@ -152,7 +152,7 @@ public class SuperCharacter {
             damagePlayer(attackPower);
         }
 
-        // No collision, npc moves
+        // No collision, character moves
         if (collisionOn == false) {
             switch (direction) {
                 case "up":

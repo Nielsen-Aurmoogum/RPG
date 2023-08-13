@@ -84,19 +84,19 @@ public class VerifyCollision {
 
                 switch (character.direction) {
                     case "up":
-                        character.solidArea.y -= character.speed;                        
+                        character.solidArea.y -= character.speed;
                         break;
 
                     case "down":
-                        character.solidArea.y += character.speed;                        
+                        character.solidArea.y += character.speed;
                         break;
 
                     case "left":
-                        character.solidArea.x -= character.speed;                        
+                        character.solidArea.x -= character.speed;
                         break;
 
                     case "right":
-                        character.solidArea.x += character.speed;                        
+                        character.solidArea.x += character.speed;
                         break;
                 }
 
@@ -111,7 +111,7 @@ public class VerifyCollision {
                         index = i;
                     }
                 }
-                
+
                 // Reset
                 character.solidArea.x = character.solidAreaDefaultX;
                 character.solidArea.y = character.solidAreaDefaultY;
@@ -148,11 +148,11 @@ public class VerifyCollision {
                         break;
 
                     case "left":
-                        character.solidArea.x -= character.speed;                        
+                        character.solidArea.x -= character.speed;
                         break;
 
                     case "right":
-                        character.solidArea.x += character.speed;                        
+                        character.solidArea.x += character.speed;
                         break;
                 }
 
@@ -160,7 +160,7 @@ public class VerifyCollision {
                 if (character.solidArea.intersects(target[i].solidArea)) {
                     if (target[i] != character) {
                         character.collisionOn = true;
-                        index = i;                        
+                        index = i;
                     }
                 }
 
@@ -194,15 +194,15 @@ public class VerifyCollision {
                 break;
 
             case "down":
-                character.solidArea.y += character.speed;                
+                character.solidArea.y += character.speed;
                 break;
 
             case "left":
-                character.solidArea.x -= character.speed;                
+                character.solidArea.x -= character.speed;
                 break;
 
             case "right":
-                character.solidArea.x += character.speed;                
+                character.solidArea.x += character.speed;
                 break;
         }
 
