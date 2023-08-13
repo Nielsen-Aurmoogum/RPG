@@ -139,26 +139,18 @@ public class UI {
         g2.drawString(text, x, y);
 
         // SLANDER MAN IMAGE
-        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
-        y += gp.tileSize * 2;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+        x = (gp.screenWidth / 2 - (gp.tileSize * 2) / 2) - 20;
+        y += gp.tileSize;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 38F));
 
         text = "NEW GAME";
         x = xCenter(text);
-        y += gp.tileSize * 3;
+        y += gp.tileSize * 5;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
-            g2.drawString(">", x - gp.tileSize, y);
-        }
-
-        text = "LOAD GAME";
-        x = xCenter(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -166,7 +158,7 @@ public class UI {
         x = xCenter(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if (commandNum == 2) {
+        if (commandNum == 1) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
