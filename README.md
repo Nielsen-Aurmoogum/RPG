@@ -45,3 +45,14 @@ In order to run the project code, we use the terminal and we type the following 
 ```bash
 // Using java 17.0.8 2023-07-18 LTS
 cd /directory_where_src_folder_is_saved/ 
+
+// Using javac to compile the code
+javac character/*.java tile/*.java object/*.java monster/*.java main/*.java 
+
+
+// To run the main
+java main.Main
+
+```
+## Overview of code structure
+
