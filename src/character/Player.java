@@ -99,14 +99,28 @@ public class Player extends SuperCharacter {
     // Read main character attack images
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setup("resources/player/attackUp2", gp.tileSize, gp.tileSize * 2);
-        attackDown1 = setup("resources/player/attackDown1", gp.tileSize, gp.tileSize * 2);
-        attackDown2 = setup("resources/player/attackDown2", gp.tileSize, gp.tileSize * 2);
-        attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize * 2, gp.tileSize);
-        attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize * 2, gp.tileSize);
-        attackRight1 = setup("resources/player/attackRight1", gp.tileSize * 2, gp.tileSize);
-        attackRight2 = setup("resources/player/attackRight2", gp.tileSize * 2, gp.tileSize);
+        if (type == type_greenLightSaber) {
+            attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("resources/player/attackUp2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setup("resources/player/attackDown1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setup("resources/player/attackDown2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setup("resources/player/attackLeft1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setup("resources/player/attackLeft2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setup("resources/player/attackRight1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setup("resources/player/attackRight2", gp.tileSize * 2, gp.tileSize);
+        }
+
+        else if (type == type_redLightSaber) {
+            attackUp1 = setup("resources/player/attackUp1red", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("resources/player/attackUp2red", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setup("resources/player/attackDown1red", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setup("resources/player/attackDown2red", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setup("resources/player/attackLeft1red", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setup("resources/player/attackLeft2red", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setup("resources/player/attackRight1red", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setup("resources/player/attackRight2red", gp.tileSize * 2, gp.tileSize);
+        }
+    
     }
 
     /**

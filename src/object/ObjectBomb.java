@@ -22,13 +22,13 @@ public class ObjectBomb extends Projectile {
 
     // Read projectile image
     public void getImage() {
-        up1 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        up2 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        down1 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        down2 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        left1 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        left2 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        right1 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
-        right2 = setup("resources/objects/key", gp.tileSize, gp.tileSize);
+        up1 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        up2 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        down1 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        down2 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        left1 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        left2 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        right1 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
+        right2 = setup("resources/objects/bomb", gp.tileSize, gp.tileSize);
     }
 }
