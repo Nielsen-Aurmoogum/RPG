@@ -35,11 +35,9 @@ public class ObjectChest extends SuperCharacter {
 
         if (opened == false) {
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("You have found the treasure !");
             down1 = image2;
             opened = true;
-            gp.ui.currentDialogue = sb.toString();
+            gp.gameState = gp.winState;
         }
 
         else {

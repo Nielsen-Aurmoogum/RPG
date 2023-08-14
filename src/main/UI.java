@@ -97,8 +97,14 @@ public class UI {
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
         }
+
+        // Win state
+        if (gp.gameState == gp.winState) {
+            drawWinScreen();
+        }
     }
 
+    // In-game messages
     public void drawMessage() {
         int messageX = gp.tileSize;
         int messageY = gp.tileSize * 4;
@@ -367,6 +373,7 @@ public class UI {
         }
     }
 
+    // Game over screen
     public void drawGameOverScreen() {
 
         // Make screen darker
@@ -406,6 +413,41 @@ public class UI {
         y += 55;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.drawString(">", x - 40, y);
+        }
+    }
+
+    // Win screen
+    public void drawWinScreen() {
+
+        // Make screen darker
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 100f));
+
+        text = "You Won !";
+
+        // Shadow
+        g2.setColor(Color.BLACK);
+        x = xCenter(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x, y);
+
+        // Main
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, x - 4, y - 4);
+
+        // Back to title screen
+        g2.setFont(g2.getFont().deriveFont(40f));
+        text = "Quit";
+        x = xCenter(text);
+        y += gp.tileSize * 4;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
             g2.drawString(">", x - 40, y);
         }
     }

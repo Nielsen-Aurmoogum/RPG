@@ -51,6 +51,11 @@ public class InputHandler implements KeyListener {
             gameOverState(code);
         }
 
+        // Win state        
+        else if (gp.gameState == gp.winState) {
+            winState(code);
+        }
+
     }
 
     // When user is on title screen
@@ -219,6 +224,17 @@ public class InputHandler implements KeyListener {
             }
 
             if (gp.ui.commandNum == 1) {
+                gp.gameState = gp.titleState;
+                gp.restart();
+            }
+        }
+    }
+
+    // When game has been won
+    public void winState(int code) {
+
+        if (code == KeyEvent.VK_ENTER) {
+            if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.titleState;
                 gp.restart();
             }
