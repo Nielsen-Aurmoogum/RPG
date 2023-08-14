@@ -111,6 +111,35 @@ public class InputHandler implements KeyListener {
         if (code == KeyEvent.VK_P) {
             gp.gameState = gp.playState;
         }
+        if (code == KeyEvent.VK_ENTER) {
+            enterInput = true;
+        }
+
+        int maxCommandNum = 0;
+        switch (gp.ui.subState) {
+
+            case 0: // Pause screen 2 other options
+                maxCommandNum = 2;
+                break;
+
+            case 2: // End game 1 other option
+                maxCommandNum = 1;
+                break;
+        }
+
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }
     }
 
     // When dialogues are happening

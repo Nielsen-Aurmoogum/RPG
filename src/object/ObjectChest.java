@@ -14,8 +14,8 @@ public class ObjectChest extends SuperCharacter {
 
         type = type_obstacle;
         name = "Treasure Chest";
-        image = setup("resources/objects/newBoot", gp.tileSize, gp.tileSize);
-        image2 = setup("resources/objects/newBoot", gp.tileSize, gp.tileSize);
+        image = setup("resources/objects/chestClosed", gp.tileSize, gp.tileSize);
+        image2 = setup("resources/objects/chestOpened", gp.tileSize, gp.tileSize);
         down1 = image;
         collision = true;
 
@@ -30,11 +30,11 @@ public class ObjectChest extends SuperCharacter {
     @Override
     // Player interaction with chest
     public void interact() {
-        
+
         gp.gameState = gp.dialogueState;
 
         if (opened == false) {
-            
+
             StringBuilder sb = new StringBuilder();
             sb.append("You have found the treasure !");
             down1 = image2;

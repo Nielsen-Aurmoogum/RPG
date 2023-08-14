@@ -19,6 +19,7 @@ public class UI {
     Graphics2D g2;
     public boolean gameFinished = false;
     public int commandNum = 0;
+    int subState = 0;
 
     // Fonts
     Font arial_40, arial_80B;
@@ -194,15 +195,171 @@ public class UI {
 
     }
 
-    // Handles where pause text will be
+    // Handles where pause menu will be
+    // and how it looks like
+    // Different selectable options
     public void drawPauseScreen() {
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 75F));
-        String text = "PAUSED";
-        int x = xCenter(text); // Center x
-        int y = gp.screenHeight / 2; // Center y
-        g2.drawString(text, x, y);
+        // Frame
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(28F));
 
+        // Sub window
+        int frameX = (gp.tileSize * 4) + 20;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 8;
+        int frameHeight = gp.tileSize * 10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // Different options of pause menu
+        switch (subState) {
+            case 0:
+                pause_top(frameX, frameY);
+                break;
+
+            case 1:
+                optionsControl(frameX, frameY);
+                break;
+
+            case 2:
+                confirmEndGame(frameX, frameY);
+        }
+        gp.inputH.enterInput = false;
+
+    }
+
+    // Pause screen components
+    public void pause_top(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        // Title
+        String text = "Pause";
+        textX = xCenter(text) + 15;
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        // Controls
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize * 2;
+        g2.drawString("Controls", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                subState = 1;
+                commandNum = 0;
+            }
+        }
+
+        // End game
+        textY += gp.tileSize * 2;
+        g2.drawString("End game", textX, textY);
+        if (commandNum == 1) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                subState = 2;
+                commandNum = 1;
+            }
+        }
+
+        // Resume
+        textY += gp.tileSize * 2;
+        g2.drawString("Resume", textX, textY);
+        if (commandNum == 2) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                gp.gameState = gp.playState;
+                commandNum = 0;
+            }
+        }
+    }
+
+    // Options Control components
+    public void optionsControl(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        // Title
+        String text = "Controls";
+        textX = xCenter(text) + 15;
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        // Left side
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize + 20;
+        g2.drawString("Move", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("Confirm/Attack", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("Character info", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("Pause", textX, textY);
+        textY += gp.tileSize + 20;
+
+        // Right side
+        textX = frameX + gp.tileSize * 5 + 20;
+        textY = frameY + gp.tileSize * 2 + 20;
+        g2.drawString("WASD", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("ENTER", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("I", textX, textY);
+        textY += gp.tileSize + 20;
+        g2.drawString("P", textX, textY);
+        textY += gp.tileSize + 20;
+
+        // Back
+        textX = frameX + gp.tileSize;
+        textY = frameY + gp.tileSize * 9;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                subState = 0;
+                commandNum = 0;
+            }
+        }
+    }
+
+    // End game confirmation message
+    public void confirmEndGame(int frameX, int frameY) {
+
+        int textX = frameX + gp.tileSize - 10;
+        int textY = frameY + gp.tileSize + 15;
+
+        currentDialogue = "Quit the game and return \nto the title screen ?";
+
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        // Yes
+        String text = "YES";
+        textX = xCenter(text) + 15;
+        textY += gp.tileSize * 2;
+        g2.drawString(text, textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                subState = 0;
+                gp.gameState = gp.titleState;
+            }
+        }
+
+        // No
+        text = "NO";
+        textX = xCenter(text) + 15;
+        textY += gp.tileSize * 2;
+        g2.drawString(text, textX, textY);
+        if (commandNum == 1) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.inputH.enterInput == true) {
+                subState = 0;
+                commandNum = 1;
+            }
+        }
     }
 
     // Handles where dialogue screen will be
