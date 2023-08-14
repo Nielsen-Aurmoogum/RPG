@@ -3,11 +3,11 @@ package object;
 import character.Projectile;
 import main.GamePanel;
 
-public class ObjectArrow extends Projectile {
+public class ObjectBomb extends Projectile {
 
     GamePanel gp;
 
-    public ObjectArrow(GamePanel gp) {
+    public ObjectBomb(GamePanel gp) {
         super(gp);
         this.gp = gp;
 

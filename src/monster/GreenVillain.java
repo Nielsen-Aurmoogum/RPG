@@ -4,7 +4,7 @@ import java.util.Random;
 
 import character.SuperCharacter;
 import main.GamePanel;
-import object.ObjectArrow;
+import object.ObjectBomb;
 
 public class GreenVillain extends SuperCharacter {
 
@@ -24,7 +24,7 @@ public class GreenVillain extends SuperCharacter {
         attackPower = 3;
         defensePower = 0;
         exp = 2;
-        projectile = new ObjectArrow(gp);
+        projectile = new ObjectBomb(gp);
 
         // Hit-box region
         solidArea.x = 8;
