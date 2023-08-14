@@ -99,7 +99,7 @@ public class Player extends SuperCharacter {
     // Read main character attack images
     public void getPlayerAttackImage() {
 
-        if (type == type_greenLightSaber) {
+        if (currentWeapon.type == type_greenLightSaber) {
             attackUp1 = setup("resources/player/attackUp1", gp.tileSize, gp.tileSize * 2);
             attackUp2 = setup("resources/player/attackUp2", gp.tileSize, gp.tileSize * 2);
             attackDown1 = setup("resources/player/attackDown1", gp.tileSize, gp.tileSize * 2);
@@ -110,7 +110,7 @@ public class Player extends SuperCharacter {
             attackRight2 = setup("resources/player/attackRight2", gp.tileSize * 2, gp.tileSize);
         }
 
-        else if (type == type_redLightSaber) {
+        if (currentWeapon.type == type_redLightSaber) {
             attackUp1 = setup("resources/player/attackUp1red", gp.tileSize, gp.tileSize * 2);
             attackUp2 = setup("resources/player/attackUp2red", gp.tileSize, gp.tileSize * 2);
             attackDown1 = setup("resources/player/attackDown1red", gp.tileSize, gp.tileSize * 2);
@@ -401,7 +401,7 @@ public class Player extends SuperCharacter {
 
                 currentWeapon = selectedItem;
                 attackPower = getAttackPower();
-                // getPlayerAttackImage();
+                getPlayerAttackImage();
             }
 
             if (selectedItem.type == type_shield) {
