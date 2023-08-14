@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterInfoState = 4;
+    public final int gameOverState = 5;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -74,6 +75,23 @@ public class GamePanel extends JPanel implements Runnable {
         placer.setNPC();
         placer.setMonster();
         gameState = titleState;
+    }
+
+    public void retry() {
+
+        player.setDefaultPositions();
+        player.lifeRestore();
+        placer.setNPC();
+        placer.setMonster();
+    }
+
+    public void restart() {
+
+        player.setStartValues();
+        player.setItems(); // Inventory cleared only default stays
+        placer.setObject();
+        placer.setNPC();
+        placer.setMonster();
     }
 
     public void startGameThread() {

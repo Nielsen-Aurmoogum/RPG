@@ -46,10 +46,16 @@ public class InputHandler implements KeyListener {
             characterInfoState(code);
         }
 
+        // Game over state
+        else if (gp.gameState == gp.gameOverState) {
+            gameOverState(code);
+        }
+
     }
 
     // When user is on title screen
     public void titleState(int code) {
+
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNum--;
             if (gp.ui.commandNum < 0) {
@@ -77,6 +83,7 @@ public class InputHandler implements KeyListener {
 
     // When user is playing
     public void playState(int code) {
+
         if (code == KeyEvent.VK_W) {
             upInput = true;
         }
@@ -108,9 +115,11 @@ public class InputHandler implements KeyListener {
 
     // When game is paused
     public void pauseState(int code) {
+
         if (code == KeyEvent.VK_P) {
             gp.gameState = gp.playState;
         }
+
         if (code == KeyEvent.VK_ENTER) {
             enterInput = true;
         }
@@ -144,6 +153,7 @@ public class InputHandler implements KeyListener {
 
     // When dialogues are happening
     public void dialogueState(int code) {
+
         if (code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
         }
@@ -151,31 +161,67 @@ public class InputHandler implements KeyListener {
 
     // When character info is being displayed
     public void characterInfoState(int code) {
+
         if (code == KeyEvent.VK_I) {
             gp.gameState = gp.playState;
         }
+
         if (code == KeyEvent.VK_W) {
             if (gp.ui.slotRow != 0) {
                 gp.ui.slotRow--;
             }
         }
+
         if (code == KeyEvent.VK_A) {
             if (gp.ui.slotCol != 0) {
                 gp.ui.slotCol--;
             }
         }
+
         if (code == KeyEvent.VK_S) {
             if (gp.ui.slotRow != 1) {
                 gp.ui.slotRow++;
             }
         }
+
         if (code == KeyEvent.VK_D) {
             if (gp.ui.slotCol != 4) {
                 gp.ui.slotCol++;
             }
         }
+
         if (code == KeyEvent.VK_ENTER) {
             gp.player.selectItem();
+        }
+    }
+
+    // When game is over
+    public void gameOverState(int code) {
+
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 1;
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 1) {
+                gp.ui.commandNum = 0;
+            }
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            if (gp.ui.commandNum == 0) {
+                gp.gameState = gp.playState;
+                gp.retry();
+            }
+
+            if (gp.ui.commandNum == 1) {
+                gp.gameState = gp.titleState;
+                gp.restart();
+            }
         }
     }
 

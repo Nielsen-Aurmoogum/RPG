@@ -66,8 +66,22 @@ public class Player extends SuperCharacter {
         defensePower = getDefensePower(); // Depends on shield
     }
 
+    // Reset position
+    public void setDefaultPositions() {
+        worldX = gp.tileSize * 7;
+        worldY = gp.tileSize * 2;
+        direction = "right";
+    }
+
+    // Restore life when retry game
+    public void lifeRestore() {
+        life = fullLife;
+        invincible = false;
+    }
+
     // These items will be in inventory from the start
     public void setItems() {
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
     }
@@ -120,7 +134,7 @@ public class Player extends SuperCharacter {
             attackRight1 = setup("resources/player/attackRight1red", gp.tileSize * 2, gp.tileSize);
             attackRight2 = setup("resources/player/attackRight2red", gp.tileSize * 2, gp.tileSize);
         }
-    
+
     }
 
     /**
@@ -223,6 +237,12 @@ public class Player extends SuperCharacter {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        // Check if player is still alive
+        if (life <= 0) {
+            gp.gameState = gp.gameOverState;
+            gp.ui.commandNum = -1; // Prevent accidental retry
         }
 
     }
