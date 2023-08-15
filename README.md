@@ -1,5 +1,6 @@
 # The Adventure of Slander man
-photo
+<img width="880" alt="Screenshot 2023-08-15 at 20 36 40" src="https://github.com/Nielsen-Aurmoogum/RPG/assets/123058725/b165a38f-e2b2-42a1-ac9b-f84aa02b30b9">
+
 # Introduction: 
 In this game, the aim is to be able to kill monsters to level up and to find the hidden real treasure. However, it is not so easy to find them without getting killed by the bombs lanched by the monsters. 
 
