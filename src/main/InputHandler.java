@@ -51,7 +51,7 @@ public class InputHandler implements KeyListener {
             gameOverState(code);
         }
 
-        // Win state        
+        // Win state
         else if (gp.gameState == gp.winState) {
             winState(code);
         }

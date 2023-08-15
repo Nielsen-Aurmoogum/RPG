@@ -16,7 +16,7 @@ import main.UtilityTool;
  * characters and objects
  * that will be in the game
  */
-public class SuperCharacter {
+public class SuperCharacter implements Care {
     GamePanel gp;
     public int worldX, worldY; // Position on map
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
@@ -68,6 +68,7 @@ public class SuperCharacter {
     public final int type_shield = 5;
     public final int type_usable = 6;
     public final int type_obstacle = 7;
+    public final int type_healer = 8;
 
     // Used to decide when to cycle through different orientations
     public int spriteCounter = 0;
@@ -130,6 +131,13 @@ public class SuperCharacter {
     public void interact() {
     }
 
+    // Heal player's life to full
+    @Override
+    public void healPlayer() {
+
+        gp.player.life = gp.player.fullLife;
+    }
+
     // Store the dialogue in currentDialogue in UI class
     public void speak() {
 
@@ -173,10 +181,12 @@ public class SuperCharacter {
         collisionOn = false;
 
         // Checking collision for NPC or Monster or Tile or Object
+        // or Healer
         gp.collisionTest.checkTile(this);
         gp.collisionTest.checkObject(this, false);
         gp.collisionTest.checkCharacter(this, gp.npc);
         gp.collisionTest.checkCharacter(this, gp.monster);
+        gp.collisionTest.checkCharacter(this, gp.healer);
         boolean contactPlayer = gp.collisionTest.checkPlayer(this);
 
         if (this.type == type_monster && contactPlayer == true) {
@@ -250,7 +260,7 @@ public class SuperCharacter {
         }
     }
 
-    // Draw npc or monster on screen
+    // Draw character on screen
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
@@ -383,6 +393,7 @@ public class SuperCharacter {
         return image;
     }
 
+    // Surrounding objects detection
     public int getDetected(SuperCharacter user, SuperCharacter target[], String targetName) {
 
         int index = 999;

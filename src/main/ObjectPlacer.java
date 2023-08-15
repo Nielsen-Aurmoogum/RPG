@@ -1,5 +1,6 @@
 package main;
 
+import character.Healer;
 import character.NPC_Villager;
 import monster.GreenVillain;
 import object.ObjectBoots;
@@ -139,5 +140,17 @@ public class ObjectPlacer {
         gp.monster[i] = new GreenVillain(gp);
         gp.monster[i].worldX = gp.tileSize * 9;
         gp.monster[i].worldY = gp.tileSize * 28;
+    }
+
+    /**
+     * Instantiate healer and provide location
+     */
+    public void setHealer() {
+        int i = 0;
+
+        gp.healer[i] = new Healer(gp);
+        gp.healer[i].worldX = gp.tileSize * 10;
+        gp.healer[i].worldY = gp.tileSize * 2;
+
     }
 }

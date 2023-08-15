@@ -123,7 +123,7 @@ public class VerifyCollision {
         return index;
     }
 
-    // Player to NPC or Monster collision checker
+    // Player to NPC or Monster or Healer collision checker
     public int checkCharacter(SuperCharacter character, SuperCharacter[] target) {
         int index = 999;
 
@@ -175,7 +175,7 @@ public class VerifyCollision {
         return index;
     }
 
-    // NPC or Monster to Player collision checker
+    // NPC or Monster or Healer to Player collision checker
     public boolean checkPlayer(SuperCharacter character) {
 
         boolean contactPlayer = false;

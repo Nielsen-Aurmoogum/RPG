@@ -1,11 +1,9 @@
 package main;
 
 import javax.swing.JPanel;
-
 import character.SuperCharacter;
 import character.Player;
 import tile.TileManager;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -50,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperCharacter obj[] = new SuperCharacter[15]; // Can display up to 15 objects at the same time
     public SuperCharacter npc[] = new SuperCharacter[10]; // Can display up to 10 npcs at the same time
     public SuperCharacter monster[] = new SuperCharacter[10]; // Can display up to 10 monsters at the same time
+    public SuperCharacter healer[] = new SuperCharacter[2]; // Can display up to 2 healers at the same time
     public ArrayList<SuperCharacter> projectileList = new ArrayList<>(); // Projectiles stored in this array
     ArrayList<SuperCharacter> charactersList = new ArrayList<>(); // All characters and objects are stored in this array
 
@@ -75,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
         placer.setObject();
         placer.setNPC();
         placer.setMonster();
+        placer.setHealer();
         gameState = titleState;
     }
 
@@ -84,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.lifeRestore();
         placer.setNPC();
         placer.setMonster();
+        placer.setHealer();
     }
 
     public void restart() {
@@ -93,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
         placer.setObject();
         placer.setNPC();
         placer.setMonster();
+        placer.setHealer();
     }
 
     public void startGameThread() {
@@ -155,6 +157,13 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            // Healer
+            for (int i = 0; i < healer.length; i++) {
+                if (healer[i] != null) {
+                    healer[i].update();
+                }
+            }
+
             // Projectile
             for (int i = 0; i < projectileList.size(); i++) {
                 if (projectileList.get(i) != null) {
@@ -211,6 +220,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     charactersList.add(monster[i]);
+                }
+            }
+
+            for (int i = 0; i < healer.length; i++) {
+                if (healer[i] != null) {
+                    charactersList.add(healer[i]);
                 }
             }
 

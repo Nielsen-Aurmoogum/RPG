@@ -182,6 +182,10 @@ public class Player extends SuperCharacter {
             int monsterIndex = gp.collisionTest.checkCharacter(this, gp.monster);
             contactMonster(monsterIndex);
 
+            // Check healer collision
+            int healerIndex = gp.collisionTest.checkCharacter(this, gp.healer);
+            interactHealer(healerIndex);
+
             // Check event collision
             gp.eHandler.checkEvent();
 
@@ -340,6 +344,18 @@ public class Player extends SuperCharacter {
                 attackCancel = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
+            }
+        }
+    }
+
+    // Player to healer collision
+    public void interactHealer(int i) {
+        if (gp.inputH.enterInput == true) {
+            if (i != 999) {
+                attackCancel = true;
+                gp.gameState = gp.dialogueState;
+                gp.healer[i].speak();
+                gp.healer[i].healPlayer();
             }
         }
     }
