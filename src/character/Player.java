@@ -356,6 +356,7 @@ public class Player extends SuperCharacter {
                 gp.gameState = gp.dialogueState;
                 gp.healer[i].speak();
                 gp.healer[i].healPlayer();
+                gp.placer.setMonster(); // Respawn monster after healing player
             }
         }
     }
