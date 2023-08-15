@@ -25,6 +25,7 @@ public class ObjectChest extends SuperCharacter {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+
     }
 
     @Override

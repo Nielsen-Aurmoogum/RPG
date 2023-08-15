@@ -68,7 +68,6 @@ public class ObjectPlacer {
         gp.obj[i] = new ObjectChest(gp);
         gp.obj[i].worldX = gp.tileSize * 46;
         gp.obj[i].worldY = gp.tileSize * 47;
-        i++;
 
     }
 
@@ -149,8 +148,8 @@ public class ObjectPlacer {
         int i = 0;
 
         gp.healer[i] = new Healer(gp);
-        gp.healer[i].worldX = gp.tileSize * 10;
-        gp.healer[i].worldY = gp.tileSize * 2;
+        gp.healer[i].worldX = gp.tileSize * 41;
+        gp.healer[i].worldY = gp.tileSize * 32;
 
     }
 }

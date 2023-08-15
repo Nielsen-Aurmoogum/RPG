@@ -31,8 +31,7 @@ public class Healer extends SuperCharacter {
 
     // Set healer dialogues
     public void setDialogue() {
-        dialogues[0] = "Thank you for releasing me\nfrom my prison !";
-        dialogues[1] = "I will help you on your adventure.\nLet me heal you.";
+        dialogues[0] = "Thank you for releasing me from my\nprison ! I will help you on your\nadventure. Let me heal you.";
     }
 
     // Healer specific behaviours

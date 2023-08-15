@@ -84,7 +84,7 @@ public class EventHandler {
     // Damage-based event
     public void fire(int col, int row, int gameState) {
         gp.gameState = gameState;
-        gp.ui.currentDialogue = "You are on fire but in a bad way";
+        gp.ui.currentDialogue = "You are on fire but in a bad way.";
         gp.player.life -= 1;
         canTouchEvent = false;
     }
