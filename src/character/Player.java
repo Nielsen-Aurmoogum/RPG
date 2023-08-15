@@ -354,7 +354,7 @@ public class Player extends SuperCharacter {
 
                 // Standard minimum damage
                 if (damage <= 0) {
-                    life -= 1;
+                    life -= 2;
                     invincible = true;
                 }
 

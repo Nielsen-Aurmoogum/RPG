@@ -67,6 +67,7 @@ public class ObjectPlacer {
         gp.obj[i] = new ObjectChest(gp);
         gp.obj[i].worldX = gp.tileSize * 46;
         gp.obj[i].worldY = gp.tileSize * 47;
+        i++;
 
     }
 

@@ -239,7 +239,7 @@ public class SuperCharacter {
 
             // Standard minimum damage
             if (damage <= 0) {
-                gp.player.life -= 1;
+                gp.player.life -= 2;
                 gp.player.invincible = true;
             }
 
@@ -323,8 +323,7 @@ public class SuperCharacter {
             if (dying == true) {
                 dyingAnimation(g2);
             }
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-
+            g2.drawImage(image, screenX, screenY, null);
             changeAlpha(g2, 1F);
         }
     }

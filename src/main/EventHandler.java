@@ -4,7 +4,6 @@ public class EventHandler {
 
     GamePanel gp;
     EventRect eventRect[][];
-    int eventRectDefaultX, eventRectDefaultY;
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -16,7 +15,7 @@ public class EventHandler {
 
         int col = 0;
         int row = 0;
-        while (col < gp.maxWorldCol && row < gp.maxScreenRow) {
+        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[col][row] = new EventRect();
             eventRect[col][row].x = 23;
             eventRect[col][row].y = 23;
@@ -49,8 +48,8 @@ public class EventHandler {
         }
 
         if (canTouchEvent == true) {
-            if (hit(4, 4, "any") == true) {
-                fire(4, 4, gp.dialogueState);
+            if (hit(40, 27, "any") == true) {
+                fire(40, 27, gp.dialogueState);
             }
         }
 
@@ -66,7 +65,7 @@ public class EventHandler {
         eventRect[col][row].y = row * gp.tileSize + eventRect[col][row].y;
 
         if (gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
-            if (gp.player.direction.contains(reqDirection) || reqDirection.contentEquals("any")) {
+            if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
 
                 previousEventX = gp.player.worldX;

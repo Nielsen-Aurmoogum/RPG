@@ -14,7 +14,7 @@ public class ObjectBomb extends Projectile {
         name = "Arrow";
         speed = 7;
         fullLife = 60;
-        attackPower = 2;
+        attackPower = 3;
         alive = false;
 
         getImage();
