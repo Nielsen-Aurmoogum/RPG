@@ -34,7 +34,7 @@ level 1 -> level 2 (5 exp needed)
  <br>**Resume** - It will take you back to the game on the same position, level and with the collected items in the inventory. 
 
 ## How to play the game:
-1. To select : press `Enter `<br>
+1. To select : press `Enter`<br>
 2. To move the character around, we need to make use of the following : 
 <br> `W` - move up
 <br> `A` - move left
@@ -63,8 +63,7 @@ Some items are normally picked up, they are automatically kept in the inventory.
 
 ## How to run the project 
 
-In order to run the project code, we use the terminal and we type the following : <br>
-You need to clone the repository or download the compressed ZIP file then run the lines below on your terminal
+You need to clone the repository or download the compressed ZIP file then run the lines below on your terminal:
 
 ```bash
 // Using java 17.0.8 2023-07-18 LTS
