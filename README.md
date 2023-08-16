@@ -18,7 +18,7 @@ Be careful where you step on, you might get burnt or bombed !
 3. As you level up, the difficulty to level up doubles, such as: <br>
 level 1 -> level 2 (5 exp needed)
 <br> level 2 -> level 3 (10 exp needed)
-<br> level 3 -> level 4 (15 exp needed)
+<br> level 3 -> level 4 (20 exp needed)
 
 4. There are some tiles that cannot be walked on. <br>
 
