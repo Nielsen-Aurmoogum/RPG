@@ -146,19 +146,20 @@ public class ObjectPlacer {
         gp.monster[i].worldY = gp.tileSize * 31;
         i++;
 
+        // Near treasure chest
         gp.monster[i] = new GreenVillain(gp);
-        gp.monster[i].worldX = gp.tileSize * 9;
-        gp.monster[i].worldY = gp.tileSize * 32;
+        gp.monster[i].worldX = gp.tileSize * 33;
+        gp.monster[i].worldY = gp.tileSize * 48;
         i++;
 
         gp.monster[i] = new GreenVillain(gp);
-        gp.monster[i].worldX = gp.tileSize * 8;
-        gp.monster[i].worldY = gp.tileSize * 31;
+        gp.monster[i].worldX = gp.tileSize * 31;
+        gp.monster[i].worldY = gp.tileSize * 48;
         i++;
 
         gp.monster[i] = new GreenVillain(gp);
-        gp.monster[i].worldX = gp.tileSize * 9;
-        gp.monster[i].worldY = gp.tileSize * 28;
+        gp.monster[i].worldX = gp.tileSize * 37;
+        gp.monster[i].worldY = gp.tileSize * 48;
     }
 
     /**

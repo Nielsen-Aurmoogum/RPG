@@ -11,7 +11,7 @@ public class ObjectBomb extends Projectile {
         super(gp);
         this.gp = gp;
 
-        name = "Arrow";
+        name = "Bomb";
         speed = 7;
         fullLife = 60;
         attackPower = 3;
