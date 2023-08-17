@@ -22,7 +22,7 @@ level 1 -> level 2 (5 exp needed)
 
 4. There are some tiles that cannot be walked on. <br>
 
-5. As you level up, your life, attack power and defense power increase. 
+5. As you level up, your life, strength and agility increase. 
 
 6. You have an inventory size of 10 maximum. If an item is collected when maximum inventory capacity is already met, the newly collected item will not be stored in the inventory. 
 7. Once you run out of lives and the game is over, you have two options : `Retry` or `Quit`. <br>
@@ -30,7 +30,7 @@ level 1 -> level 2 (5 exp needed)
 <br> **Quit** will bring you back to the title screen where you can choose to play again or to quit and you lose all items collected as well as level reached. 
 8. When pausing the game, you have three options:
  <br> **Controls** - It shows the descriptions and keys of the controls of the game <br>
- <br> **End game** - It will end the game.<br>
+ <br> **End game** - It will take you back to the title screen where you can either play again where you left off or quit the game.<br>
  <br>**Resume** - It will take you back to the game on the same position, level and with the collected items in the inventory. 
 
 ## How to play the game:
@@ -52,13 +52,14 @@ To move around in inventory, use : `W`,`A`,`S`,`D`
 8. To pick up an item, walk through the item.<br>
 
 ## Items
-Some items are normally picked up, they are automatically kept in the inventory.
+Items are automatically picked up and kept in the inventory.
+
 * Shield : It diminishes damage you take from monsters.
 * Yoda's Lightsaber: The lightsaber is green and it's attack power is less relatively to the Darth Vader's lightsaber.
 * Purple potion : Upon selecting the purple potion from the inventory, it increases the character's speed.
-* Boot : Upon picking up a boot, the character's speed decreases. 
-* Key : Keys may open up chests and doors.
-* Darth Vader's lightsaber : The lightsaber is red and it has more attack power. 
+* Boot : Upon selecting a boot from the inventory, the character's speed decreases. 
+* Key : Keys may open up doors.
+* Darth Vader's lightsaber : The lightsaber is red and it has more attack power than the default lightsaber. 
 
 
 ## How to run the project 
