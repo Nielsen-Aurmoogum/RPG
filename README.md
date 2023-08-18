@@ -6,10 +6,10 @@
 In this game, the aim is to be able to kill monsters to level up and to find the hidden treasure. However, it is not so easy to find them without getting killed by the bombs lanched by the monsters. 
 
 Be careful where you step on, you might get burnt or bombed !
-## Group members: 
-* Nielsen Aurmoogum - 2112446
-* Shivangi Ramnial - 2115392
-* Ghennah Poyroo - 2115920
+## Contributors: 
+* Nielsen Aurmoogum
+* Shivangi Ramnial
+* Ghennah Poyroo
 
 ## Game rules:
 1. You initially have 6 lives (3 hearts = 6 lives) <br>
